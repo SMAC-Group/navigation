@@ -1,6 +1,6 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-![#f7e4c0](https://placehold.it/15/f7e4c0/000000?text=+hello)
+The navigation package is currently under development in a private repository. We hope to make a first release in the coming months. In the meantime, you can see below the different functions and capabilities of the package.
 
 [![Licence](https://img.shields.io/badge/licence-AGPL--3.0-blue.svg)](https://opensource.org/licenses/AGPL-3.0)
 [![minimal R
