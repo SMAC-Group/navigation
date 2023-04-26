@@ -74,8 +74,8 @@ arma::mat KF_mat_Fne_cpp(const arma::vec & X, const arma::mat & noise_info) {
   double p = X[7];
   double y = X[8];
   
-  arma::mat C_b_i = rot_C_b_i_cpp(r=r, p=p, y=y);
-  arma::mat Cw    = rot_Cw_cpp(r=r,p=p);
+  arma::mat C_b_i = rot_C_b_i_cpp(r, p, y);
+  arma::mat Cw    = rot_Cw_cpp(r,p);
   
   double dn = noise_info.n_rows - 6;
   arma::mat Fne = arma::mat(9, dn, arma::fill::zeros);
@@ -139,8 +139,8 @@ arma::mat KF_mat_Gmat_cpp(const arma::vec X, const arma::mat & noise_info) {
   double r = X[6];
   double p = X[7];
   double y = X[8];
-  arma::mat C_b_i = rot_C_b_i_cpp(r=r, p=p, y=y);
-  arma::mat Cw    = rot_Cw_cpp(r=r,p=p);
+  arma::mat C_b_i = rot_C_b_i_cpp(r, p, y);
+  arma::mat Cw    = rot_Cw_cpp(r,p);
   double dn = noise_info.n_rows - 6;
   //  how many driving noises
   arma::uvec j  = find(noise_info.col(0) != 2); 

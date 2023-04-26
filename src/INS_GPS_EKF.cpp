@@ -248,7 +248,7 @@ List EKF_pred_cpp(const arma::vec & X_k,  const arma::mat & P_k, const arma::mat
   arma::mat Fmat = KF_mat_Fmat_cpp(X_k, imu_data, noise_info, Fee);
   arma::mat Gmat = KF_mat_Gmat_cpp(X_k, noise_info);
   
-  List PhiQ = pred_PhiQ_cpp_2(Fmat,Gmat,Wmat,dt,method=method);
+  List PhiQ = pred_PhiQ_cpp_2(Fmat,Gmat,Wmat,dt,method);
     
     
   arma::mat Phi = PhiQ["Phi"];
