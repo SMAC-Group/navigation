@@ -48,7 +48,9 @@ The `navigation` package is currently only available on GitHub.
 Furthermore, the package is currently in an early development phase. Some
 functions are stable and some are still in development. Moreover, the
 GitHub version is subject to modifications/updates which may lead to
-installation problems or broken functions. You can install the latest
+installation problems or broken functions.
+
+You can install the latest
 version of the `navigation` package with:
 
 ```
