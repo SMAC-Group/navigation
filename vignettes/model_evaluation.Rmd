@@ -101,7 +101,7 @@ res = navigation(traj.ref = traj,
                  noProgressBar = TRUE,
                  PhiQ_method = "4", # order of the taylor expansion of the matrix exponential used to compute Phi and Q matrices
                  compute_PhiQ_each_n = 10, # compute new Phi and Q matrices every n IMU steps (execution time optimization)
-                 parallel.ncores=24,
+                 parallel.ncores=1,
                  P_subsampling = timing$freq.imu) # keep one covariance every second
 ```
 

@@ -98,7 +98,7 @@ res = navigation(traj.ref = traj,
                  num.runs = num.runs,
                  noProgressBar = TRUE,
                  PhiQ_method=2,
-                 parallel.ncores=8,
+                 parallel.ncores=1,
                  P_subsampling = timing$freq.imu) # keep one covariance every second
 ```
 
@@ -113,7 +113,7 @@ wrong_res = navigation(traj.ref = traj,
                  noProgressBar = TRUE,
                
                  PhiQ_method=2,
-                 parallel.ncores=8,
+                 parallel.ncores=1,
                  P_subsampling = timing$freq.imu) # keep one covariance every second
 ```
 
