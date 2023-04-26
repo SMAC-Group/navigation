@@ -29,7 +29,7 @@ plot(traj, threeD = T)
 ```
 
 
-Then we  need to make a `timing` object (see `?make_timing` for details) where we specify
+Then we need to make a `timing` object (see `?make_timing` for details) where we specify
 
 * the start and the end of navigation,
 * the frequencies of different sensors,

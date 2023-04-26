@@ -12,7 +12,7 @@ timing = make_timing(nav.start     = 0, # time at which to begin filtering
                      freq.imu      = 100, # frequency of the IMU, can be slower wrt trajectory frequency
                      freq.gps      = 1, # gnss frequency
                      freq.baro     = 1, # barometer frequency (to disable, put it very low, e.g. 1e-5)
-                     gps.out.start = 270, # to simulate a GNSS outage, set a time before nav.end
+                     gps.out.start = 260, # to simulate a GNSS outage, set a time before nav.end
                      gps.out.end   = 300)
 
 # ---------------- sensor model for data generation

@@ -65,6 +65,8 @@ navbar:
     menu:
     - text: "Model Evaluation"
       href: articles/model_evaluation.html
+    - text: "Compare Models"
+      href: articles/compare_model.html
   - text: Reference
     href: reference/index.html
   right:
