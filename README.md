@@ -68,7 +68,7 @@ The `navigation` package relies on a limited number of external libraries, but n
 
 # Usage
 
-Find the package vignettes and user's manual at the [package website](https://smac-group.github.io/navigation/index.html).
+Find detailled usage instructions, examples and the user's manual at the [package website](https://smac-group.github.io/navigation/index.html).
 
 # License
 
