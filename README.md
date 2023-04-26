@@ -28,9 +28,9 @@ barometer data. The package allows for one of the two major tasks:
     integrated navigation using the package and also benefit from a
     subset of visualization tools.
 
-⚠ **Caution** A flat non-rotating Earth model is assumed throughout the
+**Caution** A flat non-rotating Earth model is assumed throughout the
 package. We consider this not to be of major impact on sensor model
-evaluation, as the main contributor there are match/mismatch btween the
+evaluation, as the main contributor there are match/mismatch between the
 additive sensor errors and the provided error models to the navigation
 filter. For absolute navigation results though, is long distances and
 high speeds are involved, such simplifications start to have measurable
@@ -46,9 +46,8 @@ The `navigation` package is currently only available on GitHub.
 Furthermore, the package is currently in an early development phase. Some
 functions are stable and some are still in development. Moreover, the
 GitHub version is subject to modifications/updates which may lead to
-installation problems or broken functions. 
-
-You can install the latest version of the `navigation` package with:
+installation problems or broken functions. You can install the latest
+version of the `navigation` package with:
 
 ```
 devtools::install_github('https://github.com/SMAC-Group/navigation')
