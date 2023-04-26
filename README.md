@@ -6,7 +6,7 @@ version](https://img.shields.io/badge/R%3E%3D-4.0.0-6666ff.svg)](https://cran.r-
 
 # `navigation` Overview <a href="https://smac-group.com/"><img src="man/figures/logo.png" align="right" style="width: 20%; height: 20%"/></a>
 
-The `navigation` R package was initiated to allow for analyzing the
+The `navigation` `R` package allows to analyze the
 impact of sensor error modeling on performance of integrated navigation
 (sensor fusion) based on IMU, GPS (generally speaking, GNSS), and
 barometer data. The package allows for one of the two major tasks:
@@ -51,6 +51,12 @@ installation problems or broken functions. You can install the latest
 version of the `navigation` package with:
 
 ```
+# Install devtools package if not already installed
+if (!require("devtools")) {
+  install.packages("devtools")
+}
+
+# Install package from GitHub
 devtools::install_github('https://github.com/SMAC-Group/navigation')
 ``` 
 
