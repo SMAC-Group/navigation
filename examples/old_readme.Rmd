@@ -1,0 +1,141 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, echo = FALSE, message=FALSE}
+knitr::opts_chunk$set(
+  cache = TRUE,
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-"
+)
+library(navigation)
+```
+
+
+[![Licence](https://img.shields.io/badge/licence-AGPL--3.0-blue.svg)](https://opensource.org/licenses/AGPL-3.0)
+[![minimal R version](https://img.shields.io/badge/R%3E%3D-3.4.0-6666ff.svg)](https://cran.r-project.org/)
+[![Last-changedate](https://img.shields.io/badge/last%20change-`r gsub('-', '--', Sys.Date())`-green.svg)](https://github.com/SMAC-Group/navigation2)
+
+
+
+# `navigation` Overview <a href="https://smac-group.com/"><img src="man/figures/logo.png" align="right" style="width: 20%; height: 20%"/></a>
+
+
+The `navigation` R package was initiated to allow for analyzing the impact of sensor error modeling on performance of integrated navigation (sensor fusion) based on IMU, GPS (generally speaking, GNSS), and barometer data. The package allows for one of the two major tasks:
+
+* **Sensor model evaluation:**
+The user shall provide a reference trajectory, along which the navigation performance is being evaluated using different sensor error models. Perfect sensor data along that reference trajectory are generated, and then corrupted by sensor error coming from either simulation based on the error models provided by user, or directly from user input *(option to be added)*. Integrated navigation is then performed, whit a separately provided error model to be used within the Extended Kalman Filter (EKF). The user can easily introduce GPS outage periods, and there is a growing number of tools to visualize and summarize the results.
+
+* **Integrated navigation (sensor fusion)**
+As a natural by-product of the first main application, integrated navigation is also available to users. Providing only the sensor data and the sensor error model to be used within the navigation filter, the user is able to perform integrated navigation using the package and also benefit from a subset of visualization tools.
+
+
+**Caution**
+A flat non-rotating Earth model is assumed throughout the package. We consider this not to be of major impact on sensor model evaluation, as the main contributor there are match/mismatch btween the additive sensor errors and the provided error models to the navigation filter. For absolute navigation results though, is long distances and high speeds are involved, such simplifications start to have measurable impact on results.
+Also, attitude parameterization is done via Euler angles at the moment, bringing their interinsic limitations, such as the singularity at $pitch=\pm pi/2$. This limitation may be resolved in future using other attitude parameterizations such as quaternions.
+
+
+# Install Instructions
+
+The `navigation` package is currently only available on GitHub. Furthermore, the package is currently in an early devlopment phase. Some fuctions are stable and some are still in devlopment. Furthermore, the GitHub version is subject to modifications/updates which may lead to installation problems or broken functions. You can install the stable version of the `navigation` package with:
+
+`devtools::install_github('https://github.com/SMAC-Group/navigation')`
+
+# Exemples
+
+## Model Evaluation
+
+First of all, we need to load the reference trajectory and create a `trajectory` object out of it (see `?make_trajectory` for details).
+``` {r traj, warning = FALSE, message = FALSE}
+# Reference trajectory
+data("lemniscate_traj_ned.RData") # trajectory in proper format as shown bellow
+head(lemniscate_traj_ned)
+traj = make_trajectory(data = lemniscate_traj_ned, system = "ned")
+traj
+```
+
+Let's see how the reference trajectory looks like.
+``` {r , warning = FALSE, message = FALSE, dependson = traj}
+# Plotting the reference trajectory
+plot(traj, n_split = 10)
+```
+
+
+Then we  need to make a `timing` object (see `?make_timing` for details) where we specify
+
+* the start and the end of navigation,
+* the frequencies of different sensors,
+* the beginning and end of the GPS outage period.
+``` {r timing, warning = FALSE, message = FALSE}
+# Timing and sampling frequencies
+timing = make_timing(nav.start     = 0,
+                     nav.end       = 50,
+                     freq.imu      = 100,
+                     freq.gps      = 1,
+                     freq.baro     = .5,
+                     gps.out.start = 40,
+                     gps.out.end   = 50)
+```
+
+Now we need to creat the sensor error models for error generation as a list of `sensor` objects (see `?make_sensor` for details). These are the models that will be used in generating the sensor errors, and not the ones necessarilly used within the navigation filter.
+``` {r snsr_mdl, warning = FALSE, message = FALSE}
+# sensor model for data generation
+snsr.mdl=list()
+
+imu.freq = 250
+acc.mdl = WN(sigma2 = 1.535466e-04) + RW(gamma2 = 1.619511e-10) + DR(omega = 1.276475e-08)
+gyr.mdl = WN(sigma2 = 1.711080e-03) + RW(gamma2 = 1.532765e-13)
+snsr.mdl$imu = make_sensor(name="imu", frequency=imu.freq, error_model1=acc.mdl, error_model2=gyr.mdl)
+
+gps.freq = 1
+gps.mdl.pos.hor = WN(sigma2 = 2^2)
+gps.mdl.pos.ver = WN(sigma2 = 4^2)
+gps.mdl.vel.hor = WN(sigma2 = 0.04^2)
+gps.mdl.vel.ver = WN(sigma2 = 0.06^2)
+snsr.mdl$gps = make_sensor(name="gps", frequency=gps.freq,
+                           error_model1=gps.mdl.pos.hor,
+                           error_model2=gps.mdl.pos.ver,
+                           error_model3=gps.mdl.vel.hor,
+                           error_model4=gps.mdl.vel.ver)
+baro.freq = 1
+baro.mdl = WN(sigma2=0.5^2)
+snsr.mdl$baro = make_sensor(name="baro", frequency=baro.freq, error_model1=baro.mdl)
+```
+
+Then we need to creat the sensor error models for filetring as a list of `sensor` objects (see `?make_sensor` for details). These are the models that will be used within the navigation filter (an extended Kalman filter), which may or mey not be the same as the ones used in generating the sensor errors. In this example, we have chosen them to be the same.
+``` {r KF_mdl, warning = FALSE, message = FALSE}
+# sensor model for the KF
+KF.mdl = list()
+
+KF.mdl$imu  = snsr.mdl$imu
+KF.mdl$gps  = snsr.mdl$gps
+KF.mdl$baro = snsr.mdl$baro
+```
+
+Finally, we can call the `navigation` function, which first simulates realistic sensor data based on the reference trajectory and provided sensor error models, and then performs the navigation. The whole process can be done in a Monte-Carlo fassion, by only specifying the number of desired runs as the `num.runs` input to `navigation` function. For detailed documentation, see `?navigation`.
+
+``` {r navigation, warning = FALSE, message = FALSE, results ='hide', dependson = c("traj", "timing", "snsr_mdl", "KF_mdl")}
+# Running the navigation (Monte-Carlo)
+num.runs = 5
+res = navigation(traj.ref = traj,
+                 timing = timing,
+                 snsr.mdl = snsr.mdl,
+                 KF.mdl = KF.mdl,
+                 num.runs = num.runs,
+                 noProgressBar = FALSE,
+                 printMaxErrors = FALSE)
+```
+
+Now we can see how the results look like. 
+``` {r result_analysis, warning = FALSE, message = FALSE, dependson = "res"}
+#Plot the results
+plot(res, plot3d = F, time_interval = .5, emu_for_covmat = 1,
+     emu_to_plot = 1, time_interval_simu = 1, error_analysis = T,
+     plot_mean_traj = T, plot_CI = F, nsim = num.runs)
+```
+
+
+# Licence

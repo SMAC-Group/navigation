@@ -1,0 +1,39 @@
+Package: navigation
+Type: Package
+Title: Analyze the Impact of Sensor Error Modelling on Navigation Performance
+Version: 0.0.1
+LazyData: true
+SystemRequirements: GNU make
+LazyDataCompression:xz
+Authors@R: c(
+    person("Davide A.", "Cucci", email = "Davide.Cucci@unige.ch", role = c("aut")),
+    person("Lionel", "Voirol", email = "Lionel.Voirol@unige.ch", role = c("aut", "cre")),
+    person("Mehran", "Khaghani", role = c("aut")),
+    person("Stéphane", "Guerrier", email = "Stephane.Guerrier@unige.ch", role = c("aut"))
+    )
+Maintainer: Lionel Voirol <lionelvoirol@hotmail.com>
+Description: Vanilla extended Kalman filter for inertial/GNSS/barometer information fusion in navigation.
+Depends:
+    R (>= 4.0.0),
+    plotly,
+    magrittr,
+    simts
+License: AGPL-3
+Imports:
+    expm,
+    rbenchmark,
+    leaflet,
+    MASS,
+    pbmcapply,
+    Rcpp (>= 0.8.0), 
+    RcppArmadillo (>= 0.2.0)
+RoxygenNote: 7.2.3
+Encoding: UTF-8
+Suggests:
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+URL: https://github.com/SMAC-Group/navigation
+BugReports: https://github.com/SMAC-Group/navigation/issues
+LinkingTo: 
+    Rcpp, RcppArmadillo

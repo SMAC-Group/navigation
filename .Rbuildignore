@@ -1,0 +1,8 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+README.Rmd
+scripts
+examples
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
