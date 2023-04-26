@@ -89,8 +89,8 @@ wrong_KF.mdl$baro = snsr.mdl$baro
 
 We perform the navigation Monte Carlo simulation considering the correct stochastic model.
 
-```{r}
-num.runs = 50 # number of Monte-Carlo simulations
+```{r, message=FALSE, results='hide'}
+num.runs = 10 # number of Monte-Carlo simulations
 res = navigation(traj.ref = traj,
                  timing = timing,
                  snsr.mdl = snsr.mdl,
@@ -104,14 +104,13 @@ res = navigation(traj.ref = traj,
 
 
 We perform the navigation Monte Carlo simulation considering the wrong stochastic model.
-```{r}
+```{r, message=FALSE, results='hide'}
 wrong_res = navigation(traj.ref = traj,
                  timing = timing,
                  snsr.mdl = snsr.mdl,
                  KF.mdl = wrong_KF.mdl, # < here the model is the wrong one
                  num.runs = num.runs,
                  noProgressBar = TRUE,
-               
                  PhiQ_method=2,
                  parallel.ncores=1,
                  P_subsampling = timing$freq.imu) # keep one covariance every second
