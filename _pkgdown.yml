@@ -57,3 +57,16 @@ reference:
     - lemniscate_traj_ned
 
 
+navbar:
+  left:
+  - icon: fa-home
+    href: index.html
+  - text: "Examples"
+    menu:
+    - text: "Model Evaluation"
+      href: articles/model_evaluation.html
+  - text: Reference
+    href: reference/index.html
+  right:
+  - icon: fa-github
+    href: https://github.com/SMAC-Group/navigation

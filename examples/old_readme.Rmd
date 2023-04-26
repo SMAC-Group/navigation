@@ -80,7 +80,7 @@ timing = make_timing(nav.start     = 0,
                      gps.out.end   = 50)
 ```
 
-Now we need to creat the sensor error models for error generation as a list of `sensor` objects (see `?make_sensor` for details). These are the models that will be used in generating the sensor errors, and not the ones necessarilly used within the navigation filter.
+Now we need to creat the sensor error models for error generation as a list of `sensor` objects (see `?make_sensor` for details). These are the models that will be used in generating the sensor errors, and not the ones necessarily used within the navigation filter.
 ``` {r snsr_mdl, warning = FALSE, message = FALSE}
 # sensor model for data generation
 snsr.mdl=list()
@@ -105,7 +105,7 @@ baro.mdl = WN(sigma2=0.5^2)
 snsr.mdl$baro = make_sensor(name="baro", frequency=baro.freq, error_model1=baro.mdl)
 ```
 
-Then we need to creat the sensor error models for filetring as a list of `sensor` objects (see `?make_sensor` for details). These are the models that will be used within the navigation filter (an extended Kalman filter), which may or mey not be the same as the ones used in generating the sensor errors. In this example, we have chosen them to be the same.
+Then we need to creat the sensor error models for filetring as a list of `sensor` objects (see `?make_sensor` for details). These are the models that will be used within the navigation filter (an extended Kalman filter), which may or may not be the same as the ones used in generating the sensor errors. In this example, we have chosen them to be the same.
 ``` {r KF_mdl, warning = FALSE, message = FALSE}
 # sensor model for the KF
 KF.mdl = list()
@@ -138,4 +138,4 @@ plot(res, plot3d = F, time_interval = .5, emu_for_covmat = 1,
 ```
 
 
-# Licence
+
