@@ -78,4 +78,4 @@ This source code is released under is the GNU AFFERO GENERAL PUBLIC LICENSE (AGP
 
 # References
 
-D. A. Cucci, L. Voirol, M. Khaghani and S. Guerrier, "On Performance Evaluation of Inertial Navigation Systems: the Case of Stochastic Calibration," in IEEE Transactions on Instrumentation and Measurement, doi: 10.1109/TIM.2023.3267360.
+[D. A. Cucci, L. Voirol, M. Khaghani and S. Guerrier, "On Performance Evaluation of Inertial Navigation Systems: the Case of Stochastic Calibration," in IEEE Transactions on Instrumentation and Measurement, doi: 10.1109/TIM.2023.3267360.](https://ieeexplore.ieee.org/document/10104150)
