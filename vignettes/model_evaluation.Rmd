@@ -92,7 +92,7 @@ KF.mdl$baro = snsr.mdl$baro
 Finally, we can call the `navigation` function, which first simulates realistic sensor data based on the reference trajectory and provided sensor error models, and then performs the navigation. The whole process can be done in a Monte-Carlo fashion, by only specifying the number of desired runs as the `num.runs` input to `navigation` function. For detailed documentation, see `?navigation`.
 
 ```{r}
-num.runs = 5 # number of Monte-Carlo simulations
+num.runs = 50 # number of Monte-Carlo simulations
 res = navigation(traj.ref = traj,
                  timing = timing,
                  snsr.mdl = snsr.mdl,
@@ -106,7 +106,7 @@ res = navigation(traj.ref = traj,
 ```
 
 
-Now we can see how the results look like. 
+We can now see how the results look like. 
 
 
 ```{r, fig.height=5, fig.align='center', fig.width=8 }
@@ -116,7 +116,7 @@ plot(res, plot3d = T, time_interval = .5, emu_for_covmat = 1,
 ```
 
 
-We can now compute statistics on the navigation performance based on the Monte Carlo simulation.
+We can now compute statistics of the navigation performance based on the Monte Carlo simulation.
 ```{r, message=FALSE}
 # mean position error
 pe = compute_mean_position_err(res, step = 25)
