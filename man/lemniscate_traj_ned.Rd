@@ -3,7 +3,7 @@
 \docType{data}
 \name{lemniscate_traj_ned}
 \alias{lemniscate_traj_ned}
-\title{lemniscate_traj_ned}
+\title{Lemniscate trajectory in NED coordinates}
 \format{
 An object of class \code{matrix} (inherits from \code{array}) with 60001 rows and 7 columns.
 }
@@ -11,6 +11,6 @@ An object of class \code{matrix} (inherits from \code{array}) with 60001 rows an
 lemniscate_traj_ned
 }
 \description{
-Lemniscate trajectory in ned coordinates.
+Lemniscate trajectory in NED coordinates.
 }
 \keyword{datasets}

@@ -2,7 +2,7 @@ lims <- function(v) {
   c(min(v), max(v))
 }
 
-#' @title plot navigation states with covariance
+#' @title Plot navigation states with covariance
 #' @description this function plots the navigation states with estimated covariance of a solution computed with the \code{navigation} function
 #' @param sol The set of solutions returned by the \code{navigation} function
 #' @param idx Which Monte-Carlo solution to plot (can be a vector)
@@ -12,7 +12,6 @@ lims <- function(v) {
 #' @export
 #' @author Stephane Guerrier, Mehran Khaghani, Lionel Voirol and Davide A. Cucci
 #'
-
 plot_nav_states_with_cov <- function(sol, idx=1, cov_idx=1, error = TRUE, step = 10) {
   if (length(cov_idx) > 1) {
     stop("cov_idx must be of length 1")
@@ -77,16 +76,15 @@ plot_nav_states_with_cov <- function(sol, idx=1, cov_idx=1, error = TRUE, step =
   par(mfrow=c(1,1))
 }
 
-#' @title plot imu error with covariances
-#' @description this function plots the estimated imu errors with covariance of a solution computed with the \code{navigation} function
+#' @title Plot IMU error with covariances
+#' @description this function plots the estimated IMU errors with covariance of a solution computed with the \code{navigation} function
 #' @param sol The set of solutions returned by the \code{navigation} function
 #' @param idx Which Monte-Carlo solution to plot
-#' @param error Wether to plot the error with respect to the refefence or the estimated values
+#' @param error Whether to plot the error with respect to the reference or the estimated values
 #' @param step Plot one time out of \code{step}
 #' @export
 #' @author Stephane Guerrier, Mehran Khaghani, Lionel Voirol and Davide A. Cucci
 #'
-
 plot_imu_err_with_cov <- function(sol, idx=1, error = TRUE, step=10) {
   if (dim(sol$Cov.Nav[[idx]])[1] > 9 ) {
     titles=c("Acc_x", "Acc_y", "Acc_z", "Gyro_x", "Gyro_y", "Gyro_z")
@@ -221,7 +219,7 @@ gg_color_hue <- function(n, alpha) {
   hcl(h = hues, l = 65, c = 100, alpha = alpha)[1:n]
 }
 
-#' @title plot a navigation statistic
+#' @title Plot a navigation statistic
 #' @description plot multiple stats alltogether
 #' @param ... navigation statistics, e.g., computed with \code{compute_mean_position_err}
 #' @export
@@ -280,7 +278,7 @@ plot.navigation.stat <- function(..., legend=NA, title=NA, xlim=c(NA, NA), ylim=
   }
 }
 
-#' @title plot NEES
+#' @title Plot NEES
 #' @description plot multiple NEES alltogether
 #' @param ... NEES, e.g., computed with \code{compute_nees}
 #' @param alpha for the confidence interval plot
@@ -289,7 +287,6 @@ plot.navigation.stat <- function(..., legend=NA, title=NA, xlim=c(NA, NA), ylim=
 #' @export
 #' @author Stephane Guerrier, Mehran Khaghani, Lionel Voirol and Davide A. Cucci
 #'
-
 plot.nees.stat = function(..., alpha = 0.95, legend=NA, title=NA) {
   stats = list(...)
   
@@ -314,7 +311,7 @@ plot.nees.stat = function(..., alpha = 0.95, legend=NA, title=NA) {
   abline(h = bounds[2], lt=2, col="black")
 }
 
-#' @title plot coverage
+#' @title Plot coverage
 #' @description plot multiple coverages alltogether
 #' @param ... coverage, e.g., computed with \code{compute_coverage}
 #' @param legend Legend of the plot.
@@ -322,7 +319,6 @@ plot.nees.stat = function(..., alpha = 0.95, legend=NA, title=NA) {
 #' @export
 #' @author Stephane Guerrier, Mehran Khaghani, Lionel Voirol and Davide A. Cucci
 #'
-
 plot.coverage.stat = function(..., legend=NA, title=NA) {
   stats = list(...)
   

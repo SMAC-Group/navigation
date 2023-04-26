@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_tools.R
 \name{plot_nav_states_with_cov}
 \alias{plot_nav_states_with_cov}
-\title{plot navigation states with covariance}
+\title{Plot navigation states with covariance}
 \usage{
 plot_nav_states_with_cov(sol, idx = 1, cov_idx = 1, error = TRUE, step = 10)
 }

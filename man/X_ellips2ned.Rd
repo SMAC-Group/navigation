@@ -2,20 +2,20 @@
 % Please edit documentation in R/coord_trans.R
 \name{X_ellips2ned}
 \alias{X_ellips2ned}
-\title{Transforms position from ellipsoidal to ned coordinates}
+\title{Transform position from ellipsoidal to NED coordinates}
 \usage{
 X_ellips2ned(x, x_o = NULL)
 }
 \arguments{
 \item{x}{An object of class \code{trajectory} in "ellipsoidal" system or a matrix of position data with latitude, longitude, and altitude}
 
-\item{x_o}{Origin of the fixed Cartesian ned frame expressed in ellipsoidal coordinates}
+\item{x_o}{Origin of the fixed Cartesian NED frame expressed in ellipsoidal coordinates}
 }
 \value{
-An object of class \code{trajectory} in "ned" system or a matrix of position data with x_N, x_E, and x_D, according to the type of input \code{x}
+An object of class \code{trajectory} in "NED" system or a matrix of position data with x_N, x_E, and x_D, according to the type of input \code{x}
 }
 \description{
-Transforms position from ellipsoidal coordinates to a fixed Cartesian ned frame
+Transform position from ellipsoidal coordinates to a fixed Cartesian NED frame
 }
 \author{
 Stephane Guerrier, Mehran Khaghani, and Lionel Voirol

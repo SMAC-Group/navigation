@@ -1,6 +1,6 @@
 #def compare.navigation fct
 
-#' @title compare.navigation
+#' @title Compare multiple \code{navigation} objects
 #' @description Comparison of error analysis plot for different trajectories
 #' @param ... \code{navigation} objects to be compared.
 #' @param nsim An integer indicating the number of trajectories simulated in order to compute the CI

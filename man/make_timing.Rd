@@ -2,7 +2,7 @@
 % Please edit documentation in R/make_timing.R
 \name{make_timing}
 \alias{make_timing}
-\title{Constructs timing object}
+\title{Construct timing object}
 \usage{
 make_timing(
   nav.start = NULL,

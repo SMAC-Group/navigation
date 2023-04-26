@@ -2,7 +2,7 @@
 % Please edit documentation in R/make_sensor.R
 \name{make_sensor}
 \alias{make_sensor}
-\title{Constructs sensor object}
+\title{Construct sensor object}
 \usage{
 make_sensor(
   name,

@@ -2,7 +2,7 @@
 % Please edit documentation in R/coord_trans.R
 \name{X_ecef2ned}
 \alias{X_ecef2ned}
-\title{Transforms ECEF to NED coordinates}
+\title{Transform ECEF to NED coordinates}
 \usage{
 X_ecef2ned(x, x_o)
 }
@@ -15,7 +15,7 @@ X_ecef2ned(x, x_o)
 \code{x} converted to the local level
 }
 \description{
-Transforms ECEF to local-level NED coordinates centered at \code{x_0}
+Transform ECEF to local-level NED coordinates centered at \code{x_0}
 }
 \author{
 Stephane Guerrier, Mehran Khaghani, Lionel Voirol and Davide A. Cucci

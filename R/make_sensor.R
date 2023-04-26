@@ -1,4 +1,4 @@
-#' @title Constructs sensor object
+#' @title Construct sensor object
 #' @description Constructs sensor objects for IMU, GPS, and Baro from error model of class \code{ts.model}
 #' @param name Name of the sensor
 #' @param frequency Frequency associated with the error model
@@ -159,19 +159,6 @@ make_sensor = function(name, frequency=1, error_model1=NULL, error_model2=NULL, 
 
 
 
-
-#' @title print.sensor
-#' @description Print method for a sensor object
-#' @return Print the sensor name and specifications in the console.
-#' @param x A \code{sensor} object.
-#' @author Stephane Guerrier, Mehran Khaghani, and Lionel Voirol
-#'
-print.sensor = function(x) {
-  cat("Senor name is: ", x$name, "\b.\n\n")
-  cat("Sensor frequency is: ", x$frequency, "Hz.\n\n")
-  cat("Sensor error model:\n")
-  print(x$error_model) # To be modified to print only the relevant information.
-}
 
 
 

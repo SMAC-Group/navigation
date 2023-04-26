@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_tools.R
 \name{plot.nees.stat}
 \alias{plot.nees.stat}
-\title{plot NEES}
+\title{Plot NEES}
 \usage{
 \method{plot}{nees.stat}(..., alpha = 0.95, legend = NA, title = NA)
 }

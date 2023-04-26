@@ -3,3 +3,57 @@ template:
   params:
     bootswatch: flatly
 
+reference:
+  - title: Coordinate transformation
+    contents:
+    - X_ecef2ellips
+    - X_ecef2ned
+    - X_ellips2ned
+    - X_ned2ellips
+  - title: Create objects
+    contents:
+    - make_sensor
+    - make_timing
+    - make_trajectory
+  - title: Perform navigation simulation
+    contents:
+    - navigation  
+  - title: Compute Statistics
+    contents:
+    - compute_coverage
+    - compute_coverage
+    - compute_coverage_imu_states
+    - compute_mean_orientation_err
+    - compute_mean_position_err
+    - compute_nees
+    - compute_rms
+  - title: Inspect objects
+    contents:    
+    - print.sensor
+    - get_time    
+  - title: Visualize objects and results
+    contents:
+    - plot.trajectory
+    - plot.navigation
+    - compare.navigation
+    - plot_rms
+    - plot_nav_states_with_cov
+    - plot_imu_err_with_cov
+    - plot.nees.stat
+    - plot.coverage.stat
+    - plot.navigation.stat
+  - title: Data
+    contents:    
+    - example_1_traj_ned
+    - example_1_traj_ellipsoidal
+    - example_2_traj_ned
+    - example_2_traj_ellipsoidal
+    - example_3_traj_ned
+    - example_3_traj_ellipsoidal
+    - example_4_traj_ned
+    - example_4_traj_ellipsoidal
+    - example_5_traj_ned
+    - example_5_traj_ellipsoidal
+    - lemniscate_traj_ned
+
+

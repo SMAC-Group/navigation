@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_tools.R
 \name{plot_imu_err_with_cov}
 \alias{plot_imu_err_with_cov}
-\title{plot imu error with covariances}
+\title{Plot IMU error with covariances}
 \usage{
 plot_imu_err_with_cov(sol, idx = 1, error = TRUE, step = 10)
 }
@@ -11,12 +11,12 @@ plot_imu_err_with_cov(sol, idx = 1, error = TRUE, step = 10)
 
 \item{idx}{Which Monte-Carlo solution to plot}
 
-\item{error}{Wether to plot the error with respect to the refefence or the estimated values}
+\item{error}{Whether to plot the error with respect to the reference or the estimated values}
 
 \item{step}{Plot one time out of \code{step}}
 }
 \description{
-this function plots the estimated imu errors with covariance of a solution computed with the \code{navigation} function
+this function plots the estimated IMU errors with covariance of a solution computed with the \code{navigation} function
 }
 \author{
 Stephane Guerrier, Mehran Khaghani, Lionel Voirol and Davide A. Cucci

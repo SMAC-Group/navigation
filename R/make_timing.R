@@ -1,4 +1,4 @@
-#' @title Constructs timing object
+#' @title Construct timing object
 #' @description Constructs timimng object controlling the timing and frequencies for navigation, making sure about the consistency and feasibility of provided information.
 #' @param nav.start Time at which navigation starts
 #' @param nav.end Time at which navigation ends

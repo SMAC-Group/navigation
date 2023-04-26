@@ -6,9 +6,8 @@
 #' @param model The model to be converted.
 #' @param frequency The frequency at which this model is supposed to be sampled in Hz.
 #' @return a \code{ts.model} suitable to be used in \code{INS_GPS_EKF}.
-#' @export
 #' @author Stephane Guerrier, Mehran Khaghani, Lionel Voirol and Davide A. Cucci
-#'
+#' @noRd
 model_to_ekf <- function(model, frequency) {
   
   if(!inherits(model, "ts.model")){

@@ -1,8 +1,8 @@
-#' @title Transforms position from ellipsoidal to ned coordinates
-#' @description Transforms position from ellipsoidal coordinates to a fixed Cartesian ned frame
+#' @title Transform position from ellipsoidal to NED coordinates
+#' @description Transform position from ellipsoidal coordinates to a fixed Cartesian NED frame
 #' @param x An object of class \code{trajectory} in "ellipsoidal" system or a matrix of position data with latitude, longitude, and altitude
-#' @param x_o Origin of the fixed Cartesian ned frame expressed in ellipsoidal coordinates
-#' @return An object of class \code{trajectory} in "ned" system or a matrix of position data with x_N, x_E, and x_D, according to the type of input \code{x}
+#' @param x_o Origin of the fixed Cartesian NED frame expressed in ellipsoidal coordinates
+#' @return An object of class \code{trajectory} in "NED" system or a matrix of position data with x_N, x_E, and x_D, according to the type of input \code{x}
 #' @export
 #' @author Stephane Guerrier, Mehran Khaghani, and Lionel Voirol
 #'
@@ -92,8 +92,8 @@ X_ellips2ecef = function( x ) {
 }
 
 
-#' @title Transforms ECEF to NED coordinates
-#' @description Transforms ECEF to local-level NED coordinates centered at \code{x_0}
+#' @title Transform ECEF to NED coordinates
+#' @description Transform ECEF to local-level NED coordinates centered at \code{x_0}
 #' @param x a 3 x n matrix with ECEF coordinates to be converted
 #' @param x_o the latitude, longitude, altitude of the desired local level origin
 #' @return \code{x} converted to the local level
@@ -141,10 +141,10 @@ Cnefunc = function( phi, lambda ) {
 
 
 # ----------------------------------------------------------
-#' @title Transforms position from ned to ellipsoidal coordinates
-#' @description Transforms position from a fixed Cartesian ned frame to ellipsoidal coordinates
-#' @param x An object of class \code{trajectory} in "ned" system or a matrix of position data with x_N, x_E, and x_D
-#' @param x_o Origin of the fixed Cartesian ned frame expressed in ellipsoidal coordinates
+#' @title Transform position from NED to ellipsoidal coordinates
+#' @description Transform position from a fixed Cartesian NED frame to ellipsoidal coordinates
+#' @param x An object of class \code{trajectory} in "NED" system or a matrix of position data with x_N, x_E, and x_D
+#' @param x_o Origin of the fixed Cartesian NED frame expressed in ellipsoidal coordinates
 #' @return An object of class \code{trajectory} in "ellipsoidal" system or a matrix of position data with latitude, longitude, and altitude, according to the type of input \code{x}
 #' @export
 #' @author Stephane Guerrier, Mehran Khaghani, and Lionel Voirol

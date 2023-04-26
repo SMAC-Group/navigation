@@ -44,7 +44,7 @@
     </div>
 
     <table class="ref-index"><colgroup><col class="alias"><col class="title"></colgroup><tbody><tr><th colspan="2">
-          <h2 id="all-functions">All functions <a href="#all-functions" class="anchor" aria-hidden="true"></a></h2>
+          <h2 id="coordinate-transformation">Coordinate transformation <a href="#coordinate-transformation" class="anchor" aria-hidden="true"></a></h2>
           <p class="section-desc"></p>
         </th>
       </tr></tbody><tbody><tr><td>
@@ -54,20 +54,44 @@
       </tr><tr><td>
           <p><code><a href="X_ecef2ned.html">X_ecef2ned()</a></code> </p>
         </td>
-        <td><p>Transforms ECEF to NED coordinates</p></td>
+        <td><p>Transform ECEF to NED coordinates</p></td>
       </tr><tr><td>
           <p><code><a href="X_ellips2ned.html">X_ellips2ned()</a></code> </p>
         </td>
-        <td><p>Transforms position from ellipsoidal to ned coordinates</p></td>
+        <td><p>Transform position from ellipsoidal to NED coordinates</p></td>
       </tr><tr><td>
           <p><code><a href="X_ned2ellips.html">X_ned2ellips()</a></code> </p>
         </td>
-        <td><p>Transforms position from ned to ellipsoidal coordinates</p></td>
-      </tr><tr><td>
-          <p><code><a href="compare.navigation.html">compare.navigation()</a></code> </p>
+        <td><p>Transform position from NED to ellipsoidal coordinates</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h2 id="create-objects">Create objects <a href="#create-objects" class="anchor" aria-hidden="true"></a></h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="make_sensor.html">make_sensor()</a></code> </p>
         </td>
-        <td><p>compare.navigation</p></td>
+        <td><p>Construct sensor object</p></td>
       </tr><tr><td>
+          <p><code><a href="make_timing.html">make_timing()</a></code> </p>
+        </td>
+        <td><p>Construct timing object</p></td>
+      </tr><tr><td>
+          <p><code><a href="make_trajectory.html">make_trajectory()</a></code> </p>
+        </td>
+        <td><p>Construct trajectory object</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h2 id="perform-navigation-simulation">Perform navigation simulation <a href="#perform-navigation-simulation" class="anchor" aria-hidden="true"></a></h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="navigation.html">navigation()</a></code> </p>
+        </td>
+        <td><p>Runs "IMU model evaluation" or "INS-GPS-Baro integrated navigation (sensor fusion)"</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h2 id="compute-statistics">Compute Statistics <a href="#compute-statistics" class="anchor" aria-hidden="true"></a></h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr></tbody><tbody><tr><td>
           <p><code><a href="compute_coverage.html">compute_coverage()</a></code> </p>
         </td>
         <td><p>Compute Coverage</p></td>
@@ -91,110 +115,106 @@
           <p><code><a href="compute_rms.html">compute_rms()</a></code> </p>
         </td>
         <td><p>Compute Root Mean Squared error (RMS)</p></td>
-      </tr><tr><td>
-          <p><code><a href="example_1_traj_ellipsoidal.html">example_1_traj_ellipsoidal</a></code> </p>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h2 id="inspect-objects">Inspect objects <a href="#inspect-objects" class="anchor" aria-hidden="true"></a></h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="print.sensor.html">print(<i>&lt;sensor&gt;</i>)</a></code> </p>
         </td>
-        <td><p>example_1_traj_ellipsoidal</p></td>
-      </tr><tr><td>
-          <p><code><a href="example_1_traj_ned.html">example_1_traj_ned</a></code> </p>
-        </td>
-        <td><p>example_1_traj_ned</p></td>
-      </tr><tr><td>
-          <p><code><a href="example_2_traj_ellipsoidal.html">example_2_traj_ellipsoidal</a></code> </p>
-        </td>
-        <td><p>example_2_traj_ellipsoidal</p></td>
-      </tr><tr><td>
-          <p><code><a href="example_2_traj_ned.html">example_2_traj_ned</a></code> </p>
-        </td>
-        <td><p>example_2_traj_ned</p></td>
-      </tr><tr><td>
-          <p><code><a href="example_3_traj_ellipsoidal.html">example_3_traj_ellipsoidal</a></code> </p>
-        </td>
-        <td><p>example_3_traj_ellipsoidal</p></td>
-      </tr><tr><td>
-          <p><code><a href="example_3_traj_ned.html">example_3_traj_ned</a></code> </p>
-        </td>
-        <td><p>example_3_traj_ned</p></td>
-      </tr><tr><td>
-          <p><code><a href="example_4_traj_ellipsoidal.html">example_4_traj_ellipsoidal</a></code> </p>
-        </td>
-        <td><p>example_4_traj_ellipsoidal</p></td>
-      </tr><tr><td>
-          <p><code><a href="example_4_traj_ned.html">example_4_traj_ned</a></code> </p>
-        </td>
-        <td><p>example_4_traj_ned</p></td>
-      </tr><tr><td>
-          <p><code><a href="example_5_traj_ellipsoidal.html">example_5_traj_ellipsoidal</a></code> </p>
-        </td>
-        <td><p>example_5_traj_ellipsoidal</p></td>
-      </tr><tr><td>
-          <p><code><a href="example_5_traj_ned.html">example_5_traj_ned</a></code> </p>
-        </td>
-        <td><p>example_5_traj_ned</p></td>
+        <td><p>Print a <code>sensor</code> object parameters (name, frequency and error model)</p></td>
       </tr><tr><td>
           <p><code><a href="get_time.html">get_time()</a></code> </p>
         </td>
         <td><p>Extract time for trajectory object</p></td>
-      </tr><tr><td>
-          <p><code><a href="lemniscate_traj_ned.html">lemniscate_traj_ned</a></code> </p>
-        </td>
-        <td><p>lemniscate_traj_ned</p></td>
-      </tr><tr><td>
-          <p><code><a href="make_sensor.html">make_sensor()</a></code> </p>
-        </td>
-        <td><p>Constructs sensor object</p></td>
-      </tr><tr><td>
-          <p><code><a href="make_timing.html">make_timing()</a></code> </p>
-        </td>
-        <td><p>Constructs timing object</p></td>
-      </tr><tr><td>
-          <p><code><a href="make_trajectory.html">make_trajectory()</a></code> </p>
-        </td>
-        <td><p>Construct trajectory object</p></td>
-      </tr><tr><td>
-          <p><code><a href="model_to_ekf.html">model_to_ekf()</a></code> </p>
-        </td>
-        <td><p>stochastic model conversion for the EFK</p></td>
-      </tr><tr><td>
-          <p><code><a href="navigation.html">navigation()</a></code> </p>
-        </td>
-        <td><p>Runs "IMU model evaluation" or "INS-GPS-Baro integrated navigation (sensor fusion)"</p></td>
-      </tr><tr><td>
-          <p><code><a href="plot.coverage.stat.html">plot(<i>&lt;coverage.stat&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>plot coverage</p></td>
-      </tr><tr><td>
-          <p><code><a href="plot.navigation.html">plot(<i>&lt;navigation&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>plot.navigation</p></td>
-      </tr><tr><td>
-          <p><code><a href="plot.navigation.stat.html">plot(<i>&lt;navigation.stat&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>plot a navigation statistic</p></td>
-      </tr><tr><td>
-          <p><code><a href="plot.nees.stat.html">plot(<i>&lt;nees.stat&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>plot NEES</p></td>
-      </tr><tr><td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h2 id="visualize-objects-and-results">Visualize objects and results <a href="#visualize-objects-and-results" class="anchor" aria-hidden="true"></a></h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr></tbody><tbody><tr><td>
           <p><code><a href="plot.trajectory.html">plot(<i>&lt;trajectory&gt;</i>)</a></code> </p>
         </td>
         <td><p>Plot trajectory</p></td>
       </tr><tr><td>
-          <p><code><a href="plot_imu_err_with_cov.html">plot_imu_err_with_cov()</a></code> </p>
+          <p><code><a href="plot.navigation.html">plot(<i>&lt;navigation&gt;</i>)</a></code> </p>
         </td>
-        <td><p>plot imu error with covariances</p></td>
+        <td><p>Plot a <code>navigation</code> object</p></td>
       </tr><tr><td>
-          <p><code><a href="plot_nav_states_with_cov.html">plot_nav_states_with_cov()</a></code> </p>
+          <p><code><a href="compare.navigation.html">compare.navigation()</a></code> </p>
         </td>
-        <td><p>plot navigation states with covariance</p></td>
+        <td><p>Compare multiple <code>navigation</code> objects</p></td>
       </tr><tr><td>
           <p><code><a href="plot_rms.html">plot_rms()</a></code> </p>
         </td>
         <td><p>Plot Root Mean Squared error (RMS)</p></td>
       </tr><tr><td>
-          <p><code><a href="print.sensor.html">print(<i>&lt;sensor&gt;</i>)</a></code> </p>
+          <p><code><a href="plot_nav_states_with_cov.html">plot_nav_states_with_cov()</a></code> </p>
         </td>
-        <td><p>print.sensor</p></td>
+        <td><p>Plot navigation states with covariance</p></td>
+      </tr><tr><td>
+          <p><code><a href="plot_imu_err_with_cov.html">plot_imu_err_with_cov()</a></code> </p>
+        </td>
+        <td><p>Plot IMU error with covariances</p></td>
+      </tr><tr><td>
+          <p><code><a href="plot.nees.stat.html">plot(<i>&lt;nees.stat&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Plot NEES</p></td>
+      </tr><tr><td>
+          <p><code><a href="plot.coverage.stat.html">plot(<i>&lt;coverage.stat&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Plot coverage</p></td>
+      </tr><tr><td>
+          <p><code><a href="plot.navigation.stat.html">plot(<i>&lt;navigation.stat&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Plot a navigation statistic</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h2 id="data">Data <a href="#data" class="anchor" aria-hidden="true"></a></h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="example_1_traj_ned.html">example_1_traj_ned</a></code> </p>
+        </td>
+        <td><p>Example trajectory 1 in NED coordinates</p></td>
+      </tr><tr><td>
+          <p><code><a href="example_1_traj_ellipsoidal.html">example_1_traj_ellipsoidal</a></code> </p>
+        </td>
+        <td><p>Example trajectory 1 in ellipsoidal coordinates</p></td>
+      </tr><tr><td>
+          <p><code><a href="example_2_traj_ned.html">example_2_traj_ned</a></code> </p>
+        </td>
+        <td><p>Example trajectory 2 in NED coordinates</p></td>
+      </tr><tr><td>
+          <p><code><a href="example_2_traj_ellipsoidal.html">example_2_traj_ellipsoidal</a></code> </p>
+        </td>
+        <td><p>Example trajectory 2 in ellipsoidal coordinates</p></td>
+      </tr><tr><td>
+          <p><code><a href="example_3_traj_ned.html">example_3_traj_ned</a></code> </p>
+        </td>
+        <td><p>Example trajectory 3 in NED coordinates</p></td>
+      </tr><tr><td>
+          <p><code><a href="example_3_traj_ellipsoidal.html">example_3_traj_ellipsoidal</a></code> </p>
+        </td>
+        <td><p>Example trajectory 3 in ellipsoidal coordinates</p></td>
+      </tr><tr><td>
+          <p><code><a href="example_4_traj_ned.html">example_4_traj_ned</a></code> </p>
+        </td>
+        <td><p>Example trajectory 4 in NED coordinates</p></td>
+      </tr><tr><td>
+          <p><code><a href="example_4_traj_ellipsoidal.html">example_4_traj_ellipsoidal</a></code> </p>
+        </td>
+        <td><p>Example trajectory 4 in ellipsoidal coordinates</p></td>
+      </tr><tr><td>
+          <p><code><a href="example_5_traj_ned.html">example_5_traj_ned</a></code> </p>
+        </td>
+        <td><p>Example trajectory 5 in NED coordinates</p></td>
+      </tr><tr><td>
+          <p><code><a href="example_5_traj_ellipsoidal.html">example_5_traj_ellipsoidal</a></code> </p>
+        </td>
+        <td><p>Example trajectory 5 in ellipsoidal coordinates</p></td>
+      </tr><tr><td>
+          <p><code><a href="lemniscate_traj_ned.html">lemniscate_traj_ned</a></code> </p>
+        </td>
+        <td><p>Lemniscate trajectory in NED coordinates</p></td>
       </tr></tbody></table></div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

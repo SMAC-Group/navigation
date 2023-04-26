@@ -3,7 +3,7 @@
 \docType{data}
 \name{example_5_traj_ned}
 \alias{example_5_traj_ned}
-\title{example_5_traj_ned}
+\title{Example trajectory 5 in NED coordinates}
 \format{
 An object of class \code{matrix} (inherits from \code{array}) with 60000 rows and 7 columns.
 }
@@ -11,6 +11,6 @@ An object of class \code{matrix} (inherits from \code{array}) with 60000 rows an
 example_5_traj_ned
 }
 \description{
-Example trajectory 5 in ned coordinates.
+Example trajectory 5 in NED coordinates.
 }
 \keyword{datasets}

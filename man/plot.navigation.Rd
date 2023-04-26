@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot.navigation.R
 \name{plot.navigation}
 \alias{plot.navigation}
-\title{plot.navigation}
+\title{Plot a \code{navigation} object}
 \usage{
 \method{plot}{navigation}(
   x,
@@ -37,17 +37,17 @@
 
 \item{col_fused_full}{The color of the mean trajectory of the emulated trajectories}
 
-\item{plot_mean_traj}{A bolean indicating whether or not to plot the mean mean trajectory of the emulated trajectories. Default is \code{True}}
+\item{plot_mean_traj}{A Boolean indicating whether or not to plot the mean mean trajectory of the emulated trajectories. Default is \code{True}}
 
-\item{plot_baro}{A boolean indicating whether or not to plot the barometer datapoint in tha Up coordinates plot. Default is \code{True}}
+\item{plot_baro}{A Boolean indicating whether or not to plot the barometer datapoint in tha Up coordinates plot. Default is \code{True}}
 
 \item{baro_col}{The color of the barometer datapoints}
 
 \item{emu_to_plot}{The emulated trajectory for which to plot confidence ellipses on the North-East coordinates plot}
 
-\item{plot3d}{A boolean indicating whether or not to plot the 3d plot of the trajectory}
+\item{plot3d}{A Boolean indicating whether or not to plot the 3d plot of the trajectory}
 
-\item{plot_CI}{A boolean indicating whether or not to plot the confidence intervals for both 2d plots}
+\item{plot_CI}{A Boolean indicating whether or not to plot the confidence intervals for both 2d plots}
 
 \item{time_interval}{A value in seconds indicating the interval at which to plot the CI on the North-East coordinates plot}
 
@@ -59,7 +59,7 @@
 
 \item{col_95_brd}{The color for the 95\% confidence intervals.}
 
-\item{error_analysis}{A boolean indicating whether or not to display an error analysis plot of the emulated trajectories}
+\item{error_analysis}{A Boolean indicating whether or not to display an error analysis plot of the emulated trajectories}
 
 \item{emu_for_covmat}{The emulated trajectory for which to use the var-cov matrix in order to simulate data and compute the CI of the error}
 
@@ -72,7 +72,7 @@
 \item{...}{additional plotting argument}
 }
 \description{
-This function enables the vizualisation of a \code{navigation} object, both in 2d and in 3d. The function therefore enables
+This function enables the visualization of a \code{navigation} object, both in 2d and in 3d. The function therefore enables
 the comparison of the true trajectory with emulated trajectories. One can also plot the analysis of the error of the trajectories
 by comparing the \code{L2} norm of the difference between emulated trajectories and the true trajectory over time.
 }
