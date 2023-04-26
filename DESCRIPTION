@@ -7,7 +7,7 @@ SystemRequirements: GNU make
 LazyDataCompression:xz
 Authors@R: c(
     person("Davide A.", "Cucci", email = "Davide.Cucci@unige.ch", role = c("aut")),
-    person("Lionel", "Voirol", email = "Lionel.Voirol@unige.ch", role = c("aut", "cre")),
+    person("Lionel", "Voirol", email = "lionelvoirol@hotmail.com", role = c("aut", "cre")),
     person("Mehran", "Khaghani", role = c("aut")),
     person("Stéphane", "Guerrier", email = "Stephane.Guerrier@unige.ch", role = c("aut"))
     )
