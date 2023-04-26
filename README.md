@@ -36,7 +36,7 @@ filter. For absolute navigation results though, is long distances and
 high speeds are involved, such simplifications start to have measurable
 impact on results. Also, attitude parameterization is done via Euler
 angles at the moment, bringing their interinsic limitations, such as the
-singularity at \(pitch=\pm pi/2\). This limitation may be resolved in
+singularity at pitch $=\pm \pi/2$. This limitation may be resolved in
 future using other attitude parameterizations such as quaternions.
 
 # Installation Instructions
