@@ -63,7 +63,7 @@ devtools::install_github('https://github.com/SMAC-Group/navigation')
 
 ### External `R` libraries
 
-The `gmwmx` package relies on a limited number of external libraries, but notably on `Rcpp` and `RcppArmadillo` which require a `C++` compiler for installation, such as for example `gcc`.
+The `navigation` package relies on a limited number of external libraries, but notably on `Rcpp` and `RcppArmadillo` which require a `C++` compiler for installation, such as for example `gcc`.
 
 # Usage
 
