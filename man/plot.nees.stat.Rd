@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_tools.R
 \name{plot.nees.stat}
 \alias{plot.nees.stat}
-\title{Plot NEES}
+\title{Plot multiple \code{nees.stat} objects}
 \usage{
 \method{plot}{nees.stat}(..., alpha = 0.95, legend = NA, title = NA)
 }
@@ -16,7 +16,7 @@
 \item{title}{title of the plot.}
 }
 \description{
-plot multiple NEES alltogether
+plot multiple \code{nees.stat} objects alltogether
 }
 \author{
 Stephane Guerrier, Mehran Khaghani, Lionel Voirol and Davide A. Cucci

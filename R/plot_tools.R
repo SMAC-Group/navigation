@@ -219,7 +219,7 @@ gg_color_hue <- function(n, alpha) {
   hcl(h = hues, l = 65, c = 100, alpha = alpha)[1:n]
 }
 
-#' @title Plot a navigation statistic
+#' @title Plot multiple \code{navigation.stat} objects
 #' @description plot multiple stats alltogether
 #' @param ... navigation statistics, e.g., computed with \code{compute_mean_position_err}
 #' @export
@@ -278,8 +278,8 @@ plot.navigation.stat <- function(..., legend=NA, title=NA, xlim=c(NA, NA), ylim=
   }
 }
 
-#' @title Plot NEES
-#' @description plot multiple NEES alltogether
+#' @title Plot multiple \code{nees.stat} objects
+#' @description plot multiple \code{nees.stat} objects alltogether
 #' @param ... NEES, e.g., computed with \code{compute_nees}
 #' @param alpha for the confidence interval plot
 #' @param legend legend of the plot.
@@ -311,7 +311,7 @@ plot.nees.stat = function(..., alpha = 0.95, legend=NA, title=NA) {
   abline(h = bounds[2], lt=2, col="black")
 }
 
-#' @title Plot coverage
+#' @title Plot multiple \code{coverage.stat} objects
 #' @description plot multiple coverages alltogether
 #' @param ... coverage, e.g., computed with \code{compute_coverage}
 #' @param legend Legend of the plot.

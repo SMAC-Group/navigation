@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot.trajectory.R
 \name{plot.trajectory}
 \alias{plot.trajectory}
-\title{Plot trajectory}
+\title{Plot a \code{trajectory} object}
 \usage{
 \method{plot}{trajectory}(
   x,
@@ -66,7 +66,7 @@
 A trajectory plot.
 }
 \description{
-Plot trajectory object in 2D or 3D.
+Plot a \code{trajectory} object in 2D or 3D.
 }
 \examples{
 \dontrun{ 

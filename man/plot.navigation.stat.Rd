@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_tools.R
 \name{plot.navigation.stat}
 \alias{plot.navigation.stat}
-\title{Plot a navigation statistic}
+\title{Plot multiple \code{navigation.stat} objects}
 \usage{
 \method{plot}{navigation.stat}(..., legend = NA, title = NA, xlim = c(NA, NA), ylim = c(NA, NA))
 }

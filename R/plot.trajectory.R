@@ -1,5 +1,5 @@
-#' @title Plot trajectory
-#' @description Plot trajectory object in 2D or 3D.
+#' @title Plot a \code{trajectory} object 
+#' @description Plot a \code{trajectory} object in 2D or 3D.
 #' @method plot trajectory
 #' @export
 #' @param x                 A \code{trajectory} object

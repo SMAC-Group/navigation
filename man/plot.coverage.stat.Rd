@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_tools.R
 \name{plot.coverage.stat}
 \alias{plot.coverage.stat}
-\title{Plot coverage}
+\title{Plot multiple \code{coverage.stat} objects}
 \usage{
 \method{plot}{coverage.stat}(..., legend = NA, title = NA)
 }
