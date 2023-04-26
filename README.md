@@ -1,8 +1,9 @@
 ![](https://github.com/SMAC-Group/navigation/actions/workflows/R-CMD-check.yaml/badge.svg)
+![](https://img.shields.io/github/last-commit/SMAC-Group/navigation) 
 [![Licence](https://img.shields.io/badge/licence-AGPL--3.0-blue.svg)](https://opensource.org/licenses/AGPL-3.0)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-4.0.0-6666ff.svg)](https://cran.r-project.org/)
-![](https://img.shields.io/github/last-commit/SMAC-Group/navigation) 
+
 
 # `navigation` Overview <a href="https://smac-group.com/"><img src="man/figures/logo.png" align="right" style="width: 20%; height: 20%"/></a>
 
