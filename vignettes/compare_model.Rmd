@@ -112,7 +112,7 @@ wrong_res = navigation(traj.ref = traj,
                  num.runs = num.runs,
                  noProgressBar = TRUE,
                  PhiQ_method=2,
-                 parallel.ncores=1,
+                 parallel.ncores=1, 
                  P_subsampling = timing$freq.imu) # keep one covariance every second
 ```
 
@@ -128,7 +128,7 @@ oe_wrong_res = compute_mean_orientation_err(wrong_res, step = 25)
 ```
 
 
-```{r, results='hide'}
+```{r, results='hide', fig.align='center', fig.width=7, fig.height=5}
 nees = compute_nees(res, step = timing$freq.imu)
 wrong_nees = compute_nees(wrong_res, step = timing$freq.imu)
 
