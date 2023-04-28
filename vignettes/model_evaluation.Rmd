@@ -15,16 +15,16 @@ library(navigation)
 
 
 ```{r}
-data("example_2_traj_ned") 
-head(example_2_traj_ned)
-traj = make_trajectory(data = example_2_traj_ned, system = "ned")
+data("lemniscate_traj_ned")
+head(lemniscate_traj_ned)
+traj = make_trajectory(data = lemniscate_traj_ned, system = "ned")
 ```
 
 
 Let's see how the reference trajectory looks like.
 ```{r,  fig.height=4, fig.align='center', fig.width=6}
 # plot traj
-plot(traj)
+plot(traj, n_split = 10)
 plot(traj, threeD = T)
 ```
 
@@ -37,12 +37,12 @@ Then we need to make a `timing` object (see `?make_timing` for details) where we
 
 ```{r}
 timing = make_timing(nav.start     = 0, # time at which to begin filtering
-                     nav.end       = 120, 
+                     nav.end       = 600, 
                      freq.imu      = 100, # frequency of the IMU, can be slower wrt trajectory frequency
                      freq.gps      = 1, # GNSS frequency
                      freq.baro     = 1, # barometer frequency (to disable, put it very low, e.g. 1e-5)
                      gps.out.start = 60, # to simulate a GNSS outage, set a time before nav.end
-                     gps.out.end   = 100)
+                     gps.out.end   = 120)
 
 ```
 
@@ -99,7 +99,7 @@ res = navigation(traj.ref = traj,
                  KF.mdl = KF.mdl,
                  num.runs = num.runs,
                  noProgressBar = TRUE,
-                 PhiQ_method = "4", # order of the taylor expansion of the matrix exponential used to compute Phi and Q matrices
+                 PhiQ_method = "4", # order of the Taylor expansion of the matrix exponential used to compute Phi and Q matrices
                  compute_PhiQ_each_n = 10, # compute new Phi and Q matrices every n IMU steps (execution time optimization)
                  parallel.ncores=1,
                  P_subsampling = timing$freq.imu) # keep one covariance every second
@@ -110,13 +110,8 @@ We can now see how the results look like.
 
 
 ```{r, fig.height=5, fig.align='center', fig.width=8 }
-# plot(res, plot3d = T, time_interval = .5, emu_for_covmat = 1,
-#      emu_to_plot = 1, time_interval_simu = 1, error_analysis = F,
-#      plot_mean_traj = T, plot_CI =F, nsim = num.runs)
-
-plot(res, plot3d = F)
+plot(res, plot3d = F, error_analysis = T)
 ```
-
 
 We can now compute statistics of the navigation performance based on the Monte Carlo simulation.
 ```{r, message=FALSE}
