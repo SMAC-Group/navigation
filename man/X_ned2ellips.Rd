@@ -17,6 +17,16 @@ An object of class \code{trajectory} in "ellipsoidal" system or a matrix of posi
 \description{
 Transform position from a fixed Cartesian NED frame to ellipsoidal coordinates
 }
+\examples{
+
+data("example_1_traj_ned")
+traj_ned = make_trajectory(example_1_traj_ned, system = "ned")
+plot(traj_ned)
+traj_ellips = X_ned2ellips(traj_ned, x_o = example_1_traj_ellipsoidal[1,-1])
+plot(traj_ellips, threeD = FALSE)
+plot(traj_ellips, threeD = TRUE)
+
+}
 \author{
 Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
 }

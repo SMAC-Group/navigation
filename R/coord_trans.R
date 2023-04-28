@@ -6,6 +6,22 @@
 #' @export
 #' @author Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
 #'
+#' @examples
+#' 
+#' 
+#' 
+#' 
+#' 
+#' library(navigation)
+#' data("example_1_traj_ellipsoidal")
+#' traj_ellips = make_trajectory(example_1_traj_ellipsoidal, system = "ellipsoidal")
+#' plot(traj_ellips)
+#' plot(traj_ellips, threeD=TRUE)
+#' traj_ned = X_ellips2ned(traj_ellips, x_o = example_1_traj_ellipsoidal[1,-1])
+#' plot(traj_ned)
+#' 
+#' 
+#' 
 X_ellips2ned = function(x, x_o=NULL ) {
 
   # Check input types and condidtency
@@ -66,6 +82,16 @@ X_ellips2ned = function(x, x_o=NULL ) {
 #' @export
 #' @author Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
 #'
+#'
+#' @examples
+#' 
+#' data("example_1_traj_ned")
+#' traj_ned = make_trajectory(example_1_traj_ned, system = "ned")
+#' plot(traj_ned)
+#' traj_ellips = X_ned2ellips(traj_ned, x_o = example_1_traj_ellipsoidal[1,-1])
+#' plot(traj_ellips, threeD = FALSE)
+#' plot(traj_ellips, threeD = TRUE)
+#' 
 X_ned2ellips = function(x, x_o=NULL ) {
   
   # Check input types and condidtency
