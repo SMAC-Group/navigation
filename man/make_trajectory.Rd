@@ -38,9 +38,6 @@ dat = cbind(seq(from = 0, to = 60*60, length.out = n),
 traj = make_trajectory(data = dat, name = "My cool data")
 traj
 plot(traj)
-
-traj = make_trajectory(data = dat, name = "My cool data", start_time = "13:15:00")
-
 }
 \author{
 Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier

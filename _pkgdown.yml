@@ -19,12 +19,9 @@ reference:
   - title: Compute Statistics
     contents:
     - compute_coverage
-    - compute_coverage
-    - compute_coverage_imu_states
     - compute_mean_orientation_err
     - compute_mean_position_err
     - compute_nees
-    - compute_rms
   - title: Inspect objects
     contents:    
     - print.sensor
@@ -33,7 +30,6 @@ reference:
     - plot.trajectory
     - plot.navigation
     - compare.navigation
-    - plot_rms
     - plot_nav_states_with_cov
     - plot_imu_err_with_cov
     - plot.nees.stat

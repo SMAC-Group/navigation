@@ -144,10 +144,9 @@ plot_imu_err_with_cov <- function(sol, idx=1, error = TRUE, step=10) {
 #' @param t0 start time (default: beginning)
 #' @param tend stop time (defaut: end)
 #' @param ylabels custom labels for the y axis (default: labels for position and orientation)
-#' @export
 #' @author Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
 #'
-
+#' @noRd
 plot_rms <- function(rms, idx = 1:3, t0 = NULL, tend = NULL, ylabels = c("N", "E", "D", "Roll", "Pitch", "Yaw")) {
   if (!inherits(rms, "list") ) {
     stop("argument must be a list")

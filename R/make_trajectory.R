@@ -53,9 +53,6 @@ get_time = function(x){
 #' traj = make_trajectory(data = dat, name = "My cool data")
 #' traj
 #' plot(traj)
-#'
-#' traj = make_trajectory(data = dat, name = "My cool data", start_time = "13:15:00")
-#'
 make_trajectory = function(data, system = "ellipsoidal", start_time = NULL, name = NULL, ...){
   # Number of col and row
   size = dim(data)

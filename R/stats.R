@@ -206,10 +206,9 @@ compute_coverage <- function(sols, alpha = 0.95, step = 100, idx = 1:6) {
 #' @param alpha size of the confidence interval
 #' @param step Step.
 #' @param idx Components to be considered (idx in [1, ..., 6])
-#' @export
+#' @noRd
 #' @author Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
 #'
-
 compute_coverage_imu_states <- function(sols, alpha = 0.95, step = 100, idx = 1:6) {
   if (max(idx) > 6) {
     stop("idx must be in [1, ..., 6]")
@@ -253,10 +252,8 @@ compute_coverage_imu_states <- function(sols, alpha = 0.95, step = 100, idx = 1:
 #' @param idx Components of the states to be considered (default: position)
 #' @param t0 Start time for RMS calculation (default: beginning)
 #' @param tend Start time for RMS calculation (default: end)
-#' @export
 #' @author Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
-#'
-
+#' @noRd
 compute_rms <- function(sols, step = 1, idx = 1:3, t0 = NULL, tend = NULL) {
   if (max(idx) > 9) {
     stop("idx must be in [1, ..., 0]")
