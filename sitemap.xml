@@ -31,9 +31,6 @@
     <loc>/reference/compute_coverage.html</loc>
   </url>
   <url>
-    <loc>/reference/compute_coverage_imu_states.html</loc>
-  </url>
-  <url>
     <loc>/reference/compute_mean_orientation_err.html</loc>
   </url>
   <url>
@@ -41,9 +38,6 @@
   </url>
   <url>
     <loc>/reference/compute_nees.html</loc>
-  </url>
-  <url>
-    <loc>/reference/compute_rms.html</loc>
   </url>
   <url>
     <loc>/reference/example_1_traj_ellipsoidal.html</loc>
@@ -113,9 +107,6 @@
   </url>
   <url>
     <loc>/reference/plot_nav_states_with_cov.html</loc>
-  </url>
-  <url>
-    <loc>/reference/plot_rms.html</loc>
   </url>
   <url>
     <loc>/reference/print.sensor.html</loc>
