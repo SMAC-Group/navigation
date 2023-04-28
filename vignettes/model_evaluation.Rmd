@@ -114,6 +114,7 @@ plot(res, plot3d = F, error_analysis = T)
 ```
 
 We can now compute statistics of the navigation performance based on the Monte Carlo simulation.
+
 ```{r, message=FALSE, eval=F}
 # mean position error
 pe = compute_mean_position_err(res, step = 25)
