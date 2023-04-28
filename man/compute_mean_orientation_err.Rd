@@ -19,5 +19,5 @@ compute_mean_orientation_err(sols, step = 1, t0 = NULL, tend = NULL)
 Compute the mean orientation error (|| log(A^T * B) ||)
 }
 \author{
-Stephane Guerrier, Mehran Khaghani, Lionel Voirol and Davide A. Cucci
+Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
 }

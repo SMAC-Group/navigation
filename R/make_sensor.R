@@ -1,5 +1,5 @@
-#' @title Construct sensor object
-#' @description Constructs sensor objects for IMU, GPS, and Baro from error model of class \code{ts.model}
+#' @title Construct a \code{sensor} object
+#' @description Construct a \code{sensor} object for IMU, GPS, and Baro from error model of class \code{ts.model}
 #' @param name Name of the sensor
 #' @param frequency Frequency associated with the error model
 #' @param error_model1 Error model of class \code{ts.model} for either accelerometer (as part of imu), horizontal components of GPS position, or Barometer
@@ -9,7 +9,7 @@
 #' @param error_data1 Vector of error observations.
 #' @return An object of class \code{sensor} containing sensor name and its additive error model along with the frequency associated to that model
 #' @export
-#' @author Stephane Guerrier and Mehran Khaghani
+#' @author Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
 #' @examples
 #' # IMU:
 #' imu.freq = 250

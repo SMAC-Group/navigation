@@ -19,5 +19,5 @@ compute_coverage(sols, alpha = 0.95, step = 100, idx = 1:6)
 Compute Empirical Coverage
 }
 \author{
-Stephane Guerrier, Mehran Khaghani, Lionel Voirol and Davide A. Cucci
+Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
 }

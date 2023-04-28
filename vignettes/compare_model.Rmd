@@ -2,7 +2,7 @@
 title: "Compare Models"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Compare model}
+  %\VignetteIndexEntry{Compare Models}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -89,7 +89,7 @@ wrong_KF.mdl$baro = snsr.mdl$baro
 
 We perform the navigation Monte Carlo simulation considering the correct stochastic model.
 
-```{r, message=FALSE, results='hide'}
+```{r, message=FALSE, results='hide', eval=F}
 num.runs = 10 # number of Monte-Carlo simulations
 res = navigation(traj.ref = traj,
                  timing = timing,
@@ -104,7 +104,7 @@ res = navigation(traj.ref = traj,
 
 
 We perform the navigation Monte Carlo simulation considering the wrong stochastic model.
-```{r, message=FALSE, results='hide'}
+```{r, message=FALSE, results='hide', eval=F}
 wrong_res = navigation(traj.ref = traj,
                  timing = timing,
                  snsr.mdl = snsr.mdl,
@@ -119,7 +119,7 @@ wrong_res = navigation(traj.ref = traj,
 
 
 We compute statistics on navigation performance for the navigation simulation that considered the correct stochastic model and for the navigation simulation that considered the wrong stochastic model.
-```{r}
+```{r, eval=F}
 pe_res = compute_mean_position_err(res, step = 25)
 pe_wrong_res = compute_mean_position_err(wrong_res, step = 25)
 
@@ -128,7 +128,7 @@ oe_wrong_res = compute_mean_orientation_err(wrong_res, step = 25)
 ```
 
 
-```{r, results='hide', fig.align='center', fig.width=7, fig.height=5}
+```{r, results='hide', fig.align='center', fig.width=7, fig.height=5, eval=F}
 nees = compute_nees(res, step = timing$freq.imu)
 wrong_nees = compute_nees(wrong_res, step = timing$freq.imu)
 
@@ -139,7 +139,7 @@ wrong_coverage = compute_coverage(wrong_res, alpha = 0.7, step = timing$freq.imu
 
 
 We compare results
-```{r,  fig.height=5, fig.align='center', fig.width=6}
+```{r,  fig.height=5, fig.align='center', fig.width=6, eval=F}
 plot(pe_res, pe_wrong_res, legend=c("correct model", "wrong model"))
 
 plot(oe_res, oe_wrong_res, legend=c("correct model", "wrong model"))

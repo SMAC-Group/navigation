@@ -19,5 +19,5 @@
 plot multiple \code{nees.stat} objects alltogether
 }
 \author{
-Stephane Guerrier, Mehran Khaghani, Lionel Voirol and Davide A. Cucci
+Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
 }

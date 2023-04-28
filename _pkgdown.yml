@@ -6,8 +6,6 @@ template:
 reference:
   - title: Coordinate transformation
     contents:
-    - X_ecef2ellips
-    - X_ecef2ned
     - X_ellips2ned
     - X_ned2ellips
   - title: Create objects
@@ -30,7 +28,6 @@ reference:
   - title: Inspect objects
     contents:    
     - print.sensor
-    - get_time    
   - title: Visualize objects and results
     contents:
     - plot.trajectory

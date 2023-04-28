@@ -23,7 +23,7 @@
 #' @export
 #' @import parallel
 #' @import pbmcapply
-#' @author Stephane Guerrier, Mehran Khaghani, Lionel Voirol and Davide A. Cucci
+#' @author Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
 #'
 navigation <- function(traj.ref, timing, snsr.mdl, KF.mdl, g = 9.8056, num.runs = 1, results.system = "ned", x_o = NULL, noProgressBar = FALSE,# Inputs needed for navigation with a reference trajectory
                        IC = NULL, imu_data = NULL, gps_data = NULL, baro_data= NULL, input.seed = 0, PhiQ_method = "exact", P_subsampling = 1, # Inputs needed for sensor fusion only (+ KF.mdl, )

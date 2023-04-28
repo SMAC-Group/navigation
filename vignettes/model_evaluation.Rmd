@@ -91,7 +91,7 @@ KF.mdl$baro = snsr.mdl$baro
 
 Finally, we can call the `navigation` function, which first simulates realistic sensor data based on the reference trajectory and provided sensor error models, and then performs the navigation. The whole process can be done in a Monte-Carlo fashion, by only specifying the number of desired runs as the `num.runs` input to `navigation` function. For detailed documentation, see `?navigation`.
 
-```{r, message=FALSE, results='hide'}
+```{r, message=FALSE, results='hide', eval=F}
 num.runs = 10 # number of Monte-Carlo simulations
 res = navigation(traj.ref = traj,
                  timing = timing,
@@ -109,12 +109,12 @@ res = navigation(traj.ref = traj,
 We can now see how the results look like. 
 
 
-```{r, fig.height=5, fig.align='center', fig.width=8 }
+```{r, fig.height=5, fig.align='center', fig.width=8, eval=F}
 plot(res, plot3d = F, error_analysis = T)
 ```
 
 We can now compute statistics of the navigation performance based on the Monte Carlo simulation.
-```{r, message=FALSE}
+```{r, message=FALSE, eval=F}
 # mean position error
 pe = compute_mean_position_err(res, step = 25)
 
@@ -123,7 +123,7 @@ oe = compute_mean_orientation_err(res, step = 25)
 ```
 
 
-```{r, message=FALSE, results='hide'}
+```{r, message=FALSE, results='hide',  eval=F}
 # NEES
 nees = compute_nees(res, idx=1:6, step = 100)
 
@@ -133,12 +133,12 @@ coverage = compute_coverage(res, alpha = 0.7, step = 100, idx = 1:6)
 
 We can plot the computed statistics
 
-```{r,  fig.height=5, fig.align='center', fig.width=6}
+```{r,  fig.height=5, fig.align='center', fig.width=6, eval=F}
 plot_imu_err_with_cov(res, error=F)
 ```
 
 
-```{r,  fig.height=5, fig.align='center', fig.width=6}
+```{r,  fig.height=5, fig.align='center', fig.width=6, eval=F}
 plot_nav_states_with_cov(res, idx = 1:5, error=T)
 
 plot(pe)
@@ -146,7 +146,7 @@ plot(oe)
 ```
 
 
-```{r,  fig.height=5, fig.align='center', fig.width=6}
+```{r,  fig.height=5, fig.align='center', fig.width=6, eval=F}
 plot(nees)
 plot(coverage)
 ```

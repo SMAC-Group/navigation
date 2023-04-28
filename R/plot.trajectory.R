@@ -24,7 +24,7 @@
 #' @importFrom plotly plot_ly
 #' @importFrom leaflet leaflet addTiles addMarkers addPolylines
 #' @importFrom magrittr "%>%"
-#' @author Stephane Guerrier, Mehran Khaghani, and Lionel Voirol
+#' @author Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
 #' @examples
 #'\dontrun{ 
 #' n = 100

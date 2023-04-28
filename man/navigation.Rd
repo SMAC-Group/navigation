@@ -72,5 +72,5 @@ An object of \code{navigation} class containing the reference trajectory, fused 
 This function performs of the two following main tasks, base on the provided input. If a reference trajectory (\code{traj.ref}) is provided, it generates sensor data (IMU, GPS, Baro) corrupted by additive errors according to \code{snsr.mdl}, and performs navigation using \code{KF.mdl} as the sensor error model within the Kalman filter to evaluate how this particular model performs when navigating.
 }
 \author{
-Stephane Guerrier, Mehran Khaghani, Lionel Voirol and Davide A. Cucci
+Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
 }

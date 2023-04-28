@@ -1,5 +1,3 @@
-#def compare.navigation fct
-
 #' @title Compare multiple \code{navigation} objects
 #' @description Comparison of error analysis plot for different trajectories
 #' @param ... \code{navigation} objects to be compared.
@@ -11,7 +9,7 @@
 #' @param col_95_brd The color for the 95\% confidence intervals.
 #' @param col_traj_error The color of the \code{L2} norm of errors of the emulated trajectories.
 #' @param time_interval_simu A value in second indicating the interval at which are simulated trajectories in order to compute the CI
-#' @author Stephane Guerrier, Mehran Khaghani & Lionel Voirol
+#' @author Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
 #' @examples
 #'\dontrun{
 #' #Load trajectory

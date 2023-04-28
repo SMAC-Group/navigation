@@ -2,7 +2,7 @@
 % Please edit documentation in R/make_sensor.R
 \name{make_sensor}
 \alias{make_sensor}
-\title{Construct sensor object}
+\title{Construct a \code{sensor} object}
 \usage{
 make_sensor(
   name,
@@ -33,7 +33,7 @@ make_sensor(
 An object of class \code{sensor} containing sensor name and its additive error model along with the frequency associated to that model
 }
 \description{
-Constructs sensor objects for IMU, GPS, and Baro from error model of class \code{ts.model}
+Construct a \code{sensor} object for IMU, GPS, and Baro from error model of class \code{ts.model}
 }
 \examples{
 # IMU:
@@ -61,5 +61,5 @@ baro.mdl = make_sensor(name="baro", frequency=baro.freq, error_model1=baro.mdl)
 
 }
 \author{
-Stephane Guerrier and Mehran Khaghani
+Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
 }

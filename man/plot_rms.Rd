@@ -27,5 +27,5 @@ plot_rms(
 this function plots the RMS computed with the \code{compute_rms} function
 }
 \author{
-Stephane Guerrier, Mehran Khaghani, Lionel Voirol and Davide A. Cucci
+Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
 }

@@ -14,8 +14,7 @@
 #' get_time(traj)
 #'
 #'}
-#'
-#' @export
+#' @noRd
 get_time = function(x){
   if (inherits(x,"trajectory")) {
     x = as.character(x$trajectory[,1])
@@ -35,8 +34,8 @@ get_time = function(x){
 }
 
 
-#' @title Construct trajectory object
-#' @description Create trajectory object from simple matrix input.
+#' @title Construct a \code{trajectory} object
+#' @description Create a \code{trajectory} object from simple matrix input.
 #' @param data        A multiple-column \code{matrix}. The first column corresponds to the measurment time (in seconds); columns 2, 3 and 4 corresponds to the positions (with the order lat, long and alt (in rad) if ellipsoidal coord or x_N, x_E and x_D for NED coord); columns 5, 6 and 7 (optional) corresponds to the attitude (with the order roll, pitch and yaw); columns 8, 9 and 10 (optional) corresponds to the velocity along the same axes are columns 2, 3 and 4.
 #' @param system      A \code{string} corresponding to the coordinate system (possible choices: \code{ellipsoidal} or \code{ned}) considered.
 #' @param start_time  A \code{string} (optional) corresponding to the start time for the trajectory.
@@ -44,7 +43,7 @@ get_time = function(x){
 #' @param ...         Additional arguments.
 #' @return A \code{trajectory} object.
 #' @export
-#' @author Stephane Guerrier, Mehran Khaghani, and Lionel Voirol
+#' @author Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
 #' @examples
 #' n = 100
 #' dat = cbind(seq(from = 0, to = 60*60, length.out = n), 
@@ -56,8 +55,6 @@ get_time = function(x){
 #' plot(traj)
 #'
 #' traj = make_trajectory(data = dat, name = "My cool data", start_time = "13:15:00")
-#' traj
-#' plot(traj)
 #'
 make_trajectory = function(data, system = "ellipsoidal", start_time = NULL, name = NULL, ...){
   # Number of col and row

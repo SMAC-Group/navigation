@@ -10,7 +10,7 @@ lims <- function(v) {
 #' @param error Wether to plot the error with respect to the refefence or the estimated values
 #' @param step Plot one time out of \code{step}
 #' @export
-#' @author Stephane Guerrier, Mehran Khaghani, Lionel Voirol and Davide A. Cucci
+#' @author Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
 #'
 plot_nav_states_with_cov <- function(sol, idx=1, cov_idx=1, error = TRUE, step = 10) {
   if (length(cov_idx) > 1) {
@@ -83,7 +83,7 @@ plot_nav_states_with_cov <- function(sol, idx=1, cov_idx=1, error = TRUE, step =
 #' @param error Whether to plot the error with respect to the reference or the estimated values
 #' @param step Plot one time out of \code{step}
 #' @export
-#' @author Stephane Guerrier, Mehran Khaghani, Lionel Voirol and Davide A. Cucci
+#' @author Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
 #'
 plot_imu_err_with_cov <- function(sol, idx=1, error = TRUE, step=10) {
   if (dim(sol$Cov.Nav[[idx]])[1] > 9 ) {
@@ -145,7 +145,7 @@ plot_imu_err_with_cov <- function(sol, idx=1, error = TRUE, step=10) {
 #' @param tend stop time (defaut: end)
 #' @param ylabels custom labels for the y axis (default: labels for position and orientation)
 #' @export
-#' @author Stephane Guerrier, Mehran Khaghani, Lionel Voirol and Davide A. Cucci
+#' @author Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
 #'
 
 plot_rms <- function(rms, idx = 1:3, t0 = NULL, tend = NULL, ylabels = c("N", "E", "D", "Roll", "Pitch", "Yaw")) {
@@ -227,7 +227,7 @@ gg_color_hue <- function(n, alpha) {
 #' @param title The title
 #' @param xlim xlim
 #' @param ylim ylim
-#' @author Stephane Guerrier, Mehran Khaghani, Lionel Voirol and Davide A. Cucci
+#' @author Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
 #'
 #'
 plot.navigation.stat <- function(..., legend=NA, title=NA, xlim=c(NA, NA), ylim=c(NA, NA)) {
@@ -285,7 +285,7 @@ plot.navigation.stat <- function(..., legend=NA, title=NA, xlim=c(NA, NA), ylim=
 #' @param legend legend of the plot.
 #' @param title title of the plot.
 #' @export
-#' @author Stephane Guerrier, Mehran Khaghani, Lionel Voirol and Davide A. Cucci
+#' @author Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
 #'
 plot.nees.stat = function(..., alpha = 0.95, legend=NA, title=NA) {
   stats = list(...)
@@ -317,7 +317,7 @@ plot.nees.stat = function(..., alpha = 0.95, legend=NA, title=NA) {
 #' @param legend Legend of the plot.
 #' @param title Title of the plot.
 #' @export
-#' @author Stephane Guerrier, Mehran Khaghani, Lionel Voirol and Davide A. Cucci
+#' @author Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
 #'
 plot.coverage.stat = function(..., legend=NA, title=NA) {
   stats = list(...)

@@ -16,5 +16,5 @@ Print the \code{sensor} object name and specifications in the console.
 Print method for a \code{sensor} object
 }
 \author{
-Stephane Guerrier, Mehran Khaghani, and Lionel Voirol
+Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
 }

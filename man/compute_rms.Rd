@@ -21,5 +21,5 @@ compute_rms(sols, step = 1, idx = 1:3, t0 = NULL, tend = NULL)
 Compute Root Mean Squared error (RMS) for each solution
 }
 \author{
-Stephane Guerrier, Mehran Khaghani, Lionel Voirol and Davide A. Cucci
+Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
 }

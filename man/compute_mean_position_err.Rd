@@ -19,5 +19,5 @@ compute_mean_position_err(sols, step = 1, t0 = NULL, tend = NULL)
 Compute the mean position error (norm of 3D NED error)
 }
 \author{
-Stephane Guerrier, Mehran Khaghani, Lionel Voirol and Davide A. Cucci
+Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
 }

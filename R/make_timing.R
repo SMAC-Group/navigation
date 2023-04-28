@@ -1,5 +1,5 @@
-#' @title Construct timing object
-#' @description Constructs timimng object controlling the timing and frequencies for navigation, making sure about the consistency and feasibility of provided information.
+#' @title Construct a \code{timing} object
+#' @description Construct a \code{timing} object controlling the timing and frequencies for navigation, making sure about the consistency and feasibility of provided information.
 #' @param nav.start Time at which navigation starts
 #' @param nav.end Time at which navigation ends
 #' @param freq.imu Frequency of generated IMU data (and hence that of navigation)
@@ -9,7 +9,7 @@
 #' @param gps.out.end Time at which GPS outage ends
 #' @return An object of class \code{timing} containing sensor name and its additive error model along with the frequency associated to that model
 #' @export
-#' @author Stephane Guerrier and Mehran Khaghani
+#' @author Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
 #' @examples
 #' timing = make_timing(nav.start     = 0,
 #'                      nav.end       = 50,

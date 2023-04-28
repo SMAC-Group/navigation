@@ -17,5 +17,5 @@ compute_nees(sols, step = 50, idx = 1:6)
 Compute Normalized Estimation Errror Squared (NEES)
 }
 \author{
-Stephane Guerrier, Mehran Khaghani, Lionel Voirol and Davide A. Cucci
+Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
 }

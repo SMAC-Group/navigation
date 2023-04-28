@@ -27,7 +27,7 @@
 #' @importFrom plotly add_trace
 #' @importFrom MASS mvrnorm
 #' @importFrom magrittr %>%
-#' @author Stephane Guerrier, Mehran Khaghani & Lionel Voirol
+#' @author Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
 #' @examples
 #'\dontrun{
 #' #Load trajectory

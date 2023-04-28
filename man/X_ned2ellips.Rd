@@ -18,5 +18,5 @@ An object of class \code{trajectory} in "ellipsoidal" system or a matrix of posi
 Transform position from a fixed Cartesian NED frame to ellipsoidal coordinates
 }
 \author{
-Stephane Guerrier, Mehran Khaghani, and Lionel Voirol
+Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
 }

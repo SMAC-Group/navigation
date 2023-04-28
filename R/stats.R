@@ -123,7 +123,7 @@ compute_nees_and_coverage <- function(sols, alpha = 0.95, step = 100, idx = 1:6)
 #' @param step do it for one sample out of \code{step}
 #' @param idx Components of the states to be considered (default: position and orientation)
 #' @export
-#' @author Stephane Guerrier, Mehran Khaghani, Lionel Voirol and Davide A. Cucci
+#' @author Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
 #'
 compute_nees <- function(sols, step = 50, idx = 1:6) {
   if (max(idx) > 9) {
@@ -161,7 +161,7 @@ compute_nees <- function(sols, step = 50, idx = 1:6) {
 #' @param step Step
 #' @param idx Components of the states to be considered (default: position and orientation)
 #' @export
-#' @author Stephane Guerrier, Mehran Khaghani, Lionel Voirol and Davide A. Cucci
+#' @author Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
 #'
 
 compute_coverage <- function(sols, alpha = 0.95, step = 100, idx = 1:6) {
@@ -207,7 +207,7 @@ compute_coverage <- function(sols, alpha = 0.95, step = 100, idx = 1:6) {
 #' @param step Step.
 #' @param idx Components to be considered (idx in [1, ..., 6])
 #' @export
-#' @author Stephane Guerrier, Mehran Khaghani, Lionel Voirol and Davide A. Cucci
+#' @author Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
 #'
 
 compute_coverage_imu_states <- function(sols, alpha = 0.95, step = 100, idx = 1:6) {
@@ -254,7 +254,7 @@ compute_coverage_imu_states <- function(sols, alpha = 0.95, step = 100, idx = 1:
 #' @param t0 Start time for RMS calculation (default: beginning)
 #' @param tend Start time for RMS calculation (default: end)
 #' @export
-#' @author Stephane Guerrier, Mehran Khaghani, Lionel Voirol and Davide A. Cucci
+#' @author Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
 #'
 
 compute_rms <- function(sols, step = 1, idx = 1:3, t0 = NULL, tend = NULL) {
@@ -296,7 +296,7 @@ compute_rms <- function(sols, step = 1, idx = 1:3, t0 = NULL, tend = NULL) {
 #' @param t0 Start time for RMS calculation (default: beginning)
 #' @param tend Start time for RMS calculation (default: end)
 #' @export
-#' @author Stephane Guerrier, Mehran Khaghani, Lionel Voirol and Davide A. Cucci
+#' @author Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
 #'
 
 compute_mean_position_err <- function(sols, step = 1, t0 = NULL, tend = NULL) {
@@ -336,7 +336,7 @@ compute_mean_position_err <- function(sols, step = 1, t0 = NULL, tend = NULL) {
 #' @param t0 Start time for RMS calculation (default: beginning)
 #' @param tend Start time for RMS calculation (default: end)
 #' @export
-#' @author Stephane Guerrier, Mehran Khaghani, Lionel Voirol and Davide A. Cucci
+#' @author Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
 #'
 
 compute_mean_orientation_err <- function(sols, step = 1, t0 = NULL, tend = NULL) {

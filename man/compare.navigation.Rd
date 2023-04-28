@@ -104,5 +104,5 @@ compare.navigation(x1,x2)
 }
 }
 \author{
-Stephane Guerrier, Mehran Khaghani & Lionel Voirol
+Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
 }

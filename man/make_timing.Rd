@@ -2,7 +2,7 @@
 % Please edit documentation in R/make_timing.R
 \name{make_timing}
 \alias{make_timing}
-\title{Construct timing object}
+\title{Construct a \code{timing} object}
 \usage{
 make_timing(
   nav.start = NULL,
@@ -33,7 +33,7 @@ make_timing(
 An object of class \code{timing} containing sensor name and its additive error model along with the frequency associated to that model
 }
 \description{
-Constructs timimng object controlling the timing and frequencies for navigation, making sure about the consistency and feasibility of provided information.
+Construct a \code{timing} object controlling the timing and frequencies for navigation, making sure about the consistency and feasibility of provided information.
 }
 \examples{
 timing = make_timing(nav.start     = 0,
@@ -46,5 +46,5 @@ timing = make_timing(nav.start     = 0,
 
 }
 \author{
-Stephane Guerrier and Mehran Khaghani
+Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
 }

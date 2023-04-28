@@ -19,5 +19,5 @@ compute_coverage_imu_states(sols, alpha = 0.95, step = 100, idx = 1:6)
 works correctly only if there is only one process that is not a WN
 }
 \author{
-Stephane Guerrier, Mehran Khaghani, Lionel Voirol and Davide A. Cucci
+Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
 }

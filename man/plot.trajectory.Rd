@@ -102,5 +102,5 @@ threeD_grad_start = "#e74c3c",
 }
 }
 \author{
-Stephane Guerrier, Mehran Khaghani, and Lionel Voirol
+Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
 }

@@ -4,7 +4,7 @@
 #' @param x_o Origin of the fixed Cartesian NED frame expressed in ellipsoidal coordinates
 #' @return An object of class \code{trajectory} in "NED" system or a matrix of position data with x_N, x_E, and x_D, according to the type of input \code{x}
 #' @export
-#' @author Stephane Guerrier, Mehran Khaghani, and Lionel Voirol
+#' @author Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
 #'
 X_ellips2ned = function(x, x_o=NULL ) {
 
@@ -56,6 +56,66 @@ X_ellips2ned = function(x, x_o=NULL ) {
 }
 
 
+
+# ----------------------------------------------------------
+#' @title Transform position from NED to ellipsoidal coordinates
+#' @description Transform position from a fixed Cartesian NED frame to ellipsoidal coordinates
+#' @param x An object of class \code{trajectory} in "NED" system or a matrix of position data with x_N, x_E, and x_D
+#' @param x_o Origin of the fixed Cartesian NED frame expressed in ellipsoidal coordinates
+#' @return An object of class \code{trajectory} in "ellipsoidal" system or a matrix of position data with latitude, longitude, and altitude, according to the type of input \code{x}
+#' @export
+#' @author Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
+#'
+X_ned2ellips = function(x, x_o=NULL ) {
+  
+  # Check input types and condidtency
+  if (inherits(x = x, what = "trajectory")) {
+    if (x$system != "ned") {
+      stop("X_ned2ellips requires an input trajectory of \'ned\' system.")
+    }
+    x_ned = t(cbind(x$trajectory$x_N,
+                    x$trajectory$x_E,
+                    x$trajectory$x_D))
+  } else {
+    x_ned = x
+  }
+  
+  # Check x_o
+  if (is.null(x_o)) {
+    x_o = c(0,0,0)
+    warning("Since not provided, x_o was set to c(0,0,0).")
+  }
+  
+  # Calculate output
+  x_ecef = X_ned2ecef(x_ned, x_o)
+  x_ellips = X_ecef2ellips(x_ecef)
+  
+  # Return output based on input type
+  if (inherits(x = x, what = "trajectory")) {
+    N = dim(x$trajectory)[2]
+    if (N==4) {
+      data = cbind(x$trajectory$time, t(x_ellips))
+    } else if (N==7) {
+      data = cbind(x$trajectory$time, t(x_ellips), x$trajectory$roll, x$trajectory$pitch, x$trajectory$yaw)
+    } else if (N==10) {
+      data = cbind(x$trajectory$time, t(x_ellips), x$trajectory$roll, x$trajectory$pitch, x$trajectory$yaw, x$trajectory$v_N, x$trajectory$v_E, x$trajectory$v_D)
+    } else {
+      stop("Inconsistent input of type \'trajectory\'.")
+    }
+    out = make_trajectory(data = data, system = "ellipsoidal", start_time = x$start_time, name = x$name)
+    return(out)
+  } else {
+    rownames(x_ellips) = c("lat","lon","alt")
+    colnames(x_ellips) = NULL
+    return(x_ellips)
+  }
+  
+}
+
+
+
+
+
 #' @title TO DO
 #' @description TO DO
 #' @return TO DO
@@ -98,8 +158,7 @@ X_ellips2ecef = function( x ) {
 #' @param x_o the latitude, longitude, altitude of the desired local level origin
 #' @return \code{x} converted to the local level
 #' @author Stephane Guerrier, Mehran Khaghani, Lionel Voirol and Davide A. Cucci
-#' @export
-#' 
+#' @noRd
 #'
 X_ecef2ned = function( x, x_o ) {
 
@@ -140,60 +199,6 @@ Cnefunc = function( phi, lambda ) {
 }
 
 
-# ----------------------------------------------------------
-#' @title Transform position from NED to ellipsoidal coordinates
-#' @description Transform position from a fixed Cartesian NED frame to ellipsoidal coordinates
-#' @param x An object of class \code{trajectory} in "NED" system or a matrix of position data with x_N, x_E, and x_D
-#' @param x_o Origin of the fixed Cartesian NED frame expressed in ellipsoidal coordinates
-#' @return An object of class \code{trajectory} in "ellipsoidal" system or a matrix of position data with latitude, longitude, and altitude, according to the type of input \code{x}
-#' @export
-#' @author Stephane Guerrier, Mehran Khaghani, and Lionel Voirol
-#'
-X_ned2ellips = function(x, x_o=NULL ) {
-
-  # Check input types and condidtency
-  if (inherits(x = x, what = "trajectory")) {
-    if (x$system != "ned") {
-      stop("X_ned2ellips requires an input trajectory of \'ned\' system.")
-    }
-    x_ned = t(cbind(x$trajectory$x_N,
-                    x$trajectory$x_E,
-                    x$trajectory$x_D))
-  } else {
-    x_ned = x
-  }
-
-  # Check x_o
-  if (is.null(x_o)) {
-    x_o = c(0,0,0)
-    warning("Since not provided, x_o was set to c(0,0,0).")
-  }
-
-  # Calculate output
-  x_ecef = X_ned2ecef(x_ned, x_o)
-  x_ellips = X_ecef2ellips(x_ecef)
-
-  # Return output based on input type
-  if (inherits(x = x, what = "trajectory")) {
-    N = dim(x$trajectory)[2]
-    if (N==4) {
-      data = cbind(x$trajectory$time, t(x_ellips))
-    } else if (N==7) {
-      data = cbind(x$trajectory$time, t(x_ellips), x$trajectory$roll, x$trajectory$pitch, x$trajectory$yaw)
-    } else if (N==10) {
-      data = cbind(x$trajectory$time, t(x_ellips), x$trajectory$roll, x$trajectory$pitch, x$trajectory$yaw, x$trajectory$v_N, x$trajectory$v_E, x$trajectory$v_D)
-    } else {
-      stop("Inconsistent input of type \'trajectory\'.")
-    }
-    out = make_trajectory(data = data, system = "ellipsoidal", start_time = x$start_time, name = x$name)
-    return(out)
-  } else {
-    rownames(x_ellips) = c("lat","lon","alt")
-    colnames(x_ellips) = NULL
-    return(x_ellips)
-  }
-
-}
 
 
 #' @title X_ned2ecef
@@ -227,9 +232,9 @@ X_ned2ecef = function( x, x_o ) {
 #' @param X_ec a 3 x n matrix containing the ECEF coordinatesto be converted
 #' @param ignoreAtan2Flag A \code{boolean} value indicating if Atan2Flag should be ignored.
 #' @return a matrix containing the WGS84 latitude, longitude, altitude converted coordinates
-#' @export
 #' @author Stephane Guerrier, Mehran Khaghani, Lionel Voirol and Davide A. Cucci
 #'
+#' @noRd
 X_ecef2ellips = function ( X_ec, ignoreAtan2Flag = FALSE ) {
 
 

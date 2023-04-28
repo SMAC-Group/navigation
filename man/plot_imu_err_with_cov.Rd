@@ -19,5 +19,5 @@ plot_imu_err_with_cov(sol, idx = 1, error = TRUE, step = 10)
 this function plots the estimated IMU errors with covariance of a solution computed with the \code{navigation} function
 }
 \author{
-Stephane Guerrier, Mehran Khaghani, Lionel Voirol and Davide A. Cucci
+Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
 }
