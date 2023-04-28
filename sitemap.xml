@@ -19,12 +19,6 @@
     <loc>/index.html</loc>
   </url>
   <url>
-    <loc>/reference/X_ecef2ellips.html</loc>
-  </url>
-  <url>
-    <loc>/reference/X_ecef2ned.html</loc>
-  </url>
-  <url>
     <loc>/reference/X_ellips2ned.html</loc>
   </url>
   <url>
@@ -80,9 +74,6 @@
   </url>
   <url>
     <loc>/reference/example_5_traj_ned.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_time.html</loc>
   </url>
   <url>
     <loc>/reference/index.html</loc>
