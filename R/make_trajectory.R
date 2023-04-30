@@ -1,39 +1,3 @@
-#' @title Extract time for trajectory object
-#' @description Extract time for trajectory object in seconds
-#' @param x         A \code{trajectory} object.
-#' @return A \code{numeric} vector with the time in seconds of a trajectory object.
-#' @author Stephane Guerrier, Mehran Khaghani, and Lionel Voirol
-#' @examples
-#' \dontrun{
-#' n = 1000
-#' dat = cbind(seq(from = 0, to = 50, length.out = n),
-#'  46.204391 + cumsum(rnorm(n))/100, 
-#'  6.143158 + cumsum(rnorm(n))/100,
-#'   375 + cumsum(rnorm(n)))
-#' traj = make_trajectory(data = dat, name = "My cool data")
-#' get_time(traj)
-#'
-#'}
-#' @noRd
-get_time = function(x){
-  if (inherits(x,"trajectory")) {
-    x = as.character(x$trajectory[,1])
-  } else if (inherits(x,"factor")) {
-    x = as.character(x)
-  } else {
-    stop("Invalid input class.")
-  }
-  n = length(x)
-  y = rep(NA, n)
-
-  for (i in 1:n){
-    inter = strsplit(x[i], ":")[[1]]
-    y[i] = 60*60*as.numeric(inter[1]) + 60*as.numeric(inter[2]) + as.numeric(inter[3])
-  }
-  y
-}
-
-
 #' @title Construct a \code{trajectory} object
 #' @description Create a \code{trajectory} object from simple matrix input.
 #' @param data        A multiple-column \code{matrix}. The first column corresponds to the measurment time (in seconds); columns 2, 3 and 4 corresponds to the positions (with the order lat, long and alt (in rad) if ellipsoidal coord or x_N, x_E and x_D for NED coord); columns 5, 6 and 7 (optional) corresponds to the attitude (with the order roll, pitch and yaw); columns 8, 9 and 10 (optional) corresponds to the velocity along the same axes are columns 2, 3 and 4.
@@ -113,5 +77,6 @@ make_trajectory = function(data, system = "ellipsoidal", start_time = NULL, name
   class(out) = "trajectory"
   out
 }
+
 
 

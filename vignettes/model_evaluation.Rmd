@@ -24,7 +24,7 @@ traj = make_trajectory(data = lemniscate_traj_ned, system = "ned")
 Let's see how the reference trajectory looks like.
 ```{r,  fig.height=4, fig.align='center', fig.width=6}
 # plot traj
-plot(traj, n_split = 10)
+plot(traj, n_split = 4)
 plot(traj, threeD = T)
 ```
 
