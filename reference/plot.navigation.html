@@ -193,69 +193,78 @@ by comparing the <code>L2</code> norm of the difference between emulated traject
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span><span class="co">#Load trajectory</span></span></span>
+<span class="r-in"><span><span class="co"># Load trajectory</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/load.html" class="external-link">load</a></span><span class="op">(</span><span class="st">"example0.RData"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">traj</span> <span class="op">=</span> <span class="fu"><a href="make_trajectory.html">make_trajectory</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">traj</span>, system <span class="op">=</span> <span class="st">"ned"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">traj</span> <span class="op">&lt;-</span> <span class="fu"><a href="make_trajectory.html">make_trajectory</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">traj</span>, system <span class="op">=</span> <span class="st">"ned"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Monte-Carlo settings----------------------------</span></span></span>
-<span class="r-in"><span><span class="va">num.runs</span> <span class="op">=</span> <span class="fl">15</span></span></span>
+<span class="r-in"><span><span class="va">num.runs</span> <span class="op">&lt;-</span> <span class="fl">15</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Timing and sampling frequencies-----------------</span></span></span>
-<span class="r-in"><span><span class="va">timing</span> <span class="op">=</span> <span class="fu"><a href="make_timing.html">make_timing</a></span><span class="op">(</span>nav.start     <span class="op">=</span> <span class="fl">0</span>,</span></span>
-<span class="r-in"><span>                     nav.end       <span class="op">=</span> <span class="fl">50</span>,</span></span>
-<span class="r-in"><span>                     freq.imu      <span class="op">=</span> <span class="fl">10</span>,</span></span>
-<span class="r-in"><span>                     freq.gps      <span class="op">=</span> <span class="fl">1</span>,</span></span>
-<span class="r-in"><span>                     freq.baro     <span class="op">=</span> <span class="fl">.5</span>,</span></span>
-<span class="r-in"><span>                     gps.out.start <span class="op">=</span> <span class="fl">25</span>,</span></span>
-<span class="r-in"><span>                     gps.out.end   <span class="op">=</span> <span class="fl">45</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">timing</span> <span class="op">&lt;-</span> <span class="fu"><a href="make_timing.html">make_timing</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  nav.start <span class="op">=</span> <span class="fl">0</span>,</span></span>
+<span class="r-in"><span>  nav.end <span class="op">=</span> <span class="fl">50</span>,</span></span>
+<span class="r-in"><span>  freq.imu <span class="op">=</span> <span class="fl">10</span>,</span></span>
+<span class="r-in"><span>  freq.gps <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>  freq.baro <span class="op">=</span> <span class="fl">.5</span>,</span></span>
+<span class="r-in"><span>  gps.out.start <span class="op">=</span> <span class="fl">25</span>,</span></span>
+<span class="r-in"><span>  gps.out.end <span class="op">=</span> <span class="fl">45</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># sensor model for data generation----------------</span></span></span>
-<span class="r-in"><span><span class="va">snsr.mdl</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">snsr.mdl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">imu.freq</span> <span class="op">=</span> <span class="fl">250</span></span></span>
-<span class="r-in"><span><span class="va">acc.mdl</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/simts/man/WN.html" class="external-link">WN</a></span><span class="op">(</span>sigma2 <span class="op">=</span> <span class="fl">1.535466e-04</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/simts/man/RW.html" class="external-link">RW</a></span><span class="op">(</span>gamma2 <span class="op">=</span> <span class="fl">1.619511e-10</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/simts/man/DR.html" class="external-link">DR</a></span><span class="op">(</span>omega <span class="op">=</span> <span class="fl">1.276475e-08</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">gyr.mdl</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/simts/man/WN.html" class="external-link">WN</a></span><span class="op">(</span>sigma2 <span class="op">=</span> <span class="fl">1.711080e-03</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/simts/man/RW.html" class="external-link">RW</a></span><span class="op">(</span>gamma2 <span class="op">=</span> <span class="fl">1.532765e-13</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">snsr.mdl</span><span class="op">$</span><span class="va">imu</span> <span class="op">=</span> <span class="fu"><a href="make_sensor.html">make_sensor</a></span><span class="op">(</span>name<span class="op">=</span><span class="st">"imu"</span>, </span></span>
-<span class="r-in"><span> frequency<span class="op">=</span><span class="va">imu.freq</span>,</span></span>
-<span class="r-in"><span> error_model1<span class="op">=</span><span class="va">acc.mdl</span>,</span></span>
-<span class="r-in"><span> error_model2<span class="op">=</span><span class="va">gyr.mdl</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">imu.freq</span> <span class="op">&lt;-</span> <span class="fl">250</span></span></span>
+<span class="r-in"><span><span class="va">acc.mdl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/simts/man/WN.html" class="external-link">WN</a></span><span class="op">(</span>sigma2 <span class="op">=</span> <span class="fl">1.535466e-04</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/simts/man/RW.html" class="external-link">RW</a></span><span class="op">(</span>gamma2 <span class="op">=</span> <span class="fl">1.619511e-10</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/simts/man/DR.html" class="external-link">DR</a></span><span class="op">(</span>omega <span class="op">=</span> <span class="fl">1.276475e-08</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">gyr.mdl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/simts/man/WN.html" class="external-link">WN</a></span><span class="op">(</span>sigma2 <span class="op">=</span> <span class="fl">1.711080e-03</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/simts/man/RW.html" class="external-link">RW</a></span><span class="op">(</span>gamma2 <span class="op">=</span> <span class="fl">1.532765e-13</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">snsr.mdl</span><span class="op">$</span><span class="va">imu</span> <span class="op">&lt;-</span> <span class="fu"><a href="make_sensor.html">make_sensor</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  name <span class="op">=</span> <span class="st">"imu"</span>,</span></span>
+<span class="r-in"><span>  frequency <span class="op">=</span> <span class="va">imu.freq</span>,</span></span>
+<span class="r-in"><span>  error_model1 <span class="op">=</span> <span class="va">acc.mdl</span>,</span></span>
+<span class="r-in"><span>  error_model2 <span class="op">=</span> <span class="va">gyr.mdl</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">gps.freq</span> <span class="op">=</span> <span class="fl">1</span></span></span>
-<span class="r-in"><span><span class="va">gps.mdl.pos.hor</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/simts/man/WN.html" class="external-link">WN</a></span><span class="op">(</span>sigma2 <span class="op">=</span> <span class="fl">2</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">gps.mdl.pos.ver</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/simts/man/WN.html" class="external-link">WN</a></span><span class="op">(</span>sigma2 <span class="op">=</span> <span class="fl">4</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">gps.mdl.vel.hor</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/simts/man/WN.html" class="external-link">WN</a></span><span class="op">(</span>sigma2 <span class="op">=</span> <span class="fl">0.04</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">gps.mdl.vel.ver</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/simts/man/WN.html" class="external-link">WN</a></span><span class="op">(</span>sigma2 <span class="op">=</span> <span class="fl">0.06</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">snsr.mdl</span><span class="op">$</span><span class="va">gps</span> <span class="op">=</span> <span class="fu"><a href="make_sensor.html">make_sensor</a></span><span class="op">(</span>name<span class="op">=</span><span class="st">"gps"</span>, frequency<span class="op">=</span><span class="va">gps.freq</span>,</span></span>
-<span class="r-in"><span>                           error_model1<span class="op">=</span><span class="va">gps.mdl.pos.hor</span>,</span></span>
-<span class="r-in"><span>                           error_model2<span class="op">=</span><span class="va">gps.mdl.pos.ver</span>,</span></span>
-<span class="r-in"><span>                           error_model3<span class="op">=</span><span class="va">gps.mdl.vel.hor</span>,</span></span>
-<span class="r-in"><span>                           error_model4<span class="op">=</span><span class="va">gps.mdl.vel.ver</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">baro.freq</span> <span class="op">=</span> <span class="fl">1</span></span></span>
-<span class="r-in"><span><span class="va">baro.mdl</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/simts/man/WN.html" class="external-link">WN</a></span><span class="op">(</span>sigma2<span class="op">=</span><span class="fl">0.5</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">snsr.mdl</span><span class="op">$</span><span class="va">baro</span> <span class="op">=</span> <span class="fu"><a href="make_sensor.html">make_sensor</a></span><span class="op">(</span>name<span class="op">=</span><span class="st">"baro"</span>, frequency<span class="op">=</span><span class="va">baro.freq</span>, error_model1<span class="op">=</span><span class="va">baro.mdl</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">gps.freq</span> <span class="op">&lt;-</span> <span class="fl">1</span></span></span>
+<span class="r-in"><span><span class="va">gps.mdl.pos.hor</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/simts/man/WN.html" class="external-link">WN</a></span><span class="op">(</span>sigma2 <span class="op">=</span> <span class="fl">2</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">gps.mdl.pos.ver</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/simts/man/WN.html" class="external-link">WN</a></span><span class="op">(</span>sigma2 <span class="op">=</span> <span class="fl">4</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">gps.mdl.vel.hor</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/simts/man/WN.html" class="external-link">WN</a></span><span class="op">(</span>sigma2 <span class="op">=</span> <span class="fl">0.04</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">gps.mdl.vel.ver</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/simts/man/WN.html" class="external-link">WN</a></span><span class="op">(</span>sigma2 <span class="op">=</span> <span class="fl">0.06</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">snsr.mdl</span><span class="op">$</span><span class="va">gps</span> <span class="op">&lt;-</span> <span class="fu"><a href="make_sensor.html">make_sensor</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  name <span class="op">=</span> <span class="st">"gps"</span>, frequency <span class="op">=</span> <span class="va">gps.freq</span>,</span></span>
+<span class="r-in"><span>  error_model1 <span class="op">=</span> <span class="va">gps.mdl.pos.hor</span>,</span></span>
+<span class="r-in"><span>  error_model2 <span class="op">=</span> <span class="va">gps.mdl.pos.ver</span>,</span></span>
+<span class="r-in"><span>  error_model3 <span class="op">=</span> <span class="va">gps.mdl.vel.hor</span>,</span></span>
+<span class="r-in"><span>  error_model4 <span class="op">=</span> <span class="va">gps.mdl.vel.ver</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">baro.freq</span> <span class="op">&lt;-</span> <span class="fl">1</span></span></span>
+<span class="r-in"><span><span class="va">baro.mdl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/simts/man/WN.html" class="external-link">WN</a></span><span class="op">(</span>sigma2 <span class="op">=</span> <span class="fl">0.5</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">snsr.mdl</span><span class="op">$</span><span class="va">baro</span> <span class="op">&lt;-</span> <span class="fu"><a href="make_sensor.html">make_sensor</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"baro"</span>, frequency <span class="op">=</span> <span class="va">baro.freq</span>, error_model1 <span class="op">=</span> <span class="va">baro.mdl</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># sensor model for the KF------------------------</span></span></span>
-<span class="r-in"><span><span class="va">KF.mdl</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">KF.mdl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">KF.mdl</span><span class="op">$</span><span class="va">imu</span>  <span class="op">=</span> <span class="va">snsr.mdl</span><span class="op">$</span><span class="va">imu</span></span></span>
-<span class="r-in"><span><span class="va">KF.mdl</span><span class="op">$</span><span class="va">gps</span>  <span class="op">=</span> <span class="va">snsr.mdl</span><span class="op">$</span><span class="va">gps</span></span></span>
-<span class="r-in"><span><span class="va">KF.mdl</span><span class="op">$</span><span class="va">baro</span> <span class="op">=</span> <span class="va">snsr.mdl</span><span class="op">$</span><span class="va">baro</span></span></span>
+<span class="r-in"><span><span class="va">KF.mdl</span><span class="op">$</span><span class="va">imu</span> <span class="op">&lt;-</span> <span class="va">snsr.mdl</span><span class="op">$</span><span class="va">imu</span></span></span>
+<span class="r-in"><span><span class="va">KF.mdl</span><span class="op">$</span><span class="va">gps</span> <span class="op">&lt;-</span> <span class="va">snsr.mdl</span><span class="op">$</span><span class="va">gps</span></span></span>
+<span class="r-in"><span><span class="va">KF.mdl</span><span class="op">$</span><span class="va">baro</span> <span class="op">&lt;-</span> <span class="va">snsr.mdl</span><span class="op">$</span><span class="va">baro</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># create navigation object------------------------</span></span></span>
-<span class="r-in"><span><span class="va">x</span> <span class="op">=</span> <span class="fu"><a href="navigation.html">navigation</a></span><span class="op">(</span>traj.ref <span class="op">=</span> <span class="va">traj</span>,</span></span>
-<span class="r-in"><span>               timing <span class="op">=</span> <span class="va">timing</span>,</span></span>
-<span class="r-in"><span>               snsr.mdl <span class="op">=</span> <span class="va">snsr.mdl</span>,</span></span>
-<span class="r-in"><span>               KF.mdl <span class="op">=</span> <span class="va">KF.mdl</span>,</span></span>
-<span class="r-in"><span>               num.runs <span class="op">=</span> <span class="va">num.runs</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="navigation.html">navigation</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  traj.ref <span class="op">=</span> <span class="va">traj</span>,</span></span>
+<span class="r-in"><span>  timing <span class="op">=</span> <span class="va">timing</span>,</span></span>
+<span class="r-in"><span>  snsr.mdl <span class="op">=</span> <span class="va">snsr.mdl</span>,</span></span>
+<span class="r-in"><span>  KF.mdl <span class="op">=</span> <span class="va">KF.mdl</span>,</span></span>
+<span class="r-in"><span>  num.runs <span class="op">=</span> <span class="va">num.runs</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># plot navigation object------------------------</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">x</span>, plot3d <span class="op">=</span> <span class="cn">T</span>, </span></span>
-<span class="r-in"><span>time_interval <span class="op">=</span> <span class="fl">1</span>, </span></span>
-<span class="r-in"><span>emu_for_covmat <span class="op">=</span> <span class="fl">1</span>, </span></span>
-<span class="r-in"><span>plot_mean_traj <span class="op">=</span> <span class="cn">F</span>,</span></span>
-<span class="r-in"><span> plot_CI <span class="op">=</span> <span class="cn">T</span>,</span></span>
-<span class="r-in"><span>  nsim <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">x</span>,</span></span>
+<span class="r-in"><span>  plot3d <span class="op">=</span> <span class="cn">T</span>,</span></span>
+<span class="r-in"><span>  time_interval <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>  emu_for_covmat <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>  plot_mean_traj <span class="op">=</span> <span class="cn">F</span>,</span></span>
+<span class="r-in"><span>  plot_CI <span class="op">=</span> <span class="cn">T</span>,</span></span>
+<span class="r-in"><span>  nsim <span class="op">=</span> <span class="fl">1000</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
