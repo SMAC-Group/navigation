@@ -19,10 +19,6 @@ Transform position from ellipsoidal coordinates to a fixed Cartesian NED frame
 }
 \examples{
 
-
-
-
-
 library(navigation)
 data("example_1_traj_ellipsoidal")
 traj_ellips = make_trajectory(example_1_traj_ellipsoidal, system = "ellipsoidal")

@@ -69,22 +69,26 @@ A trajectory plot.
 Plot a \code{trajectory} object in 2D or 3D.
 }
 \examples{
-\dontrun{ 
-n = 100
-dat = cbind(seq(from = 0, to = 60*60, length.out = n),
- 46.204391*pi/180 + cumsum(rnorm(n))/10^5,
-  6.143158*pi/180 + cumsum(rnorm(n))/10^5, 
-  375 + cumsum(rnorm(n)))
-traj = make_trajectory(data = dat, name = "My cool data")
+\dontrun{
+n <- 100
+dat <- cbind(
+  seq(from = 0, to = 60 * 60, length.out = n),
+  46.204391 * pi / 180 + cumsum(rnorm(n)) / 10^5,
+  6.143158 * pi / 180 + cumsum(rnorm(n)) / 10^5,
+  375 + cumsum(rnorm(n))
+)
+traj <- make_trajectory(data = dat, name = "My cool data")
 plot(traj)
 plot(traj, threeD = TRUE)
 plot(traj, threeD = TRUE, threeD_line_width = 8, threeD_line_color = "#e74c3c")
 plot(traj, threeD = TRUE, threeD_col_grad = TRUE)
-plot(traj, threeD = TRUE, threeD_col_grad = TRUE, 
-threeD_grad_start = "#e74c3c",
- threeD_grad_end = "#d68910")
+plot(traj,
+  threeD = TRUE, threeD_col_grad = TRUE,
+  threeD_grad_start = "#e74c3c",
+  threeD_grad_end = "#d68910"
+)
 
-traj = make_trajectory(data = dat, name = "My cool data", system = "ned")
+traj <- make_trajectory(data = dat, name = "My cool data", system = "ned")
 plot(traj)
 plot(traj, col = "orange2", col_start = "pink", col_end = "purple")
 plot(traj, pch_points_start = 15, cex_points = 3)
@@ -95,10 +99,11 @@ plot(traj, plot_end_points = FALSE, add_title = "Hello")
 plot(traj, threeD = TRUE)
 plot(traj, threeD = TRUE, threeD_line_width = 8, threeD_line_color = "#e74c3c")
 plot(traj, threeD = TRUE, threeD_col_grad = TRUE)
-plot(traj, threeD = TRUE, threeD_col_grad = TRUE, 
-threeD_grad_start = "#e74c3c",
- threeD_grad_end = "#d68910")
-
+plot(traj,
+  threeD = TRUE, threeD_col_grad = TRUE,
+  threeD_grad_start = "#e74c3c",
+  threeD_grad_end = "#d68910"
+)
 }
 }
 \author{

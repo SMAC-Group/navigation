@@ -20,12 +20,14 @@ Print \code{trajectory} objects.
 Pretty formatting for \code{trajectory} objects.
 }
 \examples{
-n = 100
-dat = cbind(seq(from = 0, to = 60*60, length.out = n), 
-             46.204391*pi/180 + cumsum(rnorm(n))/10^5, 
-              6.143158*pi/180 + cumsum(rnorm(n))/10^5,
-              375 + cumsum(rnorm(n)))
-traj = make_trajectory(data = dat, name = "My cool data")
+n <- 100
+dat <- cbind(
+  seq(from = 0, to = 60 * 60, length.out = n),
+  46.204391 * pi / 180 + cumsum(rnorm(n)) / 10^5,
+  6.143158 * pi / 180 + cumsum(rnorm(n)) / 10^5,
+  375 + cumsum(rnorm(n))
+)
+traj <- make_trajectory(data = dat, name = "My cool data")
 traj
 }
 \author{

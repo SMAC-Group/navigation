@@ -4,7 +4,7 @@
 #' @param x A \code{sensor} object.
 #' @author Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
 #'
-print.sensor = function(x) {
+print.sensor <- function(x) {
   cat("Senor name is: ", x$name, "\b.\n\n")
   cat("Sensor frequency is: ", x$frequency, "Hz.\n\n")
   cat("Sensor error model:\n")

@@ -37,27 +37,33 @@ Construct a \code{sensor} object for IMU, GPS, and Baro from error model of clas
 }
 \examples{
 # IMU:
-imu.freq = 250
-acc.mdl = WN(sigma2 = 1.535466e-04) + RW(gamma2 = 1.619511e-10) + DR(omega = 1.276475e-08)
-gyr.mdl = WN(sigma2 = 1.711080e-03) + RW(gamma2 = 1.532765e-13)
-imu.mdl = make_sensor(name="imu", frequency=imu.freq, error_model1=acc.mdl, error_model2=gyr.mdl)
+imu.freq <- 250
+acc.mdl <- WN(sigma2 = 1.535466e-04) + RW(gamma2 = 1.619511e-10) + DR(omega = 1.276475e-08)
+gyr.mdl <- WN(sigma2 = 1.711080e-03) + RW(gamma2 = 1.532765e-13)
+imu.mdl <- make_sensor(name = "imu", frequency = imu.freq, error_model1 = acc.mdl, error_model2 = gyr.mdl)
 
 # GPS:
-gps.freq = 1
-gps.mdl.pos.hor = WN(sigma2 = 2^2)
-gps.mdl.pos.ver = WN(sigma2 = 4^2)
-gps.mdl.vel.hor = WN(sigma2 = 0.04^2)
-gps.mdl.vel.ver = WN(sigma2 = 0.06^2)
-gps.mdl = make_sensor(name="gps", frequency=gps.freq,
-                      error_model1=gps.mdl.pos.hor,
-                      error_model2=gps.mdl.pos.ver,
-                      error_model3=gps.mdl.vel.hor,
-                      error_model4=gps.mdl.vel.ver)
+gps.freq <- 1
+gps.mdl.pos.hor <- WN(sigma2 = 2^2)
+gps.mdl.pos.ver <- WN(sigma2 = 4^2)
+gps.mdl.vel.hor <- WN(sigma2 = 0.04^2)
+gps.mdl.vel.ver <- WN(sigma2 = 0.06^2)
+gps.mdl <- make_sensor(
+  name = "gps", frequency = gps.freq,
+  error_model1 = gps.mdl.pos.hor,
+  error_model2 = gps.mdl.pos.ver,
+  error_model3 = gps.mdl.vel.hor,
+  error_model4 = gps.mdl.vel.ver
+)
 
 # Baro:
-baro.freq = 1
-baro.mdl = WN(sigma2=0.5^2)
-baro.mdl = make_sensor(name="baro", frequency=baro.freq, error_model1=baro.mdl)
+baro.freq <- 1
+baro.mdl <- WN(sigma2 = 0.5^2)
+baro.mdl <- make_sensor(
+  name = "baro",
+  frequency = baro.freq,
+  error_model1 = baro.mdl
+)
 
 }
 \author{

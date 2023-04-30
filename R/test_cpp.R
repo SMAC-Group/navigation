@@ -1,21 +1,22 @@
 #' @importFrom stats runif
-#' @importFrom rbenchmark benchmark 
-do_tests <- function () {
-  roll = runif(1, -pi, pi)
+#' @importFrom rbenchmark benchmark
+do_tests <- function() {
+  roll <- runif(1, -pi, pi)
 
-  R1 = rot.C1(roll)
-  R2 = rot_C1_cpp(roll)
+  R1 <- rot.C1(roll)
+  R2 <- rot_C1_cpp(roll)
 
-  print(R1-R2)
+  print(R1 - R2)
 
-  rbenchmark::benchmark("R" = {
+  rbenchmark::benchmark(
+    "R" = {
       rot.C1(roll)
     },
     "cpp" = {
       rot_C1_cpp(roll)
     },
     replications = 1e5
-    )
+  )
 }
 
 
@@ -104,7 +105,7 @@ do_tests <- function () {
 
 
 ##############
-#test method 4
+# test method 4
 ##############
 
 
@@ -142,19 +143,19 @@ do_tests <- function () {
 # test_cpp_2 = pred_PhiQ_cpp(Fmat = Fmat, Gmat = Gmat, Wmat = Wmat, dt = 0.01, method = "2")
 # all.equal(test_r_2, test_cpp_2)
 
-# 
+#
 # microbenchmark::microbenchmark(test_r_3 = pred.PhiQ(Fmat = Fmat, Gmat = Gmat, Wmat = Wmat, dt = 0.01, method = "exact"),
 #                                test_cpp_3 = pred_PhiQ_cpp(Fmat = Fmat, Gmat = Gmat, Wmat = Wmat, dt = 0.01, method = "exact")
 # )
 
 # pred_PhiQ_cpp(Fmat = Fmat, Gmat = Gmat, Wmat = Wmat, dt = 0.01, method = "1")
-# 
+#
 # test_cpp = pred_PhiQ_cpp(Fmat = Fmat, Gmat = Gmat, Wmat = Wmat, dt = 0.01, method = "1")
 # all.equal(test_cpp, test_r)
 #
 # pred_PhiQ_cpp(Fmat = Fmat, Gmat = Gmat,Wmat = Wmat, dt = 0.01, method = "1")
 
 
-# 
+#
 # library(navigation)
 # pred_PhiQ_cpp(Fmat = Fmat, Gmat = Gmat,Wmat = Wmat, dt = 0.01, method = "1")

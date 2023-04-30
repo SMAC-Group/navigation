@@ -121,4 +121,3 @@
 "lemniscate_traj_ned"
 #'
 #'
-

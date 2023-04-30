@@ -1,48 +1,47 @@
-
 get_it <- function(t, t0, tend, step) {
   if (is.null(t0)) {
-    it0 = 1
+    it0 <- 1
   } else {
-    it0 = which(t > t0-1e-6)[1]
+    it0 <- which(t > t0 - 1e-6)[1]
   }
   if (is.null(tend)) {
-    itend = length(t)
+    itend <- length(t)
   } else {
-    itend = max(which(t < tend+1e-6))
+    itend <- max(which(t < tend + 1e-6))
   }
 
-  it = seq(it0, itend, step)
+  it <- seq(it0, itend, step)
 
   return(it)
 }
 
 compute_es <- function(sols, step = 50, idx = 1:6) {
-  nsols = length(sols$traj.fused)
-  
-  t = sols$t
-  t_p = sols$t_p
-  
+  nsols <- length(sols$traj.fused)
+
+  t <- sols$t
+  t_p <- sols$t_p
+
   # check that covariance exists where asked
-  if (step < sols$Cov_subsampling || round(step/sols$Cov_subsampling) != step/sols$Cov_subsampling) {
+  if (step < sols$Cov_subsampling || round(step / sols$Cov_subsampling) != step / sols$Cov_subsampling) {
     stop("Covariance is not available at the required step")
   }
-  
-  it = seq(step+1, length(t), step)
-  it_p = match(t[it], t_p)
 
-  e = matrix(0, nrow = nsols+1, ncol = length(it))
-  e[1,] = t[it]
+  it <- seq(step + 1, length(t), step)
+  it_p <- match(t[it], t_p)
 
-  pb = txtProgressBar(min = 1, max = nsols*length(it), style = 3)
+  e <- matrix(0, nrow = nsols + 1, ncol = length(it))
+  e[1, ] <- t[it]
 
-  n = 0
+  pb <- txtProgressBar(min = 1, max = nsols * length(it), style = 3)
+
+  n <- 0
   for (i in 1:nsols) {
-    for (j in 1:length(it)) { #exclude first minute
-      ce = data.matrix(sols$traj.fused[[i]]$trajectory[it[j],idx+1] - sols$traj.ref$trajectory[it[j],idx+1])
-      P = sols$Cov.Nav[[i]][idx, idx, it_p[j]]
-      e[i+1, j] = ce %*% solve(P) %*% t(ce)
+    for (j in 1:length(it)) { # exclude first minute
+      ce <- data.matrix(sols$traj.fused[[i]]$trajectory[it[j], idx + 1] - sols$traj.ref$trajectory[it[j], idx + 1])
+      P <- sols$Cov.Nav[[i]][idx, idx, it_p[j]]
+      e[i + 1, j] <- ce %*% solve(P) %*% t(ce)
 
-      n = n+1
+      n <- n + 1
       setTxtProgressBar(pb = pb, value = n)
     }
   }
@@ -54,65 +53,64 @@ compute_es <- function(sols, step = 50, idx = 1:6) {
 
 
 compute_es_imu <- function(sols, step = 50, idx = 1:6) {
+  nsols <- length(sols$traj.fused)
 
-  nsols = length(sols$traj.fused)
-  
-  t = sols$t
-  t_p = sols$t_p
-  
+  t <- sols$t
+  t_p <- sols$t_p
+
   # check that covariance exists where asked
-  if (step < sols$Cov_subsampling || round(step/sols$Cov_subsampling) != step/sols$Cov_subsampling) {
+  if (step < sols$Cov_subsampling || round(step / sols$Cov_subsampling) != step / sols$Cov_subsampling) {
     stop("Covariance is not available at the required step")
   }
-  
-  it = seq(step+1, length(t), step)
-  it_p = match(t[it], t_p)
-  
-  e = matrix(0, nrow = nsols+1, ncol = length(it))
-  e[1,] = t[it]
-  
-  pb = txtProgressBar(min = 1, max = nsols*length(it), style = 3)
-  
-  n = 0
+
+  it <- seq(step + 1, length(t), step)
+  it_p <- match(t[it], t_p)
+
+  e <- matrix(0, nrow = nsols + 1, ncol = length(it))
+  e[1, ] <- t[it]
+
+  pb <- txtProgressBar(min = 1, max = nsols * length(it), style = 3)
+
+  n <- 0
   for (i in 1:nsols) {
-    for (j in 1:length(it)) { #exclude first minute
-      ce = sols$est.imu.states[[i]][idx,it[j],drop=FALSE] - sols$err.imu[[i]][idx+1,it[j], drop=FALSE]
-      P = sols$Cov.Nav[[i]][idx+9, idx+9, it_p[j]]
-      e[i+1, j] = t(ce) %*% solve(P) %*% ce
-      
-      n = n+1
+    for (j in 1:length(it)) { # exclude first minute
+      ce <- sols$est.imu.states[[i]][idx, it[j], drop = FALSE] - sols$err.imu[[i]][idx + 1, it[j], drop = FALSE]
+      P <- sols$Cov.Nav[[i]][idx + 9, idx + 9, it_p[j]]
+      e[i + 1, j] <- t(ce) %*% solve(P) %*% ce
+
+      n <- n + 1
       setTxtProgressBar(pb = pb, value = n)
     }
   }
-  
+
   cat("\n\n")
-  
+
   return(e)
 }
 
 compute_nees_and_coverage <- function(sols, alpha = 0.95, step = 100, idx = 1:6) {
-  nsols = length(sols$traj.fused)
+  nsols <- length(sols$traj.fused)
 
-  e = compute_es(sols, step, idx)
+  e <- compute_es(sols, step, idx)
 
-  #bounds = qchisq(c((1-alpha)/2,1-(1-alpha)/2), df=length(idx), lower.tail=TRUE)
-  bounds = qchisq(c(0,alpha), df=length(idx))
+  # bounds = qchisq(c((1-alpha)/2,1-(1-alpha)/2), df=length(idx), lower.tail=TRUE)
+  bounds <- qchisq(c(0, alpha), df = length(idx))
 
-  out_b = (e[2:(nsols+1),] > bounds[2]) + (e[2:(nsols+1),] < bounds[1])
-  in_b = -out_b+1
+  out_b <- (e[2:(nsols + 1), ] > bounds[2]) + (e[2:(nsols + 1), ] < bounds[1])
+  in_b <- -out_b + 1
 
-  coverage = matrix(0, nrow=2, ncol=dim(e)[2])
-  coverage[1,] = e[1,]
+  coverage <- matrix(0, nrow = 2, ncol = dim(e)[2])
+  coverage[1, ] <- e[1, ]
 
-  nees = matrix(0, ncol = dim(e)[2], nrow= 2)
-  nees[1,] = e[1,]
+  nees <- matrix(0, ncol = dim(e)[2], nrow = 2)
+  nees[1, ] <- e[1, ]
 
   if (dim(e)[1] > 2) {
-    nees[2,] = apply(e[2:(nsols+1),], 2, mean)
-    coverage[2,] = apply(in_b, 2, sum)/nsols
+    nees[2, ] <- apply(e[2:(nsols + 1), ], 2, mean)
+    coverage[2, ] <- apply(in_b, 2, sum) / nsols
   } else {
-    nees[2,] = e[2,]
-    coverage[2,] = in_b
+    nees[2, ] <- e[2, ]
+    coverage[2, ] <- in_b
   }
   return(list("nees" = nees, "coverage" = coverage))
 }
@@ -129,27 +127,29 @@ compute_nees <- function(sols, step = 50, idx = 1:6) {
   if (max(idx) > 9) {
     stop("idx must be in [1, ..., 9]")
   }
-  
-  nsols = length(sols$traj.fused)
 
-  e = compute_es(sols, step, idx)
+  nsols <- length(sols$traj.fused)
 
-  nees = matrix(0, ncol = dim(e)[2], nrow= 2)
-  nees[1,] = e[1,]
+  e <- compute_es(sols, step, idx)
+
+  nees <- matrix(0, ncol = dim(e)[2], nrow = 2)
+  nees[1, ] <- e[1, ]
   if (dim(e)[1] > 2) {
-    nees[2,] = apply(e[2:(nsols+1),], 2, mean)
+    nees[2, ] <- apply(e[2:(nsols + 1), ], 2, mean)
   } else {
-    nees[2,] = e[2,]
+    nees[2, ] <- e[2, ]
   }
-  
+
   class(nees) <- c("nees.stat", "navigation.stat")
-  attributes(nees)$meta = list( "type" = "NEES",
-                                "unit" = NA,
-                                "step" = step,
-                                "idx" = idx,
-                                "nruns" = nsols,
-                                "t0" = NULL,
-                                "tend" = NULL)  
+  attributes(nees)$meta <- list(
+    "type" = "NEES",
+    "unit" = NA,
+    "step" = step,
+    "idx" = idx,
+    "nruns" = nsols,
+    "t0" = NULL,
+    "tend" = NULL
+  )
 
   return(nees)
 }
@@ -168,35 +168,37 @@ compute_coverage <- function(sols, alpha = 0.95, step = 100, idx = 1:6) {
   if (max(idx) > 9) {
     stop("idx must be in [1, ..., 9]")
   }
-  
-  nsols = length(sols$traj.fused)
 
-  e = compute_es(sols, step, idx)
+  nsols <- length(sols$traj.fused)
 
-  #bounds = qchisq(c((1-alpha)/2,1-(1-alpha)/2), df=length(idx), lower.tail=TRUE)
-  bounds = qchisq(c(0,alpha), df=length(idx))
+  e <- compute_es(sols, step, idx)
 
-  out_b = (e[2:(nsols+1),] > bounds[2]) + (e[2:(nsols+1),] < bounds[1])
-  in_b = -out_b+1
+  # bounds = qchisq(c((1-alpha)/2,1-(1-alpha)/2), df=length(idx), lower.tail=TRUE)
+  bounds <- qchisq(c(0, alpha), df = length(idx))
 
-  coverage = matrix(0, nrow=2, ncol=dim(e)[2])
-  coverage[1,] = e[1,]
+  out_b <- (e[2:(nsols + 1), ] > bounds[2]) + (e[2:(nsols + 1), ] < bounds[1])
+  in_b <- -out_b + 1
+
+  coverage <- matrix(0, nrow = 2, ncol = dim(e)[2])
+  coverage[1, ] <- e[1, ]
   if (nsols > 1) {
-    coverage[2,] = apply(in_b, 2, sum)/nsols
+    coverage[2, ] <- apply(in_b, 2, sum) / nsols
   } else {
-    coverage[2,] = in_b
+    coverage[2, ] <- in_b
   }
 
   class(coverage) <- c("coverage.stat", "navigation.stat")
-  attributes(coverage)$meta = list( "type" = "Coverage",
-                                "unit" = NA,
-                                "step" = step,
-                                "alpha" = alpha,
-                                "idx" = idx,
-                                "nruns" = nsols,
-                                "t0" = NULL,
-                                "tend" = NULL) 
-  
+  attributes(coverage)$meta <- list(
+    "type" = "Coverage",
+    "unit" = NA,
+    "step" = step,
+    "alpha" = alpha,
+    "idx" = idx,
+    "nruns" = nsols,
+    "t0" = NULL,
+    "tend" = NULL
+  )
+
   return(coverage)
 }
 
@@ -213,35 +215,37 @@ compute_coverage_imu_states <- function(sols, alpha = 0.95, step = 100, idx = 1:
   if (max(idx) > 6) {
     stop("idx must be in [1, ..., 6]")
   }
-  
-  nsols = length(sols$traj.fused)
-  
-  e = compute_es_imu(sols, step, idx)
-  
-  #bounds = qchisq(c((1-alpha)/2,1-(1-alpha)/2), df=length(idx), lower.tail=TRUE)
-  bounds = qchisq(c(0,alpha), df=length(idx))
-  
-  out_b = (e[2:(nsols+1),] > bounds[2]) + (e[2:(nsols+1),] < bounds[1])
-  in_b = -out_b+1
-  
-  coverage = matrix(0, nrow=2, ncol=dim(e)[2])
-  coverage[1,] = e[1,]
+
+  nsols <- length(sols$traj.fused)
+
+  e <- compute_es_imu(sols, step, idx)
+
+  # bounds = qchisq(c((1-alpha)/2,1-(1-alpha)/2), df=length(idx), lower.tail=TRUE)
+  bounds <- qchisq(c(0, alpha), df = length(idx))
+
+  out_b <- (e[2:(nsols + 1), ] > bounds[2]) + (e[2:(nsols + 1), ] < bounds[1])
+  in_b <- -out_b + 1
+
+  coverage <- matrix(0, nrow = 2, ncol = dim(e)[2])
+  coverage[1, ] <- e[1, ]
   if (nsols > 1) {
-    coverage[2,] = apply(in_b, 2, sum)/nsols
+    coverage[2, ] <- apply(in_b, 2, sum) / nsols
   } else {
-    coverage[2,] = in_b
+    coverage[2, ] <- in_b
   }
-  
+
   class(coverage) <- c("coverage.stat", "navigation.stat")
-  attributes(coverage)$meta = list( "type" = "Coverage IMU",
-                                    "unit" = NA,
-                                    "step" = step,
-                                    "alpha" = alpha,
-                                    "idx" = idx,
-                                    "nruns" = nsols,
-                                    "t0" = NULL,
-                                    "tend" = NULL) 
-  
+  attributes(coverage)$meta <- list(
+    "type" = "Coverage IMU",
+    "unit" = NA,
+    "step" = step,
+    "alpha" = alpha,
+    "idx" = idx,
+    "nruns" = nsols,
+    "t0" = NULL,
+    "tend" = NULL
+  )
+
   return(coverage)
 }
 
@@ -258,36 +262,36 @@ compute_rms <- function(sols, step = 1, idx = 1:3, t0 = NULL, tend = NULL) {
   if (max(idx) > 9) {
     stop("idx must be in [1, ..., 0]")
   }
-  
-  nsols = length(sols$traj.fused)
 
-  it = get_it(sols$traj.fused[[1]]$trajectory[,1], t0, tend, step)
+  nsols <- length(sols$traj.fused)
 
-  e = matrix(0, nrow = nsols*length(idx), ncol = length(it))
+  it <- get_it(sols$traj.fused[[1]]$trajectory[, 1], t0, tend, step)
 
-  n = 0
+  e <- matrix(0, nrow = nsols * length(idx), ncol = length(it))
+
+  n <- 0
   for (i in 1:nsols) {
-    e[(i-1)*length(idx)+1:length(idx),] = t((data.matrix(sols$traj.fused[[i]]$trajectory[it,idx+1] - sols$traj.ref$trajectory[it,idx+1]))^2)
+    e[(i - 1) * length(idx) + 1:length(idx), ] <- t((data.matrix(sols$traj.fused[[i]]$trajectory[it, idx + 1] - sols$traj.ref$trajectory[it, idx + 1]))^2)
   }
 
-  rms = matrix(0, nrow = length(idx)+1, ncol = length(it))
-  rms[1,] = sols$traj.ref$trajectory[it,1]
+  rms <- matrix(0, nrow = length(idx) + 1, ncol = length(it))
+  rms[1, ] <- sols$traj.ref$trajectory[it, 1]
 
   for (i in 1:length(idx)) {
     if (nsols > 1) {
-      rms[i+1,] = apply(e[(0:(nsols-1))*length(idx)+i,], 2, mean)
+      rms[i + 1, ] <- apply(e[(0:(nsols - 1)) * length(idx) + i, ], 2, mean)
     } else {
-      rms[i+1,] = e[i,]
+      rms[i + 1, ] <- e[i, ]
     }
   }
 
-  rms[2:dim(rms)[1],] = sqrt(rms[2:dim(rms)[1],])
+  rms[2:dim(rms)[1], ] <- sqrt(rms[2:dim(rms)[1], ])
 
   return(rms)
 }
 
 #' @title Compute mean position error
-#' @description Compute the mean position error (norm of 3D NED error) 
+#' @description Compute the mean position error (norm of 3D NED error)
 #' @param sols The set of solutions returned by the \code{navigation} function
 #' @param step do it for one sample out of \code{step}
 #' @param t0 Start time for RMS calculation (default: beginning)
@@ -297,37 +301,39 @@ compute_rms <- function(sols, step = 1, idx = 1:3, t0 = NULL, tend = NULL) {
 #'
 
 compute_mean_position_err <- function(sols, step = 1, t0 = NULL, tend = NULL) {
-  nsols = length(sols$traj.fused)
+  nsols <- length(sols$traj.fused)
 
-  it = get_it(sols$traj.fused[[1]]$trajectory[,1], t0, tend, step)
+  it <- get_it(sols$traj.fused[[1]]$trajectory[, 1], t0, tend, step)
 
-  e = matrix(0, nrow = nsols, ncol = length(it))
+  e <- matrix(0, nrow = nsols, ncol = length(it))
 
-  n = 0
+  n <- 0
   for (i in 1:nsols) {
-    e[i,] = sqrt(apply((sols$traj.fused[[i]]$trajectory[it,2:4] - sols$traj.ref$trajectory[it,2:4])^2,1,sum))
+    e[i, ] <- sqrt(apply((sols$traj.fused[[i]]$trajectory[it, 2:4] - sols$traj.ref$trajectory[it, 2:4])^2, 1, sum))
   }
 
-  de = matrix(0, nrow = 2, ncol = length(it))
-  de[1,] = sols$traj.ref$trajectory[it,1]
+  de <- matrix(0, nrow = 2, ncol = length(it))
+  de[1, ] <- sols$traj.ref$trajectory[it, 1]
 
   if (nsols > 1) {
-    de[2,] = apply(e[1:nsols,], 2, mean)
+    de[2, ] <- apply(e[1:nsols, ], 2, mean)
   } else {
-    de[2,] = e[1,]
+    de[2, ] <- e[1, ]
   }
-  
+
   class(de) <- "navigation.stat"
-  attributes(de)$meta = list( "type" = "Mean position error",
-                              "unit" = "meters",
-                              "step" = step,
-                              "t0" = t0,
-                              "tend" = tend)
+  attributes(de)$meta <- list(
+    "type" = "Mean position error",
+    "unit" = "meters",
+    "step" = step,
+    "t0" = t0,
+    "tend" = tend
+  )
   return(de)
 }
 
 #' @title Compute mean orientation error
-#' @description Compute the mean orientation error (|| log(A^T * B) ||) 
+#' @description Compute the mean orientation error (|| log(A^T * B) ||)
 #' @param sols The set of solutions returned by the \code{navigation} function
 #' @param step do it for one sample out of \code{step}
 #' @param t0 Start time for RMS calculation (default: beginning)
@@ -337,38 +343,40 @@ compute_mean_position_err <- function(sols, step = 1, t0 = NULL, tend = NULL) {
 #'
 
 compute_mean_orientation_err <- function(sols, step = 1, t0 = NULL, tend = NULL) {
-  nsols = length(sols$traj.fused)
+  nsols <- length(sols$traj.fused)
 
-  it = get_it(sols$traj.fused[[1]]$trajectory[,1], t0, tend, step)
+  it <- get_it(sols$traj.fused[[1]]$trajectory[, 1], t0, tend, step)
 
-  e = matrix(0, nrow = nsols, ncol = length(it))
+  e <- matrix(0, nrow = nsols, ncol = length(it))
 
-  n = 0
+  n <- 0
   for (i in 1:nsols) {
     for (j in 1:length(it)) {
-      e[i, j] =
+      e[i, j] <-
         norm(rot.log(
           t(rot.C_i_b(sols$traj.ref$trajectory[it[j], 5], sols$traj.ref$trajectory[it[j], 6], sols$traj.ref$trajectory[it[j], 7])) %*%
-            rot.C_i_b(sols$traj.fused[[i]]$trajectory[it[j], 5], sols$traj.fused[[i]]$trajectory[it[j], 6], sols$traj.fused[[i]]$trajectory[it[j], 7] )
-        ), type="2")/pi*180
+            rot.C_i_b(sols$traj.fused[[i]]$trajectory[it[j], 5], sols$traj.fused[[i]]$trajectory[it[j], 6], sols$traj.fused[[i]]$trajectory[it[j], 7])
+        ), type = "2") / pi * 180
     }
   }
 
-  de = matrix(0, nrow = 2, ncol = length(it))
-  de[1,] = sols$traj.ref$trajectory[it,1]
+  de <- matrix(0, nrow = 2, ncol = length(it))
+  de[1, ] <- sols$traj.ref$trajectory[it, 1]
 
   if (nsols > 1) {
-    de[2,] = apply(e[1:nsols,], 2, mean)
+    de[2, ] <- apply(e[1:nsols, ], 2, mean)
   } else {
-    de[2,] = e[i,]
+    de[2, ] <- e[i, ]
   }
-  
+
   class(de) <- "navigation.stat"
-  attributes(de)$meta = list( "type" = "Mean orientation error",
-                              "unit" = "degrees",
-                              "step" = step,
-                              "t0" = t0,
-                              "tend" = tend)
+  attributes(de)$meta <- list(
+    "type" = "Mean orientation error",
+    "unit" = "degrees",
+    "step" = step,
+    "t0" = t0,
+    "tend" = tend
+  )
 
   return(de)
 }
@@ -378,19 +386,19 @@ compute_mean_orientation_err <- function(sols, step = 1, t0 = NULL, tend = NULL)
 
 # sample_covariance <- function(sols, idx = 1:3, step = 1, t0 = NULL, tend = NULL) {
 #   nsols = length(sols$traj.fused)
-# 
+#
 #   it = get_it(sols$traj.fused[[1]]$trajectory[,1], t0, tend, step)
-# 
+#
 #   sigma2 = matrix(0, nrow = nsols*length(idx), ncol = length(it))
-# 
+#
 #   n = 0
 #   for (i in 1:nsols) {
 #     sigma2[(i-1)*length(idx)+1:length(idx),] = apply(res$Cov.Nav[[i]][idx,idx,it],3,diag)
 #   }
-# 
+#
 #   sigma2_ret = matrix(0, nrow = length(idx)+1, ncol = length(it))
 #   sigma2_ret[1,] = sols$traj.ref$trajectory[it,1]
-# 
+#
 #   for (i in 1:length(idx)) {
 #     if (nsols > 1) {
 #       sigma2_ret[i+1,] = apply(sigma2[(0:(nsols-1))*length(idx)+i,], 2, mean)
@@ -398,22 +406,22 @@ compute_mean_orientation_err <- function(sols, step = 1, t0 = NULL, tend = NULL)
 #       sigma2_ret[i+1,] = sigma2[i,]
 #     }
 #   }
-# 
+#
 #   return(sigma2_ret)
 # }
 
-sample_stat = function(stats, t) {
-  if (!inherits(stats, "list") ) {
+sample_stat <- function(stats, t) {
+  if (!inherits(stats, "list")) {
     stop("argument must be a list")
   }
 
-  sstats = array(NA, dim = c(dim(stats[[1]])[1], length(stats), length(t)))
+  sstats <- array(NA, dim = c(dim(stats[[1]])[1], length(stats), length(t)))
 
   for (m in seq_along(stats)) {
     for (it in 1:length(t)) {
-      i = min(which(stats[[m]][1,]>t[it]-1e-6))
+      i <- min(which(stats[[m]][1, ] > t[it] - 1e-6))
 
-      sstats[,m,it] = stats[[m]][,i]
+      sstats[, m, it] <- stats[[m]][, i]
     }
   }
   return(sstats)

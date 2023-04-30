@@ -8,10 +8,6 @@
 #'
 #' @examples
 #' 
-#' 
-#' 
-#' 
-#' 
 #' library(navigation)
 #' data("example_1_traj_ellipsoidal")
 #' traj_ellips = make_trajectory(example_1_traj_ellipsoidal, system = "ellipsoidal")

@@ -40,67 +40,77 @@ Comparison of error analysis plot for different trajectories
 }
 \examples{
 \dontrun{
-#Load trajectory
+# Load trajectory
 load("example0.RData")
-traj = make_trajectory(data = traj, system = "ned")
+traj <- make_trajectory(data = traj, system = "ned")
 
 # Monte-Carlo settings----------------------------
-num.runs1 = 15
-num.runs2 = 3
+num.runs1 <- 15
+num.runs2 <- 3
 
 # Timing and sampling frequencies-----------------
-timing = make_timing(nav.start     = 0,
-                     nav.end       = 50,
-                     freq.imu      = 10,
-                     freq.gps      = 1,
-                     freq.baro     = .5,
-                     gps.out.start = 25,
-                     gps.out.end   = 45)
+timing <- make_timing(
+  nav.start = 0,
+  nav.end = 50,
+  freq.imu = 10,
+  freq.gps = 1,
+  freq.baro = .5,
+  gps.out.start = 25,
+  gps.out.end = 45
+)
 
 # sensor model for data generation----------------
-snsr.mdl=list()
+snsr.mdl <- list()
 
-imu.freq = 250
-acc.mdl = WN(sigma2 = 1.535466e-04) + RW(gamma2 = 1.619511e-10) + DR(omega = 1.276475e-08)
-gyr.mdl = WN(sigma2 = 1.711080e-03) + RW(gamma2 = 1.532765e-13)
-snsr.mdl$imu = make_sensor(name="imu", frequency=imu.freq, 
-error_model1=acc.mdl, error_model2=gyr.mdl)
+imu.freq <- 250
+acc.mdl <- WN(sigma2 = 1.535466e-04) + RW(gamma2 = 1.619511e-10) + DR(omega = 1.276475e-08)
+gyr.mdl <- WN(sigma2 = 1.711080e-03) + RW(gamma2 = 1.532765e-13)
+snsr.mdl$imu <- make_sensor(
+  name = "imu", frequency = imu.freq,
+  error_model1 = acc.mdl, error_model2 = gyr.mdl
+)
 
-gps.freq = 1
-gps.mdl.pos.hor = WN(sigma2 = 2^2)
-gps.mdl.pos.ver = WN(sigma2 = 4^2)
-gps.mdl.vel.hor = WN(sigma2 = 0.04^2)
-gps.mdl.vel.ver = WN(sigma2 = 0.06^2)
-snsr.mdl$gps = make_sensor(name="gps", frequency=gps.freq,
-                           error_model1=gps.mdl.pos.hor,
-                           error_model2=gps.mdl.pos.ver,
-                           error_model3=gps.mdl.vel.hor,
-                           error_model4=gps.mdl.vel.ver)
-baro.freq = 1
-baro.mdl = WN(sigma2=0.5^2)
-snsr.mdl$baro = make_sensor(name="baro", frequency=baro.freq, error_model1=baro.mdl)
+gps.freq <- 1
+gps.mdl.pos.hor <- WN(sigma2 = 2^2)
+gps.mdl.pos.ver <- WN(sigma2 = 4^2)
+gps.mdl.vel.hor <- WN(sigma2 = 0.04^2)
+gps.mdl.vel.ver <- WN(sigma2 = 0.06^2)
+snsr.mdl$gps <- make_sensor(
+  name = "gps", frequency = gps.freq,
+  error_model1 = gps.mdl.pos.hor,
+  error_model2 = gps.mdl.pos.ver,
+  error_model3 = gps.mdl.vel.hor,
+  error_model4 = gps.mdl.vel.ver
+)
+baro.freq <- 1
+baro.mdl <- WN(sigma2 = 0.5^2)
+snsr.mdl$baro <- make_sensor(name = "baro", frequency = baro.freq, error_model1 = baro.mdl)
 
 # sensor model for the KF------------------------
-KF.mdl = list()
+KF.mdl <- list()
 
-KF.mdl$imu  = snsr.mdl$imu
-KF.mdl$gps  = snsr.mdl$gps
-KF.mdl$baro = snsr.mdl$baro
+KF.mdl$imu <- snsr.mdl$imu
+KF.mdl$gps <- snsr.mdl$gps
+KF.mdl$baro <- snsr.mdl$baro
 
 # create navigation object------------------------
-x = navigation(traj.ref = traj,
-               timing = timing,
-               snsr.mdl = snsr.mdl,
-               KF.mdl = KF.mdl,
-               num.runs = num.runs1)
-x2 = navigation(traj.ref = traj,
-               timing = timing,
-               snsr.mdl = snsr.mdl,
-               KF.mdl = KF.mdl,
-               num.runs = num.runs2)
+x <- navigation(
+  traj.ref = traj,
+  timing = timing,
+  snsr.mdl = snsr.mdl,
+  KF.mdl = KF.mdl,
+  num.runs = num.runs1
+)
+x2 <- navigation(
+  traj.ref = traj,
+  timing = timing,
+  snsr.mdl = snsr.mdl,
+  KF.mdl = KF.mdl,
+  num.runs = num.runs2
+)
 
 # compare navigation objects------------------------
-compare.navigation(x1,x2)
+compare.navigation(x1, x2)
 }
 }
 \author{

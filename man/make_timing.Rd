@@ -36,13 +36,15 @@ An object of class \code{timing} containing sensor name and its additive error m
 Construct a \code{timing} object controlling the timing and frequencies for navigation, making sure about the consistency and feasibility of provided information.
 }
 \examples{
-timing = make_timing(nav.start     = 0,
-                     nav.end       = 50,
-                     freq.imu      = 10,
-                     freq.gps      = 1,
-                     freq.baro     = 1e-5,
-                     gps.out.start = 25.1,
-                     gps.out.end   = 45)
+timing <- make_timing(
+  nav.start = 0,
+  nav.end = 50,
+  freq.imu = 10,
+  freq.gps = 1,
+  freq.baro = 1e-5,
+  gps.out.start = 25.1,
+  gps.out.end = 45
+)
 
 }
 \author{
