@@ -109,7 +109,6 @@
 #' plot(res)
 #' plot(res, plot3d = T)
 #' plot(res, error_analysis = TRUE)
-#'
 #' @export
 #' @importFrom stats qnorm
 #' @importFrom graphics points layout polygon
@@ -198,7 +197,7 @@ plot.navigation <- function(x,
   #   snsr.mdl = snsr.mdl,
   #   KF.mdl = KF.mdl,
   #   num.runs = num.runs,
-  #   noProgressBar = F,
+  #   noProgressBar = FALSE,
   #   PhiQ_method = "4",
   #   # order of the Taylor expansion of the matrix exponential used to compute Phi and Q matrices
   #   compute_PhiQ_each_n = 10,
