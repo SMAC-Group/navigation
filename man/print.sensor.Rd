@@ -20,7 +20,10 @@ IMU:
 imu.freq <- 250
 acc.mdl <- WN(sigma2 = 1.535466e-04) + RW(gamma2 = 1.619511e-10) + DR(omega = 1.276475e-08)
 gyr.mdl <- WN(sigma2 = 1.711080e-03) + RW(gamma2 = 1.532765e-13)
-imu.mdl <- make_sensor(name = "imu", frequency = imu.freq, error_model1 = acc.mdl, error_model2 = gyr.mdl)
+imu.mdl <- make_sensor(name = "imu", 
+frequency = imu.freq, 
+error_model1 = acc.mdl, 
+error_model2 = gyr.mdl)
 print(imu.mdl)
 
 }
