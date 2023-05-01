@@ -98,8 +98,8 @@
 #'   snsr.mdl = snsr.mdl,
 #'   KF.mdl = KF.mdl,
 #'   num.runs = num.runs,
-#'   noProgressBar = F,
-#'   PhiQ_method = "4",
+#'   noProgressBar = TRUE,
+#'   PhiQ_method = "2",
 #'   # order of the Taylor expansion of the matrix exponential used to compute Phi and Q matrices
 #'   compute_PhiQ_each_n = 10,
 #'   # compute new Phi and Q matrices every n IMU steps (execution time optimization)
