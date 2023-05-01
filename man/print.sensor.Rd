@@ -16,7 +16,7 @@ Print the \code{sensor} object name and specifications in the console.
 Print method for a \code{sensor} object
 }
 \examples{
-IMU:
+# IMU:
 imu.freq <- 250
 acc.mdl <- WN(sigma2 = 1.535466e-04) + RW(gamma2 = 1.619511e-10) + DR(omega = 1.276475e-08)
 gyr.mdl <- WN(sigma2 = 1.711080e-03) + RW(gamma2 = 1.532765e-13)

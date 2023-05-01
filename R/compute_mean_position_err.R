@@ -26,7 +26,10 @@
 #' AR1(phi = 9.999121e-01, sigma2 = 2.435414e-11) + AR1(phi = 9.999998e-01, sigma2 = 1.026718e-12)
 #' gyr.mdl = WN(sigma2 = 1.503793e-06) + AR1(phi = 9.968999e-01, sigma2 = 2.428980e-11) + 
 #' AR1(phi = 9.999001e-01, sigma2 = 1.238142e-12)
-#' snsr.mdl$imu = make_sensor(name="imu", frequency=timing$freq.imu, error_model1=acc.mdl, error_model2=gyr.mdl)
+#' snsr.mdl$imu = make_sensor(name="imu", 
+#' frequency=timing$freq.imu,
+#'  error_model1=acc.mdl,
+#'   error_model2=gyr.mdl)
 #' # RTK-like GNSS 
 #' gps.mdl.pos.hor = WN(sigma2 = 0.025^2)
 #' gps.mdl.pos.ver = WN(sigma2 = 0.05^2)
@@ -40,11 +43,16 @@
 #'                            error_model4=gps.mdl.vel.ver)
 #' # Barometer
 #' baro.mdl = WN(sigma2=0.5^2)
-#' snsr.mdl$baro = make_sensor(name="baro", frequency=timing$freq.baro, error_model1=baro.mdl)
+#' snsr.mdl$baro = make_sensor(name="baro",
+#'  frequency=timing$freq.baro,
+#'   error_model1=baro.mdl)
 #' # define sensor for Kalmna filter
 #' KF.mdl = list()
 #' # make IMU sensor
-#' KF.mdl$imu = make_sensor(name="imu", frequency=timing$freq.imu, error_model1=acc.mdl, error_model2=gyr.mdl)
+#' KF.mdl$imu = make_sensor(name="imu", 
+#' frequency=timing$freq.imu, 
+#' error_model1=acc.mdl, 
+#' error_model2=gyr.mdl)
 #' KF.mdl$gps  = snsr.mdl$gps
 #' KF.mdl$baro = snsr.mdl$baro
 #' # perform navigation simulation
