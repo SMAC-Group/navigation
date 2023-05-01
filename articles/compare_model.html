@@ -124,7 +124,7 @@
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">timing</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_timing.html">make_timing</a></span><span class="op">(</span></span>
 <span>  nav.start <span class="op">=</span> <span class="fl">0</span>, <span class="co"># time at which to begin filtering</span></span>
-<span>  nav.end <span class="op">=</span> <span class="fl">150</span>,</span>
+<span>  nav.end <span class="op">=</span> <span class="fl">120</span>,</span>
 <span>  freq.imu <span class="op">=</span> <span class="fl">100</span>, <span class="co"># frequency of the IMU, can be slower wrt trajectory frequency</span></span>
 <span>  freq.gps <span class="op">=</span> <span class="fl">1</span>, <span class="co"># gnss frequency</span></span>
 <span>  freq.baro <span class="op">=</span> <span class="fl">1</span>, <span class="co"># barometer frequency (to disable, put it very low, e.g. 1e-5)</span></span>
@@ -186,8 +186,9 @@ correct stochastic model.</p>
 <span>  num.runs <span class="op">=</span> <span class="va">num.runs</span>,</span>
 <span>  noProgressBar <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  PhiQ_method <span class="op">=</span> <span class="fl">2</span>,</span>
-<span>  parallel.ncores <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  P_subsampling <span class="op">=</span> <span class="va">timing</span><span class="op">$</span><span class="va">freq.imu</span></span>
+<span>  parallel.ncores <span class="op">=</span> <span class="fl">4</span>,</span>
+<span>  P_subsampling <span class="op">=</span> <span class="va">timing</span><span class="op">$</span><span class="va">freq.imu</span>,</span>
+<span>  compute_PhiQ_each_n <span class="op">=</span> <span class="fl">20</span></span>
 <span><span class="op">)</span> <span class="co"># keep one covariance every second</span></span></code></pre></div>
 <p>We perform the navigation Monte Carlo simulation considering the
 wrong stochastic model.</p>
@@ -200,8 +201,9 @@ wrong stochastic model.</p>
 <span>  num.runs <span class="op">=</span> <span class="va">num.runs</span>,</span>
 <span>  noProgressBar <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  PhiQ_method <span class="op">=</span> <span class="fl">2</span>,</span>
-<span>  parallel.ncores <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  P_subsampling <span class="op">=</span> <span class="va">timing</span><span class="op">$</span><span class="va">freq.imu</span></span>
+<span>  parallel.ncores <span class="op">=</span> <span class="fl">4</span>,</span>
+<span>  P_subsampling <span class="op">=</span> <span class="va">timing</span><span class="op">$</span><span class="va">freq.imu</span>,</span>
+<span>  compute_PhiQ_each_n <span class="op">=</span> <span class="fl">20</span></span>
 <span><span class="op">)</span> <span class="co"># keep one covariance every second</span></span></code></pre></div>
 <p>We compute statistics on navigation performance for the navigation
 simulation that considered the correct stochastic model and for the
