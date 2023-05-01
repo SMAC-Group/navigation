@@ -257,7 +257,7 @@ navigation <- function(traj.ref, timing, snsr.mdl, KF.mdl, g = 9.8056, num.runs 
   }
 
   # evaluate solutions in parallel
-  cat("Monte-Carlo runs...\n")
+  cat("Performing Monte-Carlo runs...\n")
   if (parallel.ncores > 1 && !noProgressBar) {
     out_raw_files <- pbmclapply(
       1:num.runs,
