@@ -10,16 +10,11 @@
 #' @param col_traj_error The color of the \code{L2} norm of errors of the emulated trajectories.
 #' @param time_interval_simu A value in second indicating the interval at which are simulated trajectories in order to compute the CI
 #' @author Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
-#' @examples
-#' \dontrun{
 #' # Load trajectory
-#' load("example0.RData")
-#' traj <- make_trajectory(data = traj, system = "ned")
-#'
+#' data(example_1_traj_ned)
+#' traj <- make_trajectory(data = example_1_traj_ned, system = "ned")
 #' # Monte-Carlo settings----------------------------
-#' num.runs1 <- 15
-#' num.runs2 <- 3
-#'
+#' num.runs <- 10
 #' # Timing and sampling frequencies-----------------
 #' timing <- make_timing(
 #'   nav.start = 0,
@@ -30,18 +25,15 @@
 #'   gps.out.start = 25,
 #'   gps.out.end = 45
 #' )
-#'
 #' # sensor model for data generation----------------
 #' snsr.mdl <- list()
-#'
 #' imu.freq <- 250
-#' acc.mdl <- WN(sigma2 = 1.535466e-04) + RW(gamma2 = 1.619511e-10) + DR(omega = 1.276475e-08)
+#' acc.mdl <- WN(sigma2 = 1.535466e-04) + RW(gamma2 = 1.619511e-10) 
 #' gyr.mdl <- WN(sigma2 = 1.711080e-03) + RW(gamma2 = 1.532765e-13)
 #' snsr.mdl$imu <- make_sensor(
 #'   name = "imu", frequency = imu.freq,
 #'   error_model1 = acc.mdl, error_model2 = gyr.mdl
 #' )
-#'
 #' gps.freq <- 1
 #' gps.mdl.pos.hor <- WN(sigma2 = 2^2)
 #' gps.mdl.pos.ver <- WN(sigma2 = 4^2)
@@ -57,33 +49,28 @@
 #' baro.freq <- 1
 #' baro.mdl <- WN(sigma2 = 0.5^2)
 #' snsr.mdl$baro <- make_sensor(name = "baro", frequency = baro.freq, error_model1 = baro.mdl)
-#'
 #' # sensor model for the KF------------------------
 #' KF.mdl <- list()
-#'
 #' KF.mdl$imu <- snsr.mdl$imu
 #' KF.mdl$gps <- snsr.mdl$gps
 #' KF.mdl$baro <- snsr.mdl$baro
-#'
 #' # create navigation object------------------------
-#' x <- navigation(
+#' x1 <- navigation(
 #'   traj.ref = traj,
 #'   timing = timing,
 #'   snsr.mdl = snsr.mdl,
 #'   KF.mdl = KF.mdl,
-#'   num.runs = num.runs1
+#'   num.runs = num.runs
 #' )
 #' x2 <- navigation(
 #'   traj.ref = traj,
 #'   timing = timing,
 #'   snsr.mdl = snsr.mdl,
 #'   KF.mdl = KF.mdl,
-#'   num.runs = num.runs2
+#'   num.runs = num.runs
 #' )
-#'
 #' # compare navigation objects------------------------
-#' compare.navigation(x1, x2)
-#' }
+#' compare.navigation(x1, x2,nsim = num.runs)
 #' @export
 #' @importFrom stats quantile
 #' @importFrom graphics polygon
@@ -230,11 +217,3 @@ compare.navigation <- function(..., nsim = 100, emu_for_covmat = 1,
   par(mfrow = c(1, 1))
 }
 
-
-# for dev purposes
-
-# nsim = 100; emu_for_covmat = 1;
-# col_50 ="#E74C3C4D"; col_95 = "#F5B0414D"; col_50_brd ="#E74C3C"; col_95_brd = "#F5B041";
-# col_traj_error = "#1C12F54D"
-
-# compare.navigation(res_2,res_1, time_interval_simu = 2)
