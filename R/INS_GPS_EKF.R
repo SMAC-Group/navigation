@@ -64,7 +64,10 @@ INS_GPS_EKF <- function(IC, imu_data, gps_data = NULL,
     dZbaro <- matrix(0, nrow = 1, ncol = dim(baro_data)[2])
   }
 
-  pb <- txtProgressBar(min = 0, max = (n - 1), style = 3)
+  if (!noProgressBar) {
+    pb <- txtProgressBar(min = 0, max = (n - 1), style = 3)
+  }
+  
 
   for (k in 1:n) {
     # update:

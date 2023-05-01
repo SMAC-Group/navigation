@@ -69,7 +69,6 @@ A trajectory plot.
 Plot a \code{trajectory} object in 2D or 3D.
 }
 \examples{
-\dontrun{
 n <- 100
 dat <- cbind(
   seq(from = 0, to = 60 * 60, length.out = n),
@@ -94,17 +93,6 @@ plot(traj, col = "orange2", col_start = "pink", col_end = "purple")
 plot(traj, pch_points_start = 15, cex_points = 3)
 plot(traj, plot_end_points = FALSE)
 plot(traj, plot_end_points = FALSE, add_title = FALSE)
-plot(traj, plot_end_points = FALSE, add_title = "Hello")
-
-plot(traj, threeD = TRUE)
-plot(traj, threeD = TRUE, threeD_line_width = 8, threeD_line_color = "#e74c3c")
-plot(traj, threeD = TRUE, threeD_col_grad = TRUE)
-plot(traj,
-  threeD = TRUE, threeD_col_grad = TRUE,
-  threeD_grad_start = "#e74c3c",
-  threeD_grad_end = "#d68910"
-)
-}
 }
 \author{
 Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier

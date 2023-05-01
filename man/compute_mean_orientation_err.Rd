@@ -72,6 +72,8 @@ res = navigation(traj.ref = traj,
 
 oe = compute_mean_orientation_err(res, step = 25)
 plot(oe)
+
+
 }
 \author{
 Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
