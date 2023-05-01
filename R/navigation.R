@@ -79,6 +79,71 @@ navigation <- function(traj.ref, timing, snsr.mdl, KF.mdl, g = 9.8056, num.runs 
                        IC = NULL, imu_data = NULL, gps_data = NULL, baro_data = NULL, input.seed = 0, PhiQ_method = "exact", P_subsampling = 1, # Inputs needed for sensor fusion only (+ KF.mdl, )
                        compute_PhiQ_each_n = 1, # each n measurment to compute PhiQ
                        parallel.ncores = detectCores(all.tests = FALSE, logical = TRUE), tmpdir = tempdir()) {
+  # -------------------------------------
+  
+  # # for debugging
+  # # load data
+  # data("lemniscate_traj_ned")
+  # head(lemniscate_traj_ned)
+  # traj = make_trajectory(data = lemniscate_traj_ned, system = "ned")
+  # timing = make_timing(nav.start     = 0, # time at which to begin filtering
+  #                      nav.end       = 600, 
+  #                      freq.imu      = 100, # frequency of the IMU, can be slower wrt trajectory frequency
+  #                      freq.gps      = 1, # GNSS frequency
+  #                      freq.baro     = 1, # barometer frequency (to disable, put it very low, e.g. 1e-5)
+  #                      gps.out.start = 60, # to simulate a GNSS outage, set a time before nav.end
+  #                      gps.out.end   = 120)
+  # # create sensor for noise data generation
+  # snsr.mdl=list()
+  # # this uses a model for noise data generation
+  # acc.mdl = WN(sigma2 = 5.989778e-05) + AR1(phi = 9.982454e-01, sigma2 = 1.848297e-10) + AR1(phi = 9.999121e-01, sigma2 = 2.435414e-11) + AR1(phi = 9.999998e-01, sigma2 = 1.026718e-12)
+  # gyr.mdl = WN(sigma2 = 1.503793e-06) + AR1(phi = 9.968999e-01, sigma2 = 2.428980e-11) + AR1(phi = 9.999001e-01, sigma2 = 1.238142e-12)
+  # snsr.mdl$imu = make_sensor(name="imu", frequency=timing$freq.imu, error_model1=acc.mdl, error_model2=gyr.mdl)
+  # # RTK-like GNSS 
+  # gps.mdl.pos.hor = WN(sigma2 = 0.025^2)
+  # gps.mdl.pos.ver = WN(sigma2 = 0.05^2)
+  # gps.mdl.vel.hor = WN(sigma2 = 0.01^2)
+  # gps.mdl.vel.ver = WN(sigma2 = 0.02^2)
+  # snsr.mdl$gps = make_sensor(name="gps", 
+  #                            frequency=timing$freq.gps,
+  #                            error_model1=gps.mdl.pos.hor,
+  #                            error_model2=gps.mdl.pos.ver,
+  #                            error_model3=gps.mdl.vel.hor,
+  #                            error_model4=gps.mdl.vel.ver)
+  # # Barometer
+  # baro.mdl = WN(sigma2=0.5^2)
+  # snsr.mdl$baro = make_sensor(name="baro", frequency=timing$freq.baro, error_model1=baro.mdl)
+  # # define sensor for Kalmna filter
+  # KF.mdl = list()
+  # # make IMU sensor
+  # KF.mdl$imu = make_sensor(name="imu", frequency=timing$freq.imu, error_model1=acc.mdl, error_model2=gyr.mdl)
+  # KF.mdl$gps  = snsr.mdl$gps
+  # KF.mdl$baro = snsr.mdl$baro
+  # # perform navigation simulation
+  # num.runs = 2 # number of Monte-Carlo simulations
+  # results.system  ="ned"
+  # traj.ref = traj
+  # parallel.ncores = parallel::detectCores(all.tests = FALSE, logical = TRUE)
+  # parallel.ncores = 1
+  # input.seed = 0
+  # g = 9.8056
+  # P_subsampling = 1
+  # noProgressBar = T
+  # PhiQ_method = "1"
+  # compute_PhiQ_each_n = 10
+  # tmpdir = tempdir()
+  
+  # -------------------------------------
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   # define out_raw before
   out_raw <- NULL
 
@@ -193,8 +258,15 @@ navigation <- function(traj.ref, timing, snsr.mdl, KF.mdl, g = 9.8056, num.runs 
 
   # evaluate solutions in parallel
   cat("Monte-Carlo runs...\n")
-  if (parallel.ncores > 1) {
+  if (parallel.ncores > 1 && !noProgressBar) {
     out_raw_files <- pbmclapply(
+      1:num.runs,
+      do_one,
+      mc.cores = parallel.ncores,
+      mc.set.seed = FALSE
+    )
+  } else if(parallel.ncores > 1 && noProgressBar){
+    out_raw_files <- mclapply(
       1:num.runs,
       do_one,
       mc.cores = parallel.ncores,
@@ -257,29 +329,3 @@ navigation <- function(traj.ref, timing, snsr.mdl, KF.mdl, g = 9.8056, num.runs 
   return(out)
 }
 
-#' @title TO DO
-#' @description TO DO
-#' @return TO DO
-#' @author Stephane Guerrier, Mehran Khaghani, and Lionel Voirol
-#'
-#' @noRd
-cnstr.IC <- function(traj.ref, KF.mdl) {
-  # X0[1:9] = traj.ref[2:10,1]
-  # X0[1:9] = traj.ref$trajectory[colnames(traj$trajectory)==c("x_N","x_E","x_D","v_N","v_E","v_D","roll","pitch","yaw"), 1]
-  X0 <- c(
-    traj.ref$trajectory$x_N[1],
-    traj.ref$trajectory$x_E[1],
-    traj.ref$trajectory$x_D[1],
-    traj.ref$trajectory$v_N[1],
-    traj.ref$trajectory$v_E[1],
-    traj.ref$trajectory$v_D[1],
-    traj.ref$trajectory$roll[1],
-    traj.ref$trajectory$pitch[1],
-    traj.ref$trajectory$yaw[1]
-  )
-
-  P0 <- matrix(0, nrow = 9, ncol = 9)
-
-  IC <- list("X0" = X0, "P0" = P0)
-  return(IC)
-}

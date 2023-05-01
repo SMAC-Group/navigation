@@ -5,7 +5,6 @@
 #' @importFrom utils txtProgressBar setTxtProgressBar
 #' @importFrom magrittr mod
 #' @importFrom RcppArmadillo armadillo_set_seed
-#'
 #' @noRd
 INS_GPS_EKF <- function(IC, imu_data, gps_data = NULL,
                         baro_data = NULL, KF.mdl = NULL, g,

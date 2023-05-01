@@ -3,7 +3,6 @@
 #' @return TO DO
 #' @author Stephane Guerrier, Mehran Khaghani, and Lionel Voirol
 #' @param traj A \code{trajectory} object.
-#'
 #' @noRd
 complete_traj <- function(traj) {
   if (!inherits(traj, "trajectory")) {
