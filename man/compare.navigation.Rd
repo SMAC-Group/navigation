@@ -58,7 +58,7 @@ timing <- make_timing(
 # sensor model for data generation----------------
 snsr.mdl <- list()
 imu.freq <- 250
-acc.mdl <- WN(sigma2 = 1.535466e-04) + RW(gamma2 = 1.619511e-10) 
+acc.mdl <- WN(sigma2 = 1.535466e-04) + RW(gamma2 = 1.619511e-10)
 gyr.mdl <- WN(sigma2 = 1.711080e-03) + RW(gamma2 = 1.532765e-13)
 snsr.mdl$imu <- make_sensor(
   name = "imu", frequency = imu.freq,
@@ -78,7 +78,9 @@ snsr.mdl$gps <- make_sensor(
 )
 baro.freq <- 1
 baro.mdl <- WN(sigma2 = 0.5^2)
-snsr.mdl$baro <- make_sensor(name = "baro", frequency = baro.freq, error_model1 = baro.mdl)
+snsr.mdl$baro <- make_sensor(name = "baro", 
+frequency = baro.freq,
+ error_model1 = baro.mdl)
 # sensor model for the KF------------------------
 KF.mdl <- list()
 KF.mdl$imu <- snsr.mdl$imu

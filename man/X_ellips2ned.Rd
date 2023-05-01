@@ -21,13 +21,11 @@ Transform position from ellipsoidal coordinates to a fixed Cartesian NED frame
 
 library(navigation)
 data("example_1_traj_ellipsoidal")
-traj_ellips = make_trajectory(example_1_traj_ellipsoidal, system = "ellipsoidal")
+traj_ellips <- make_trajectory(example_1_traj_ellipsoidal, system = "ellipsoidal")
 plot(traj_ellips)
-plot(traj_ellips, threeD=TRUE)
-traj_ned = X_ellips2ned(traj_ellips, x_o = example_1_traj_ellipsoidal[1,-1])
+plot(traj_ellips, threeD = TRUE)
+traj_ned <- X_ellips2ned(traj_ellips, x_o = example_1_traj_ellipsoidal[1, -1])
 plot(traj_ned)
-
-
 
 }
 \author{

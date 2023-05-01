@@ -94,12 +94,12 @@ timing <- make_timing(
 # create sensor for noise data generation
 snsr.mdl <- list()
 # this uses a model for noise data generation
-acc.mdl <- WN(sigma2 = 5.989778e-05) + 
-AR1(phi = 9.982454e-01, sigma2 = 1.848297e-10) +
-  AR1(phi = 9.999121e-01, sigma2 = 2.435414e-11) + 
+acc.mdl <- WN(sigma2 = 5.989778e-05) +
+  AR1(phi = 9.982454e-01, sigma2 = 1.848297e-10) +
+  AR1(phi = 9.999121e-01, sigma2 = 2.435414e-11) +
   AR1(phi = 9.999998e-01, sigma2 = 1.026718e-12)
-gyr.mdl <- WN(sigma2 = 1.503793e-06) + 
-AR1(phi = 9.968999e-01, sigma2 = 2.428980e-11) +
+gyr.mdl <- WN(sigma2 = 1.503793e-06) +
+  AR1(phi = 9.968999e-01, sigma2 = 2.428980e-11) +
   AR1(phi = 9.999001e-01, sigma2 = 1.238142e-12)
 snsr.mdl$imu <- make_sensor(
   name = "imu",
@@ -122,9 +122,11 @@ snsr.mdl$gps <- make_sensor(
 )
 # Barometer
 baro.mdl <- WN(sigma2 = 0.5^2)
-snsr.mdl$baro <- make_sensor(name = "baro",
-                             frequency = timing$freq.baro,
-                             error_model1 = baro.mdl)
+snsr.mdl$baro <- make_sensor(
+  name = "baro",
+  frequency = timing$freq.baro,
+  error_model1 = baro.mdl
+)
 # define sensor for Kalmna filter
 KF.mdl <- list()
 # make IMU sensor
@@ -144,8 +146,8 @@ res <- navigation(
   snsr.mdl = snsr.mdl,
   KF.mdl = KF.mdl,
   num.runs = num.runs,
-  noProgressBar = F,
-  PhiQ_method = "4",
+  noProgressBar = TRUE,
+  PhiQ_method = "2",
   # order of the Taylor expansion of the matrix exponential used to compute Phi and Q matrices
   compute_PhiQ_each_n = 10,
   # compute new Phi and Q matrices every n IMU steps (execution time optimization)
@@ -153,9 +155,8 @@ res <- navigation(
   P_subsampling = timing$freq.imu
 )
 plot(res)
-plot(res, plot3d = T)
+plot(res, plot3d = TRUE)
 plot(res, error_analysis = TRUE)
-
 }
 \author{
 Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
