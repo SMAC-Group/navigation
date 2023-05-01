@@ -66,7 +66,9 @@
 #' )
 #' # Barometer
 #' baro.mdl <- WN(sigma2 = 0.5^2)
-#' snsr.mdl$baro <- make_sensor(name = "baro", frequency = timing$freq.baro, error_model1 = baro.mdl)
+#' snsr.mdl$baro <- make_sensor(name = "baro",
+#'  frequency = timing$freq.baro,
+#'   error_model1 = baro.mdl)
 #' # define sensor for Kalmna filter
 #' KF.mdl <- list()
 #' # make IMU sensor
@@ -87,8 +89,10 @@
 #'   KF.mdl = KF.mdl,
 #'   num.runs = num.runs,
 #'   noProgressBar = TRUE,
-#'   PhiQ_method = "4", # order of the Taylor expansion of the matrix exponential used to compute Phi and Q matrices
-#'   compute_PhiQ_each_n = 10, # compute new Phi and Q matrices every n IMU steps (execution time optimization)
+#'   PhiQ_method = "4", 
+#'   # order of the Taylor expansion of the matrix exponential used to compute Phi and Q matrices
+#'   compute_PhiQ_each_n = 10, 
+#'   # compute new Phi and Q matrices every n IMU steps (execution time optimization)
 #'   parallel.ncores = 1,
 #'   P_subsampling = timing$freq.imu
 #' ) # keep one covariance every second
