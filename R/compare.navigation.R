@@ -48,7 +48,9 @@
 #' )
 #' baro.freq <- 1
 #' baro.mdl <- WN(sigma2 = 0.5^2)
-#' snsr.mdl$baro <- make_sensor(name = "baro", frequency = baro.freq, error_model1 = baro.mdl)
+#' snsr.mdl$baro <- make_sensor(name = "baro", 
+#' frequency = baro.freq,
+#'  error_model1 = baro.mdl)
 #' # sensor model for the KF------------------------
 #' KF.mdl <- list()
 #' KF.mdl$imu <- snsr.mdl$imu
