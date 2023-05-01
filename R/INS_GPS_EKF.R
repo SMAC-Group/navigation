@@ -30,7 +30,6 @@ INS_GPS_EKF <- function(IC, imu_data, gps_data = NULL,
   P_h <- array(0, dim = c(state_size, state_size, length(t_p))) # keep only one covariance out of P_subsampling
   P_curr <- matrix(0, nrow = state_size, ncol = state_size)
 
-  # K   =
 
   # initialization:
   X_h[1:9, 1] <- IC$X0

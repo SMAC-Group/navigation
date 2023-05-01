@@ -9,7 +9,6 @@
 #' @author Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
 #'
 #'
-#'
 #' @examples
 #' # load data
 #' data("lemniscate_traj_ned")
@@ -30,10 +29,12 @@
 #' # create sensor for noise data generation
 #' snsr.mdl <- list()
 #' # this uses a model for noise data generation
-#' acc.mdl <- WN(sigma2 = 5.989778e-05) + AR1(phi = 9.982454e-01, sigma2 = 1.848297e-10) +
+#' acc.mdl <- WN(sigma2 = 5.989778e-05) + 
+#' AR1(phi = 9.982454e-01, sigma2 = 1.848297e-10) +
 #'   AR1(phi = 9.999121e-01, sigma2 = 2.435414e-11) +
 #'   AR1(phi = 9.999998e-01, sigma2 = 1.026718e-12)
-#' gyr.mdl <- WN(sigma2 = 1.503793e-06) + AR1(phi = 9.968999e-01, sigma2 = 2.428980e-11) +
+#' gyr.mdl <- WN(sigma2 = 1.503793e-06) + 
+#' AR1(phi = 9.968999e-01, sigma2 = 2.428980e-11) +
 #'   AR1(phi = 9.999001e-01, sigma2 = 1.238142e-12)
 #' snsr.mdl$imu <- make_sensor(
 #'   name = "imu",
