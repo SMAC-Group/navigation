@@ -68,8 +68,6 @@ res = navigation(traj.ref = traj,
                  compute_PhiQ_each_n = 10, # compute new Phi and Q matrices every n IMU steps (execution time optimization)
                  parallel.ncores=1,
                  P_subsampling = timing$freq.imu) # keep one covariance every second
-
-
 nees = compute_nees(res, idx=1:6, step = 100)
 plot(nees)
 }
