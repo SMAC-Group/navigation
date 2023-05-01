@@ -107,7 +107,7 @@
 #'   P_subsampling = timing$freq.imu
 #' )
 #' plot(res)
-#' plot(res, plot3d = T)
+#' plot(res, plot3d = TRUE)
 #' plot(res, error_analysis = TRUE)
 #' @export
 #' @importFrom stats qnorm
