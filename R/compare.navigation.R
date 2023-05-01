@@ -10,6 +10,8 @@
 #' @param col_traj_error The color of the \code{L2} norm of errors of the emulated trajectories.
 #' @param time_interval_simu A value in second indicating the interval at which are simulated trajectories in order to compute the CI
 #' @author Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
+#' 
+#' @examples
 #' # Load trajectory
 #' data(example_1_traj_ned)
 #' traj <- make_trajectory(data = example_1_traj_ned, system = "ned")
