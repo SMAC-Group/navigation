@@ -27,7 +27,7 @@ We then define a `timing` object
 ```{r}
 timing <- make_timing(
   nav.start = 0, # time at which to begin filtering
-  nav.end = 300,
+  nav.end = 150,
   freq.imu = 100, # frequency of the IMU, can be slower wrt trajectory frequency
   freq.gps = 1, # gnss frequency
   freq.baro = 1, # barometer frequency (to disable, put it very low, e.g. 1e-5)
