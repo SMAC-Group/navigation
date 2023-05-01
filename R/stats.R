@@ -84,13 +84,13 @@ sample_stat <- function(stats, t) {
   if (!inherits(stats, "list")) {
     stop("argument must be a list")
   }
-  
+
   sstats <- array(NA, dim = c(dim(stats[[1]])[1], length(stats), length(t)))
-  
+
   for (m in seq_along(stats)) {
     for (it in 1:length(t)) {
       i <- min(which(stats[[m]][1, ] > t[it] - 1e-6))
-      
+
       sstats[, m, it] <- stats[[m]][, i]
     }
   }
@@ -126,5 +126,3 @@ sample_stat <- function(stats, t) {
 #
 #   return(sigma2_ret)
 # }
-
-

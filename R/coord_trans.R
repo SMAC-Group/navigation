@@ -4,33 +4,34 @@
 #' @author Stephane Guerrier, Mehran Khaghani, and Lionel Voirol
 #'
 #' @noRd
-X_ellips2ecef = function( x ) {
-
+X_ellips2ecef <- function(x) {
   if (!is.matrix(x)) {
-    x = as.matrix(x)
+    x <- as.matrix(x)
   }
 
   # Function's constants (WGS-84)
-  WGS84 = WGS84_datum()
+  WGS84 <- WGS84_datum()
 
-  a = WGS84$a # [m]
-  b = WGS84$b # [m]
+  a <- WGS84$a # [m]
+  b <- WGS84$b # [m]
 
   # Output calculation
-  phi = x[1,]
-  lambda = x[2,]
-  h = x[3,]
+  phi <- x[1, ]
+  lambda <- x[2, ]
+  h <- x[3, ]
 
-  cphi = cos(phi)
-  sphi = sin(phi)
-  clambda = cos(lambda)
-  slambda = sin(lambda)
+  cphi <- cos(phi)
+  sphi <- sin(phi)
+  clambda <- cos(lambda)
+  slambda <- sin(lambda)
 
-  N = a^2/sqrt((a*cphi)^2+(b*sphi)^2)
+  N <- a^2 / sqrt((a * cphi)^2 + (b * sphi)^2)
 
-  y = rbind((N+h)*cphi*clambda,
-            (N+h)*cphi*slambda,
-            ((b/a)^2*N+h)*sphi)
+  y <- rbind(
+    (N + h) * cphi * clambda,
+    (N + h) * cphi * slambda,
+    ((b / a)^2 * N + h) * sphi
+  )
 }
 
 
@@ -42,23 +43,21 @@ X_ellips2ecef = function( x ) {
 #' @author Stephane Guerrier, Mehran Khaghani, Lionel Voirol and Davide A. Cucci
 #' @noRd
 #'
-X_ecef2ned = function( x, x_o ) {
-
+X_ecef2ned <- function(x, x_o) {
   ## Output calculation
-  l_phi = x_o[1]      # latitude [rad]
-  l_lambda = x_o[2]   # longitude [rad]
-  l_h = x_o[3]        # height [m]
-  r_el = X_ellips2ecef( c(l_phi, l_lambda, l_h) ) # r_el is the position vector from l frame (local, NED) origin to e frame origin
+  l_phi <- x_o[1] # latitude [rad]
+  l_lambda <- x_o[2] # longitude [rad]
+  l_h <- x_o[3] # height [m]
+  r_el <- X_ellips2ecef(c(l_phi, l_lambda, l_h)) # r_el is the position vector from l frame (local, NED) origin to e frame origin
 
-  Cle = Cnefunc( l_phi, l_lambda )   # Cle is the rotation matrix to transform vectors from l frame (local, NED) to e frame
+  Cle <- Cnefunc(l_phi, l_lambda) # Cle is the rotation matrix to transform vectors from l frame (local, NED) to e frame
 
-  r_el = matrix(data = r_el ,nrow = 3, ncol = dim(x)[2], byrow = FALSE)
-  y = t(Cle) %*% (x - r_el)
-
+  r_el <- matrix(data = r_el, nrow = 3, ncol = dim(x)[2], byrow = FALSE)
+  y <- t(Cle) %*% (x - r_el)
 }
 
 
-#' @title Compute \eqn{C^e_l} 
+#' @title Compute \eqn{C^e_l}
 #' @description Compute \eqn{C^e_l}, the rotation matrix to transform vectors from l frame (local, NED) to e frame
 #' @param phi latitude in radians of the origin of the local level
 #' @param lambda longitude in radians of the origin of the local level
@@ -66,18 +65,18 @@ X_ecef2ned = function( x, x_o ) {
 #' @author Stephane Guerrier, Mehran Khaghani, Lionel Voirol and Davide A. Cucci
 #'
 #' @noRd
-Cnefunc = function( phi, lambda ) {
+Cnefunc <- function(phi, lambda) {
+  cp <- cos(phi)
+  sp <- sin(phi)
 
-  cp = cos(phi)
-  sp = sin(phi)
+  cl <- cos(lambda)
+  sl <- sin(lambda)
 
-  cl = cos(lambda)
-  sl = sin(lambda)
-
-  Cne = rbind(c(-sp*cl, -sl, -cp*cl),
-              c(-sp*sl,	 cl, -cp*sl),
-              c(cp,      0,  -sp   ))
-
+  Cne <- rbind(
+    c(-sp * cl, -sl, -cp * cl),
+    c(-sp * sl, cl, -cp * sl),
+    c(cp, 0, -sp)
+  )
 }
 
 
@@ -88,24 +87,22 @@ Cnefunc = function( phi, lambda ) {
 #' @author Stephane Guerrier, Mehran Khaghani, and Lionel Voirol
 #'
 #' @noRd
-X_ned2ecef = function( x, x_o ) {
-
+X_ned2ecef <- function(x, x_o) {
   if (!is.matrix(x)) {
-    x = as.matrix(x)
+    x <- as.matrix(x)
   }
 
   ## Output calculation
-  l_phi = x_o[1]      # latitude [rad]
-  l_lambda = x_o[2]   # longitude [rad]
-  l_h = x_o[3]        # height [m]
-  r_el = X_ellips2ecef( c(l_phi, l_lambda, l_h) ) # r_el is the position vector from l frame (local, NED) origin to e frame origin
+  l_phi <- x_o[1] # latitude [rad]
+  l_lambda <- x_o[2] # longitude [rad]
+  l_h <- x_o[3] # height [m]
+  r_el <- X_ellips2ecef(c(l_phi, l_lambda, l_h)) # r_el is the position vector from l frame (local, NED) origin to e frame origin
 
-  Cle = Cnefunc( l_phi, l_lambda )   # Cle is the rotation matrix to transform vectors from l frame (local, NED) to e frame
+  Cle <- Cnefunc(l_phi, l_lambda) # Cle is the rotation matrix to transform vectors from l frame (local, NED) to e frame
 
-  r_el = matrix(data = r_el ,nrow = 3, ncol = dim(x)[2], byrow = FALSE)
+  r_el <- matrix(data = r_el, nrow = 3, ncol = dim(x)[2], byrow = FALSE)
 
-  y = r_el + Cle %*% x
-
+  y <- r_el + Cle %*% x
 }
 
 
@@ -117,41 +114,41 @@ X_ned2ecef = function( x, x_o ) {
 #' @author Stephane Guerrier, Mehran Khaghani, Lionel Voirol and Davide A. Cucci
 #'
 #' @noRd
-X_ecef2ellips = function ( X_ec, ignoreAtan2Flag = FALSE ) {
-
-
+X_ecef2ellips <- function(X_ec, ignoreAtan2Flag = FALSE) {
   # Function's constants (WGS-84)
-  WGS84 = WGS84_datum()
+  WGS84 <- WGS84_datum()
 
-  a = WGS84$a # [m]
-  b = WGS84$b # [m]
-  e2 = 1-(b/a)^2
-  ep2 = (a/b)^2-1
+  a <- WGS84$a # [m]
+  b <- WGS84$b # [m]
+  e2 <- 1 - (b / a)^2
+  ep2 <- (a / b)^2 - 1
 
   ## Output calculation
-  x1 = X_ec[1,]
-  x2 = X_ec[2,]
-  x3 = X_ec[3,]
+  x1 <- X_ec[1, ]
+  x2 <- X_ec[2, ]
+  x3 <- X_ec[3, ]
 
   # To avoid having atan(0/0)
-  p = sqrt(x1^2 + x2^2)
-  x1[p==0] = 1e-50
-  p[p==0] = 1e-50
+  p <- sqrt(x1^2 + x2^2)
+  x1[p == 0] <- 1e-50
+  p[p == 0] <- 1e-50
 
 
   if (ignoreAtan2Flag) {
-    lambda = atan(x2/x1)
-    psi = atan(x3*a/(p*b))
-    phi = atan((x3+ep2*b*sin(psi)^3)/(p-e2*a*cos(psi)^3))
+    lambda <- atan(x2 / x1)
+    psi <- atan(x3 * a / (p * b))
+    phi <- atan((x3 + ep2 * b * sin(psi)^3) / (p - e2 * a * cos(psi)^3))
   } else {
-    lambda = atan2(x2,x1)
-    psi = atan2(x3*a,p*b)
-    phi = atan2((x3+ep2*b*sin(psi)^3),(p-e2*a*cos(psi)^3))
+    lambda <- atan2(x2, x1)
+    psi <- atan2(x3 * a, p * b)
+    phi <- atan2((x3 + ep2 * b * sin(psi)^3), (p - e2 * a * cos(psi)^3))
   }
-  N = a^2/sqrt((a*cos(phi))^2+(b*sin(phi))^2)
-  h = p/cos(phi)-N
+  N <- a^2 / sqrt((a * cos(phi))^2 + (b * sin(phi))^2)
+  h <- p / cos(phi) - N
 
-  X_el = rbind(phi,
-               lambda,
-               h)
+  X_el <- rbind(
+    phi,
+    lambda,
+    h
+  )
 }

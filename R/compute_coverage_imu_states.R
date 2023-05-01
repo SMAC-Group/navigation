@@ -11,17 +11,17 @@ compute_coverage_imu_states <- function(sols, alpha = 0.95, step = 100, idx = 1:
   if (max(idx) > 6) {
     stop("idx must be in [1, ..., 6]")
   }
-  
+
   nsols <- length(sols$traj.fused)
-  
+
   e <- compute_es_imu(sols, step, idx)
-  
+
   # bounds = qchisq(c((1-alpha)/2,1-(1-alpha)/2), df=length(idx), lower.tail=TRUE)
   bounds <- qchisq(c(0, alpha), df = length(idx))
-  
+
   out_b <- (e[2:(nsols + 1), ] > bounds[2]) + (e[2:(nsols + 1), ] < bounds[1])
   in_b <- -out_b + 1
-  
+
   coverage <- matrix(0, nrow = 2, ncol = dim(e)[2])
   coverage[1, ] <- e[1, ]
   if (nsols > 1) {
@@ -29,7 +29,7 @@ compute_coverage_imu_states <- function(sols, alpha = 0.95, step = 100, idx = 1:
   } else {
     coverage[2, ] <- in_b
   }
-  
+
   class(coverage) <- c("coverage.stat", "navigation.stat")
   attributes(coverage)$meta <- list(
     "type" = "Coverage IMU",
@@ -41,6 +41,6 @@ compute_coverage_imu_states <- function(sols, alpha = 0.95, step = 100, idx = 1:
     "t0" = NULL,
     "tend" = NULL
   )
-  
+
   return(coverage)
 }

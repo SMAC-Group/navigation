@@ -66,7 +66,7 @@ INS_GPS_EKF <- function(IC, imu_data, gps_data = NULL,
   if (!noProgressBar) {
     pb <- txtProgressBar(min = 0, max = (n - 1), style = 3)
   }
-  
+
 
   for (k in 1:n) {
     # update:

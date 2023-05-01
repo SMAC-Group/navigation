@@ -17,9 +17,9 @@ cnstr.IC <- function(traj.ref, KF.mdl) {
     traj.ref$trajectory$pitch[1],
     traj.ref$trajectory$yaw[1]
   )
-  
+
   P0 <- matrix(0, nrow = 9, ncol = 9)
-  
+
   IC <- list("X0" = X0, "P0" = P0)
   return(IC)
 }

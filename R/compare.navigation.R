@@ -28,7 +28,7 @@
 #' # sensor model for data generation----------------
 #' snsr.mdl <- list()
 #' imu.freq <- 250
-#' acc.mdl <- WN(sigma2 = 1.535466e-04) + RW(gamma2 = 1.619511e-10) 
+#' acc.mdl <- WN(sigma2 = 1.535466e-04) + RW(gamma2 = 1.619511e-10)
 #' gyr.mdl <- WN(sigma2 = 1.711080e-03) + RW(gamma2 = 1.532765e-13)
 #' snsr.mdl$imu <- make_sensor(
 #'   name = "imu", frequency = imu.freq,
@@ -216,4 +216,3 @@ compare.navigation <- function(..., nsim = 100, emu_for_covmat = 1,
   }
   par(mfrow = c(1, 1))
 }
-

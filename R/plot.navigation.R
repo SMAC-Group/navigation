@@ -29,7 +29,7 @@
 #' @importFrom magrittr %>%
 #' @author Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
 #' @examples
-#' 
+#'
 #' data("lemniscate_traj_ned")
 #' head(lemniscate_traj_ned)
 #' traj <- make_trajectory(data = lemniscate_traj_ned, system = "ned")
@@ -46,12 +46,12 @@
 #' # create sensor for noise data generation
 #' snsr.mdl <- list()
 #' # this uses a model for noise data generation
-#' acc.mdl <- WN(sigma2 = 5.989778e-05) + 
-#' AR1(phi = 9.982454e-01, sigma2 = 1.848297e-10) +
-#'   AR1(phi = 9.999121e-01, sigma2 = 2.435414e-11) + 
+#' acc.mdl <- WN(sigma2 = 5.989778e-05) +
+#'   AR1(phi = 9.982454e-01, sigma2 = 1.848297e-10) +
+#'   AR1(phi = 9.999121e-01, sigma2 = 2.435414e-11) +
 #'   AR1(phi = 9.999998e-01, sigma2 = 1.026718e-12)
-#' gyr.mdl <- WN(sigma2 = 1.503793e-06) + 
-#' AR1(phi = 9.968999e-01, sigma2 = 2.428980e-11) +
+#' gyr.mdl <- WN(sigma2 = 1.503793e-06) +
+#'   AR1(phi = 9.968999e-01, sigma2 = 2.428980e-11) +
 #'   AR1(phi = 9.999001e-01, sigma2 = 1.238142e-12)
 #' snsr.mdl$imu <- make_sensor(
 #'   name = "imu",
@@ -74,9 +74,11 @@
 #' )
 #' # Barometer
 #' baro.mdl <- WN(sigma2 = 0.5^2)
-#' snsr.mdl$baro <- make_sensor(name = "baro",
-#'                              frequency = timing$freq.baro,
-#'                              error_model1 = baro.mdl)
+#' snsr.mdl$baro <- make_sensor(
+#'   name = "baro",
+#'   frequency = timing$freq.baro,
+#'   error_model1 = baro.mdl
+#' )
 #' # define sensor for Kalmna filter
 #' KF.mdl <- list()
 #' # make IMU sensor
@@ -107,33 +109,31 @@
 #' plot(res)
 #' plot(res, plot3d = T)
 #' plot(res, error_analysis = TRUE)
-#' 
+#'
 #' @export
 #' @importFrom stats qnorm
 #' @importFrom graphics points layout polygon
 #' @importFrom plotly add_markers
 plot.navigation <- function(x,
                             true_col = "#2980b9",
-                            col_fused_trans = "#EA5D0073", 
+                            col_fused_trans = "#EA5D0073",
                             col_fused_full = "#EA5D00FF",
-                            plot_mean_traj = TRUE, 
-                            plot_baro = TRUE, 
-                            baro_col = "black", 
+                            plot_mean_traj = TRUE,
+                            plot_baro = TRUE,
+                            baro_col = "black",
                             emu_to_plot = 1,
-                            plot3d = F, 
+                            plot3d = F,
                             plot_CI = FALSE,
                             time_interval = 5,
-                            col_50 = "#E74C3C4D", 
+                            col_50 = "#E74C3C4D",
                             col_95 = "#F5B0414D",
-                            col_50_brd = "#E74C3C", 
+                            col_50_brd = "#E74C3C",
                             col_95_brd = "#F5B041",
                             error_analysis = F,
-                            emu_for_covmat = 1, 
+                            emu_for_covmat = 1,
                             nsim = 1000,
                             col_traj_error = "#1C12F54D",
                             time_interval_simu = .5, ...) {
-  
-  
   # -------------------- debug
   # data("lemniscate_traj_ned")
   # head(lemniscate_traj_ned)
@@ -210,10 +210,10 @@ plot.navigation <- function(x,
   # plot(res, plot3d = T)
   # plot(res, error_analysis = TRUE)
 
-  
-  # 
-  # 
-  # 
+
+  #
+  #
+  #
   # --------------------------------------------------------- define var
   # x = res
   # emu_to_plot = 1
@@ -225,23 +225,23 @@ plot.navigation <- function(x,
   # col_fused_full = "#EA5D00FF"
   # plot_baro =TRUE
   # plot_baro = TRUE
-  # baro_col = "black" 
+  # baro_col = "black"
   # error_analysis =TRUE
   # nsim=5
   # col_50_brd = "#E74C3C"
   # col_95_brd = "#F5B041"
   # error_analysis = TRUE
-  # col_50 = "#E74C3C4D" 
+  # col_50 = "#E74C3C4D"
   # col_95 = "#F5B0414D"
   # col_traj_error = "#1C12F54D"
   # plot3d = T
-  # 
+  #
 
   # -------------------------------------------------------- debug
-  
-  
-  
-  
+
+
+
+
   # extract elements from navigation object
   traj <- x$traj.ref$trajectory
   n <- nrow(traj)
@@ -522,8 +522,6 @@ plot.navigation <- function(x,
 
   # error analysis
   if (error_analysis == TRUE) {
-    
-    
     # identify true trajectory
     true_traj <- cbind(traj$time, traj$x_N, traj$x_E, -traj$x_D)
 
@@ -625,11 +623,11 @@ plot.navigation <- function(x,
       cex = 1, bty = "n"
     )
   }
-  
-  
-  
-  
-  
+
+
+
+
+
   # 3d plot
   if (plot3d == T) {
     # 3d plot
@@ -691,5 +689,3 @@ plot.navigation <- function(x,
     p
   }
 }
-
-
