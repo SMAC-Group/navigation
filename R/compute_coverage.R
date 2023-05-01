@@ -4,6 +4,7 @@
 #' @param alpha size of the confidence interval
 #' @param step Step
 #' @param idx Components of the states to be considered (default: position and orientation)
+#' @param progressbar A \code{boolean} specifying whether or not to show a progress bar. Default is FALSE.
 #' @export
 #' @author Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
 #'
@@ -63,14 +64,14 @@
 #' 
 #' coverage = compute_coverage(res, alpha = 0.7, step = 100, idx = 1:6)
 #' plot(coverage)
-compute_coverage <- function(sols, alpha = 0.95, step = 100, idx = 1:6) {
+compute_coverage <- function(sols, alpha = 0.95, step = 100, idx = 1:6, progressbar =F) {
   if (max(idx) > 9) {
     stop("idx must be in [1, ..., 9]")
   }
   
   nsols <- length(sols$traj.fused)
   
-  e <- compute_es(sols, step, idx)
+  e <- compute_es(sols, step, idx, progressbar)
   
   # bounds = qchisq(c((1-alpha)/2,1-(1-alpha)/2), df=length(idx), lower.tail=TRUE)
   bounds <- qchisq(c(0, alpha), df = length(idx))

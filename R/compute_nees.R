@@ -5,7 +5,7 @@
 #' @param idx Components of the states to be considered (default: position and orientation)
 #' @export
 #' @author Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
-#'
+#' @param progressbar A \code{boolean} specifying whether or not to show a progress bar. Default is FALSE.
 #' @examples
 #' # load data
 #' data("lemniscate_traj_ned")
@@ -60,14 +60,14 @@
 #' 
 #' nees = compute_nees(res, idx=1:6, step = 100)
 #' plot(nees)
-compute_nees <- function(sols, step = 50, idx = 1:6) {
+compute_nees <- function(sols, step = 50, idx = 1:6, progressbar=FALSE) {
   if (max(idx) > 9) {
     stop("idx must be in [1, ..., 9]")
   }
   
   nsols <- length(sols$traj.fused)
   
-  e <- compute_es(sols, step, idx)
+  e <- compute_es(sols, step, idx, progressbar)
   
   nees <- matrix(0, ncol = dim(e)[2], nrow = 2)
   nees[1, ] <- e[1, ]
