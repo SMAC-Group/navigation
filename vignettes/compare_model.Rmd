@@ -102,7 +102,7 @@ res <- navigation(
   num.runs = num.runs,
   noProgressBar = TRUE,
   PhiQ_method = 2,
-  parallel.ncores = 4,
+  parallel.ncores = 1,
   P_subsampling = timing$freq.imu,
   compute_PhiQ_each_n = 20
 ) # keep one covariance every second
@@ -119,7 +119,7 @@ wrong_res <- navigation(
   num.runs = num.runs,
   noProgressBar = TRUE,
   PhiQ_method = 2,
-  parallel.ncores = 4,
+  parallel.ncores = 1,
   P_subsampling = timing$freq.imu,
   compute_PhiQ_each_n = 20
 ) # keep one covariance every second
