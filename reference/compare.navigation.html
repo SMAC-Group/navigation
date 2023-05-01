@@ -122,86 +122,70 @@
 </dl></div>
     <div id="author">
     <h2>Author</h2>
-    <p>Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier</p>
+    <p>Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
+# Load trajectory
+data(example_1_traj_ned)
+traj &lt;- make_trajectory(data = example_1_traj_ned, system = "ned")
+# Monte-Carlo settings----------------------------
+num.runs &lt;- 10
+# Timing and sampling frequencies-----------------
+timing &lt;- make_timing(
+  nav.start = 0,
+  nav.end = 50,
+  freq.imu = 10,
+  freq.gps = 1,
+  freq.baro = .5,
+  gps.out.start = 25,
+  gps.out.end = 45
+)
+# sensor model for data generation----------------
+snsr.mdl &lt;- list()
+imu.freq &lt;- 250
+acc.mdl &lt;- WN(sigma2 = 1.535466e-04) + RW(gamma2 = 1.619511e-10) 
+gyr.mdl &lt;- WN(sigma2 = 1.711080e-03) + RW(gamma2 = 1.532765e-13)
+snsr.mdl$imu &lt;- make_sensor(
+  name = "imu", frequency = imu.freq,
+  error_model1 = acc.mdl, error_model2 = gyr.mdl
+)
+gps.freq &lt;- 1
+gps.mdl.pos.hor &lt;- WN(sigma2 = 2^2)
+gps.mdl.pos.ver &lt;- WN(sigma2 = 4^2)
+gps.mdl.vel.hor &lt;- WN(sigma2 = 0.04^2)
+gps.mdl.vel.ver &lt;- WN(sigma2 = 0.06^2)
+snsr.mdl$gps &lt;- make_sensor(
+  name = "gps", frequency = gps.freq,
+  error_model1 = gps.mdl.pos.hor,
+  error_model2 = gps.mdl.pos.ver,
+  error_model3 = gps.mdl.vel.hor,
+  error_model4 = gps.mdl.vel.ver
+)
+baro.freq &lt;- 1
+baro.mdl &lt;- WN(sigma2 = 0.5^2)
+snsr.mdl$baro &lt;- make_sensor(name = "baro", frequency = baro.freq, error_model1 = baro.mdl)
+# sensor model for the KF------------------------
+KF.mdl &lt;- list()
+KF.mdl$imu &lt;- snsr.mdl$imu
+KF.mdl$gps &lt;- snsr.mdl$gps
+KF.mdl$baro &lt;- snsr.mdl$baro
+# create navigation object------------------------
+x1 &lt;- navigation(
+  traj.ref = traj,
+  timing = timing,
+  snsr.mdl = snsr.mdl,
+  KF.mdl = KF.mdl,
+  num.runs = num.runs
+)
+x2 &lt;- navigation(
+  traj.ref = traj,
+  timing = timing,
+  snsr.mdl = snsr.mdl,
+  KF.mdl = KF.mdl,
+  num.runs = num.runs
+)
+# compare navigation objects------------------------
+compare.navigation(x1, x2,nsim = num.runs)</p>
     </div>
 
-    <div id="ref-examples">
-    <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span><span class="co"># Load trajectory</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/load.html" class="external-link">load</a></span><span class="op">(</span><span class="st">"example0.RData"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">traj</span> <span class="op">&lt;-</span> <span class="fu"><a href="make_trajectory.html">make_trajectory</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">traj</span>, system <span class="op">=</span> <span class="st">"ned"</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Monte-Carlo settings----------------------------</span></span></span>
-<span class="r-in"><span><span class="va">num.runs1</span> <span class="op">&lt;-</span> <span class="fl">15</span></span></span>
-<span class="r-in"><span><span class="va">num.runs2</span> <span class="op">&lt;-</span> <span class="fl">3</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Timing and sampling frequencies-----------------</span></span></span>
-<span class="r-in"><span><span class="va">timing</span> <span class="op">&lt;-</span> <span class="fu"><a href="make_timing.html">make_timing</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>  nav.start <span class="op">=</span> <span class="fl">0</span>,</span></span>
-<span class="r-in"><span>  nav.end <span class="op">=</span> <span class="fl">50</span>,</span></span>
-<span class="r-in"><span>  freq.imu <span class="op">=</span> <span class="fl">10</span>,</span></span>
-<span class="r-in"><span>  freq.gps <span class="op">=</span> <span class="fl">1</span>,</span></span>
-<span class="r-in"><span>  freq.baro <span class="op">=</span> <span class="fl">.5</span>,</span></span>
-<span class="r-in"><span>  gps.out.start <span class="op">=</span> <span class="fl">25</span>,</span></span>
-<span class="r-in"><span>  gps.out.end <span class="op">=</span> <span class="fl">45</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># sensor model for data generation----------------</span></span></span>
-<span class="r-in"><span><span class="va">snsr.mdl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">imu.freq</span> <span class="op">&lt;-</span> <span class="fl">250</span></span></span>
-<span class="r-in"><span><span class="va">acc.mdl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/simts/man/WN.html" class="external-link">WN</a></span><span class="op">(</span>sigma2 <span class="op">=</span> <span class="fl">1.535466e-04</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/simts/man/RW.html" class="external-link">RW</a></span><span class="op">(</span>gamma2 <span class="op">=</span> <span class="fl">1.619511e-10</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/simts/man/DR.html" class="external-link">DR</a></span><span class="op">(</span>omega <span class="op">=</span> <span class="fl">1.276475e-08</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">gyr.mdl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/simts/man/WN.html" class="external-link">WN</a></span><span class="op">(</span>sigma2 <span class="op">=</span> <span class="fl">1.711080e-03</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/simts/man/RW.html" class="external-link">RW</a></span><span class="op">(</span>gamma2 <span class="op">=</span> <span class="fl">1.532765e-13</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">snsr.mdl</span><span class="op">$</span><span class="va">imu</span> <span class="op">&lt;-</span> <span class="fu"><a href="make_sensor.html">make_sensor</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>  name <span class="op">=</span> <span class="st">"imu"</span>, frequency <span class="op">=</span> <span class="va">imu.freq</span>,</span></span>
-<span class="r-in"><span>  error_model1 <span class="op">=</span> <span class="va">acc.mdl</span>, error_model2 <span class="op">=</span> <span class="va">gyr.mdl</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">gps.freq</span> <span class="op">&lt;-</span> <span class="fl">1</span></span></span>
-<span class="r-in"><span><span class="va">gps.mdl.pos.hor</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/simts/man/WN.html" class="external-link">WN</a></span><span class="op">(</span>sigma2 <span class="op">=</span> <span class="fl">2</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">gps.mdl.pos.ver</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/simts/man/WN.html" class="external-link">WN</a></span><span class="op">(</span>sigma2 <span class="op">=</span> <span class="fl">4</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">gps.mdl.vel.hor</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/simts/man/WN.html" class="external-link">WN</a></span><span class="op">(</span>sigma2 <span class="op">=</span> <span class="fl">0.04</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">gps.mdl.vel.ver</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/simts/man/WN.html" class="external-link">WN</a></span><span class="op">(</span>sigma2 <span class="op">=</span> <span class="fl">0.06</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">snsr.mdl</span><span class="op">$</span><span class="va">gps</span> <span class="op">&lt;-</span> <span class="fu"><a href="make_sensor.html">make_sensor</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>  name <span class="op">=</span> <span class="st">"gps"</span>, frequency <span class="op">=</span> <span class="va">gps.freq</span>,</span></span>
-<span class="r-in"><span>  error_model1 <span class="op">=</span> <span class="va">gps.mdl.pos.hor</span>,</span></span>
-<span class="r-in"><span>  error_model2 <span class="op">=</span> <span class="va">gps.mdl.pos.ver</span>,</span></span>
-<span class="r-in"><span>  error_model3 <span class="op">=</span> <span class="va">gps.mdl.vel.hor</span>,</span></span>
-<span class="r-in"><span>  error_model4 <span class="op">=</span> <span class="va">gps.mdl.vel.ver</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">baro.freq</span> <span class="op">&lt;-</span> <span class="fl">1</span></span></span>
-<span class="r-in"><span><span class="va">baro.mdl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/simts/man/WN.html" class="external-link">WN</a></span><span class="op">(</span>sigma2 <span class="op">=</span> <span class="fl">0.5</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">snsr.mdl</span><span class="op">$</span><span class="va">baro</span> <span class="op">&lt;-</span> <span class="fu"><a href="make_sensor.html">make_sensor</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"baro"</span>, frequency <span class="op">=</span> <span class="va">baro.freq</span>, error_model1 <span class="op">=</span> <span class="va">baro.mdl</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># sensor model for the KF------------------------</span></span></span>
-<span class="r-in"><span><span class="va">KF.mdl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">KF.mdl</span><span class="op">$</span><span class="va">imu</span> <span class="op">&lt;-</span> <span class="va">snsr.mdl</span><span class="op">$</span><span class="va">imu</span></span></span>
-<span class="r-in"><span><span class="va">KF.mdl</span><span class="op">$</span><span class="va">gps</span> <span class="op">&lt;-</span> <span class="va">snsr.mdl</span><span class="op">$</span><span class="va">gps</span></span></span>
-<span class="r-in"><span><span class="va">KF.mdl</span><span class="op">$</span><span class="va">baro</span> <span class="op">&lt;-</span> <span class="va">snsr.mdl</span><span class="op">$</span><span class="va">baro</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># create navigation object------------------------</span></span></span>
-<span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="navigation.html">navigation</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>  traj.ref <span class="op">=</span> <span class="va">traj</span>,</span></span>
-<span class="r-in"><span>  timing <span class="op">=</span> <span class="va">timing</span>,</span></span>
-<span class="r-in"><span>  snsr.mdl <span class="op">=</span> <span class="va">snsr.mdl</span>,</span></span>
-<span class="r-in"><span>  KF.mdl <span class="op">=</span> <span class="va">KF.mdl</span>,</span></span>
-<span class="r-in"><span>  num.runs <span class="op">=</span> <span class="va">num.runs1</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">x2</span> <span class="op">&lt;-</span> <span class="fu"><a href="navigation.html">navigation</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>  traj.ref <span class="op">=</span> <span class="va">traj</span>,</span></span>
-<span class="r-in"><span>  timing <span class="op">=</span> <span class="va">timing</span>,</span></span>
-<span class="r-in"><span>  snsr.mdl <span class="op">=</span> <span class="va">snsr.mdl</span>,</span></span>
-<span class="r-in"><span>  KF.mdl <span class="op">=</span> <span class="va">KF.mdl</span>,</span></span>
-<span class="r-in"><span>  num.runs <span class="op">=</span> <span class="va">num.runs2</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># compare navigation objects------------------------</span></span></span>
-<span class="r-in"><span><span class="fu">compare.navigation</span><span class="op">(</span><span class="va">x1</span>, <span class="va">x2</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span></span></span>
-</code></pre></div>
-    </div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top"><h2 data-toc-skip>Contents</h2>
