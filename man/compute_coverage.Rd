@@ -4,7 +4,7 @@
 \alias{compute_coverage}
 \title{Compute Coverage}
 \usage{
-compute_coverage(sols, alpha = 0.95, step = 100, idx = 1:6)
+compute_coverage(sols, alpha = 0.95, step = 100, idx = 1:6, progressbar = F)
 }
 \arguments{
 \item{sols}{The set of solutions returned by the \code{navigation} function}
@@ -14,6 +14,8 @@ compute_coverage(sols, alpha = 0.95, step = 100, idx = 1:6)
 \item{step}{Step}
 
 \item{idx}{Components of the states to be considered (default: position and orientation)}
+
+\item{progressbar}{A \code{boolean} specifying whether or not to show a progress bar. Default is FALSE.}
 }
 \description{
 Compute Empirical Coverage

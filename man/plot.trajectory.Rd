@@ -79,8 +79,10 @@ dat <- cbind(
 traj <- make_trajectory(data = dat, name = "My cool data")
 plot(traj)
 plot(traj, threeD = TRUE)
-plot(traj, threeD = TRUE, threeD_line_width = 8, threeD_line_color = "#e74c3c")
-plot(traj, threeD = TRUE, threeD_col_grad = TRUE)
+plot(traj, threeD = TRUE, threeD_line_width = 8, 
+threeD_line_color = "#e74c3c")
+plot(traj, threeD = TRUE, 
+threeD_col_grad = TRUE)
 plot(traj,
   threeD = TRUE, threeD_col_grad = TRUE,
   threeD_grad_start = "#e74c3c",

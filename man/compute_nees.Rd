@@ -4,7 +4,7 @@
 \alias{compute_nees}
 \title{Compute Normalized Estimation Errror Squared (NEES)}
 \usage{
-compute_nees(sols, step = 50, idx = 1:6)
+compute_nees(sols, step = 50, idx = 1:6, progressbar = FALSE)
 }
 \arguments{
 \item{sols}{The set of solutions returned by the \code{navigation} function}
@@ -12,6 +12,8 @@ compute_nees(sols, step = 50, idx = 1:6)
 \item{step}{do it for one sample out of \code{step}}
 
 \item{idx}{Components of the states to be considered (default: position and orientation)}
+
+\item{progressbar}{A \code{boolean} specifying whether or not to show a progress bar. Default is FALSE.}
 }
 \description{
 Compute Normalized Estimation Errror Squared (NEES)
