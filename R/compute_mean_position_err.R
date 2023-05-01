@@ -56,7 +56,7 @@
 #' KF.mdl$gps  = snsr.mdl$gps
 #' KF.mdl$baro = snsr.mdl$baro
 #' # perform navigation simulation
-#' num.runs = 10 # number of Monte-Carlo simulations
+#' num.runs = 5 # number of Monte-Carlo simulations
 #' res = navigation(traj.ref = traj,
 #'                  timing = timing,
 #'                  snsr.mdl = snsr.mdl,
