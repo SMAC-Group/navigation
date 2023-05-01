@@ -70,6 +70,7 @@ Plot a \code{trajectory} object in 2D or 3D.
 }
 \examples{
 n <- 100
+set.seed(123)
 dat <- cbind(
   seq(from = 0, to = 60 * 60, length.out = n),
   46.204391 * pi / 180 + cumsum(rnorm(n)) / 10^5,

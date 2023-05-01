@@ -13,14 +13,14 @@
   plot_baro = TRUE,
   baro_col = "black",
   emu_to_plot = 1,
-  plot3d = TRUE,
+  plot3d = F,
   plot_CI = FALSE,
   time_interval = 5,
   col_50 = "#E74C3C4D",
   col_95 = "#F5B0414D",
   col_50_brd = "#E74C3C",
   col_95_brd = "#F5B041",
-  error_analysis = TRUE,
+  error_analysis = F,
   emu_for_covmat = 1,
   nsim = 1000,
   col_traj_error = "#1C12F54D",
@@ -77,80 +77,85 @@ the comparison of the true trajectory with emulated trajectories. One can also p
 by comparing the \code{L2} norm of the difference between emulated trajectories and the true trajectory over time.
 }
 \examples{
-\dontrun{
-# Load trajectory
-load("example0.RData")
-traj <- make_trajectory(data = traj, system = "ned")
 
-# Monte-Carlo settings----------------------------
-num.runs <- 15
-
-# Timing and sampling frequencies-----------------
+data("lemniscate_traj_ned")
+head(lemniscate_traj_ned)
+traj <- make_trajectory(data = lemniscate_traj_ned, system = "ned")
+plot(traj)
 timing <- make_timing(
-  nav.start = 0,
-  nav.end = 50,
-  freq.imu = 10,
-  freq.gps = 1,
-  freq.baro = .5,
-  gps.out.start = 25,
-  gps.out.end = 45
+  nav.start = 0, # time at which to begin filtering
+  nav.end = 100,
+  freq.imu = 100, # frequency of the IMU, can be slower wrt trajectory frequency
+  freq.gps = 1, # GNSS frequency
+  freq.baro = 1, # barometer frequency (to disable, put it very low, e.g. 1e-5)
+  gps.out.start = 60, # to simulate a GNSS outage, set a time before nav.end
+  gps.out.end = 90
 )
-
-# sensor model for data generation----------------
+# create sensor for noise data generation
 snsr.mdl <- list()
-
-imu.freq <- 250
-acc.mdl <- WN(sigma2 = 1.535466e-04) + RW(gamma2 = 1.619511e-10) + DR(omega = 1.276475e-08)
-gyr.mdl <- WN(sigma2 = 1.711080e-03) + RW(gamma2 = 1.532765e-13)
+# this uses a model for noise data generation
+acc.mdl <- WN(sigma2 = 5.989778e-05) + 
+AR1(phi = 9.982454e-01, sigma2 = 1.848297e-10) +
+  AR1(phi = 9.999121e-01, sigma2 = 2.435414e-11) + 
+  AR1(phi = 9.999998e-01, sigma2 = 1.026718e-12)
+gyr.mdl <- WN(sigma2 = 1.503793e-06) + 
+AR1(phi = 9.968999e-01, sigma2 = 2.428980e-11) +
+  AR1(phi = 9.999001e-01, sigma2 = 1.238142e-12)
 snsr.mdl$imu <- make_sensor(
   name = "imu",
-  frequency = imu.freq,
+  frequency = timing$freq.imu,
   error_model1 = acc.mdl,
   error_model2 = gyr.mdl
 )
-
-gps.freq <- 1
-gps.mdl.pos.hor <- WN(sigma2 = 2^2)
-gps.mdl.pos.ver <- WN(sigma2 = 4^2)
-gps.mdl.vel.hor <- WN(sigma2 = 0.04^2)
-gps.mdl.vel.ver <- WN(sigma2 = 0.06^2)
+# RTK-like GNSS
+gps.mdl.pos.hor <- WN(sigma2 = 0.025^2)
+gps.mdl.pos.ver <- WN(sigma2 = 0.05^2)
+gps.mdl.vel.hor <- WN(sigma2 = 0.01^2)
+gps.mdl.vel.ver <- WN(sigma2 = 0.02^2)
 snsr.mdl$gps <- make_sensor(
-  name = "gps", frequency = gps.freq,
+  name = "gps",
+  frequency = timing$freq.gps,
   error_model1 = gps.mdl.pos.hor,
   error_model2 = gps.mdl.pos.ver,
   error_model3 = gps.mdl.vel.hor,
   error_model4 = gps.mdl.vel.ver
 )
-baro.freq <- 1
+# Barometer
 baro.mdl <- WN(sigma2 = 0.5^2)
-snsr.mdl$baro <- make_sensor(name = "baro", frequency = baro.freq, error_model1 = baro.mdl)
-
-# sensor model for the KF------------------------
+snsr.mdl$baro <- make_sensor(name = "baro",
+                             frequency = timing$freq.baro,
+                             error_model1 = baro.mdl)
+# define sensor for Kalmna filter
 KF.mdl <- list()
-
-KF.mdl$imu <- snsr.mdl$imu
+# make IMU sensor
+KF.mdl$imu <- make_sensor(
+  name = "imu",
+  frequency = timing$freq.imu,
+  error_model1 = acc.mdl,
+  error_model2 = gyr.mdl
+)
 KF.mdl$gps <- snsr.mdl$gps
 KF.mdl$baro <- snsr.mdl$baro
-
-# create navigation object------------------------
-x <- navigation(
+# perform navigation simulation
+num.runs <- 5 # number of Monte-Carlo simulations
+res <- navigation(
   traj.ref = traj,
   timing = timing,
   snsr.mdl = snsr.mdl,
   KF.mdl = KF.mdl,
-  num.runs = num.runs
+  num.runs = num.runs,
+  noProgressBar = F,
+  PhiQ_method = "4",
+  # order of the Taylor expansion of the matrix exponential used to compute Phi and Q matrices
+  compute_PhiQ_each_n = 10,
+  # compute new Phi and Q matrices every n IMU steps (execution time optimization)
+  parallel.ncores = 1,
+  P_subsampling = timing$freq.imu
 )
+plot(res)
+plot(res, plot3d = T)
+plot(res, error_analysis = TRUE)
 
-# plot navigation object------------------------
-plot(x,
-  plot3d = T,
-  time_interval = 1,
-  emu_for_covmat = 1,
-  plot_mean_traj = F,
-  plot_CI = T,
-  nsim = 1000
-)
-}
 }
 \author{
 Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
