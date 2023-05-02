@@ -61,6 +61,7 @@
 #' # create navigation object------------------------
 #' x1 <- navigation(
 #'   traj.ref = traj,
+#'   parallel.ncores = 1,
 #'   timing = timing,
 #'   snsr.mdl = snsr.mdl,
 #'   KF.mdl = KF.mdl,
@@ -68,6 +69,7 @@
 #' )
 #' x2 <- navigation(
 #'   traj.ref = traj,
+#'   parallel.ncores = 1,
 #'   timing = timing,
 #'   snsr.mdl = snsr.mdl,
 #'   KF.mdl = KF.mdl,
