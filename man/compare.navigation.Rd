@@ -38,8 +38,7 @@ compare.navigation(
 \description{
 Comparison of error analysis plot for different trajectories
 }
-\author{
-Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
+\examples{
 # Load trajectory
 data(example_1_traj_ned)
 traj <- make_trajectory(data = example_1_traj_ned, system = "ned")
@@ -103,4 +102,9 @@ x2 <- navigation(
 )
 # compare navigation objects------------------------
 compare.navigation(x1, x2,nsim = num.runs)
+
+
+}
+\author{
+Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
 }

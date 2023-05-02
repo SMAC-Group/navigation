@@ -75,6 +75,8 @@
 #' )
 #' # compare navigation objects------------------------
 #' compare.navigation(x1, x2,nsim = num.runs)
+#' 
+#' 
 #' @export
 #' @importFrom stats quantile
 #' @importFrom graphics polygon
