@@ -88,6 +88,7 @@ KF.mdl$baro <- snsr.mdl$baro
 # create navigation object------------------------
 x1 <- navigation(
   traj.ref = traj,
+  parallel.ncores = 1,
   timing = timing,
   snsr.mdl = snsr.mdl,
   KF.mdl = KF.mdl,
@@ -95,6 +96,7 @@ x1 <- navigation(
 )
 x2 <- navigation(
   traj.ref = traj,
+  parallel.ncores = 1,
   timing = timing,
   snsr.mdl = snsr.mdl,
   KF.mdl = KF.mdl,
