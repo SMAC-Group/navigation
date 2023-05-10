@@ -25,7 +25,7 @@ Let's see how the reference trajectory looks like.
 ```{r,  fig.height=4, fig.align='center', fig.width=7}
 # plot traj
 plot(traj, n_split = 6)
-plot(traj, threeD = T)
+plot(traj, threeD = TRUE)
 ```
 
 
@@ -141,12 +141,12 @@ coverage <- compute_coverage(res, alpha = 0.7, step = 100, idx = 1:6)
 We can plot the computed statistics
 
 ```{r,  fig.height=5, fig.align='center', fig.width=6, eval=T}
-plot_imu_err_with_cov(res, error = F)
+plot_imu_err_with_cov(res, error = FALSE)
 ```
 
 
 ```{r,  fig.height=5, fig.align='center', fig.width=6, eval=T}
-plot_nav_states_with_cov(res, idx = 1:5, error = T)
+plot_nav_states_with_cov(res, idx = 1:5, error = TRUE)
 
 plot(pe)
 plot(oe)

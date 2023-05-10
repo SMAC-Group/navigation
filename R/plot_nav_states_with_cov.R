@@ -10,15 +10,19 @@
 #' @examples
 #' data("lemniscate_traj_ned")
 #' head(lemniscate_traj_ned)
-#' traj <- make_trajectory(data = lemniscate_traj_ned, system = "ned")
+#' traj <- make_trajectory(data = lemniscate_traj_ned,
+#'  system = "ned")
 #' plot(traj)
 #' timing <- make_timing(
 #'   nav.start = 0, # time at which to begin filtering
 #'   nav.end = 100,
-#'   freq.imu = 100, # frequency of the IMU, can be slower wrt trajectory frequency
+#'   freq.imu = 100, 
+#'   # frequency of the IMU, can be slower wrt trajectory frequency
 #'   freq.gps = 1, # GNSS frequency
-#'   freq.baro = 1, # barometer frequency (to disable, put it very low, e.g. 1e-5)
-#'   gps.out.start = 60, # to simulate a GNSS outage, set a time before nav.end
+#'   freq.baro = 1, 
+#'   # barometer frequency (to disable, put it very low, e.g. 1e-5)
+#'   gps.out.start = 60, 
+#'   # to simulate a GNSS outage, set a time before nav.end
 #'   gps.out.end = 90
 #' )
 #' # create sensor for noise data generation
@@ -84,7 +88,7 @@
 #'   parallel.ncores = 1,
 #'   P_subsampling = timing$freq.imu
 #' )
-#' plot_nav_states_with_cov(res, idx = 1:5, error = T)
+#' plot_nav_states_with_cov(res, idx = 1:5, error = TRUE)
 #' 
 plot_nav_states_with_cov <- function(sol, idx = 1, cov_idx = 1, error = TRUE, step = 10) {
   if (length(cov_idx) > 1) {

@@ -10,14 +10,18 @@
 #' @examples
 #' data("lemniscate_traj_ned")
 #' head(lemniscate_traj_ned)
-#' traj <- make_trajectory(data = lemniscate_traj_ned, system = "ned")
+#' traj <- make_trajectory(data = lemniscate_traj_ned,
+#'  system = "ned")
 #' plot(traj)
 #' timing <- make_timing(
 #'   nav.start = 0, # time at which to begin filtering
 #'   nav.end = 100,
-#'   freq.imu = 100, # frequency of the IMU, can be slower wrt trajectory frequency
-#'   freq.gps = 1, # GNSS frequency
-#'   freq.baro = 1, # barometer frequency (to disable, put it very low, e.g. 1e-5)
+#'   freq.imu = 100, 
+#'   # frequency of the IMU, can be slower wrt trajectory frequency
+#'   freq.gps = 1, 
+#'   # GNSS frequency
+#'   freq.baro = 1, 
+#'   # barometer frequency (to disable, put it very low, e.g. 1e-5)
 #'   gps.out.start = 60, # to simulate a GNSS outage, set a time before nav.end
 #'   gps.out.end = 90
 #' )
