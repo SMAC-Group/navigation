@@ -106,15 +106,19 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> [4,] 0.03 0.15707937 0.15707860 0 0.0005463461 2.474976e-04 0.7853905</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [5,] 0.04 0.20943890 0.20943706 0 0.0007284778 3.298918e-04 0.7853847</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [6,] 0.05 0.26179819 0.26179460 0 0.0009106235 4.122374e-04 0.7853773</span>
-<span class="r-in"><span><span class="va">traj</span> <span class="op">&lt;-</span> <span class="fu"><a href="make_trajectory.html">make_trajectory</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">lemniscate_traj_ned</span>, system <span class="op">=</span> <span class="st">"ned"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">traj</span> <span class="op">&lt;-</span> <span class="fu"><a href="make_trajectory.html">make_trajectory</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">lemniscate_traj_ned</span>,</span></span>
+<span class="r-in"><span> system <span class="op">=</span> <span class="st">"ned"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">traj</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plot_imu_err_with_cov-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="va">timing</span> <span class="op">&lt;-</span> <span class="fu"><a href="make_timing.html">make_timing</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>  nav.start <span class="op">=</span> <span class="fl">0</span>, <span class="co"># time at which to begin filtering</span></span></span>
 <span class="r-in"><span>  nav.end <span class="op">=</span> <span class="fl">100</span>,</span></span>
-<span class="r-in"><span>  freq.imu <span class="op">=</span> <span class="fl">100</span>, <span class="co"># frequency of the IMU, can be slower wrt trajectory frequency</span></span></span>
-<span class="r-in"><span>  freq.gps <span class="op">=</span> <span class="fl">1</span>, <span class="co"># GNSS frequency</span></span></span>
-<span class="r-in"><span>  freq.baro <span class="op">=</span> <span class="fl">1</span>, <span class="co"># barometer frequency (to disable, put it very low, e.g. 1e-5)</span></span></span>
+<span class="r-in"><span>  freq.imu <span class="op">=</span> <span class="fl">100</span>, </span></span>
+<span class="r-in"><span>  <span class="co"># frequency of the IMU, can be slower wrt trajectory frequency</span></span></span>
+<span class="r-in"><span>  freq.gps <span class="op">=</span> <span class="fl">1</span>, </span></span>
+<span class="r-in"><span>  <span class="co"># GNSS frequency</span></span></span>
+<span class="r-in"><span>  freq.baro <span class="op">=</span> <span class="fl">1</span>, </span></span>
+<span class="r-in"><span>  <span class="co"># barometer frequency (to disable, put it very low, e.g. 1e-5)</span></span></span>
 <span class="r-in"><span>  gps.out.start <span class="op">=</span> <span class="fl">60</span>, <span class="co"># to simulate a GNSS outage, set a time before nav.end</span></span></span>
 <span class="r-in"><span>  gps.out.end <span class="op">=</span> <span class="fl">90</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
