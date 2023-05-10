@@ -39,11 +39,10 @@ compare.navigation(
 Comparison of error analysis plot for different trajectories
 }
 \examples{
-# Load trajectory
 data(example_1_traj_ned)
 traj <- make_trajectory(data = example_1_traj_ned, system = "ned")
 # Monte-Carlo settings----------------------------
-num.runs <- 10
+num.runs <- 20
 # Timing and sampling frequencies-----------------
 timing <- make_timing(
   nav.start = 0,
@@ -56,56 +55,57 @@ timing <- make_timing(
 )
 # sensor model for data generation----------------
 snsr.mdl <- list()
-imu.freq <- 250
-acc.mdl <- WN(sigma2 = 1.535466e-04) + RW(gamma2 = 1.619511e-10)
-gyr.mdl <- WN(sigma2 = 1.711080e-03) + RW(gamma2 = 1.532765e-13)
-snsr.mdl$imu <- make_sensor(
-  name = "imu", frequency = imu.freq,
-  error_model1 = acc.mdl, error_model2 = gyr.mdl
-)
-gps.freq <- 1
-gps.mdl.pos.hor <- WN(sigma2 = 2^2)
-gps.mdl.pos.ver <- WN(sigma2 = 4^2)
-gps.mdl.vel.hor <- WN(sigma2 = 0.04^2)
-gps.mdl.vel.ver <- WN(sigma2 = 0.06^2)
+acc.mdl <- WN(sigma2 = 5.989778e-05) + AR1(phi = 9.982454e-01, sigma2 = 1.848297e-10) + AR1(phi = 9.999121e-01, sigma2 = 2.435414e-11) + AR1(phi = 9.999998e-01, sigma2 = 1.026718e-12)
+gyr.mdl <- WN(sigma2 = 1.503793e-06) + AR1(phi = 9.968999e-01, sigma2 = 2.428980e-11) + AR1(phi = 9.999001e-01, sigma2 = 1.238142e-12)
+snsr.mdl$imu <- make_sensor(name = "imu", frequency = timing$freq.imu, error_model1 = acc.mdl, error_model2 = gyr.mdl)
+# stochastic model for gps
+gps.mdl.pos.hor <- WN(sigma2 = 0.025^2)
+gps.mdl.pos.ver <- WN(sigma2 = 0.05^2)
+gps.mdl.vel.hor <- WN(sigma2 = 0.01^2)
+gps.mdl.vel.ver <- WN(sigma2 = 0.02^2)
 snsr.mdl$gps <- make_sensor(
-  name = "gps", frequency = gps.freq,
+  name = "gps", frequency = timing$freq.gps,
   error_model1 = gps.mdl.pos.hor,
   error_model2 = gps.mdl.pos.ver,
   error_model3 = gps.mdl.vel.hor,
   error_model4 = gps.mdl.vel.ver
 )
-baro.freq <- 1
 baro.mdl <- WN(sigma2 = 0.5^2)
-snsr.mdl$baro <- make_sensor(name = "baro", 
-frequency = baro.freq,
- error_model1 = baro.mdl)
-# sensor model for the KF------------------------
+snsr.mdl$baro <- make_sensor(name = "baro", frequency = timing$freq.baro, error_model1 = baro.mdl)
+# sensor model for the KF, ideal setup ------------------------
 KF.mdl <- list()
-KF.mdl$imu <- snsr.mdl$imu
+KF.mdl$imu <- make_sensor(name = "imu", frequency = timing$freq.imu, error_model1 = acc.mdl, error_model2 = gyr.mdl)
 KF.mdl$gps <- snsr.mdl$gps
 KF.mdl$baro <- snsr.mdl$baro
-# create navigation object------------------------
+# sensor model for the KF, wrong model ------------------------
+wrong_acc.mdl <- WN(sigma2 = 5.989778e-05)
+wrong_gyr.mdl <- WN(sigma2 = 1.503793e-06)
+wrong_KF.mdl <- list()
+wrong_KF.mdl$imu <- make_sensor(name = "imu", frequency = timing$freq.imu, error_model1 = wrong_acc.mdl, error_model2 = wrong_gyr.mdl)
+wrong_KF.mdl$gps <- snsr.mdl$gps
+wrong_KF.mdl$baro <- snsr.mdl$baro
+
 x1 <- navigation(
   traj.ref = traj,
   parallel.ncores = 1,
   timing = timing,
   snsr.mdl = snsr.mdl,
   KF.mdl = KF.mdl,
-  num.runs = num.runs
+  num.runs = num.runs,
+  noProgressBar = TRUE,
 )
+
 x2 <- navigation(
   traj.ref = traj,
   parallel.ncores = 1,
   timing = timing,
   snsr.mdl = snsr.mdl,
-  KF.mdl = KF.mdl,
-  num.runs = num.runs
+  KF.mdl = wrong_KF.mdl,
+  num.runs = num.runs,
+  noProgressBar = TRUE,
 )
-# compare navigation objects------------------------
-compare.navigation(x1, x2,nsim = num.runs)
 
-
+compare.navigation(x1, x2)
 }
 \author{
 Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
