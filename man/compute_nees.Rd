@@ -22,7 +22,8 @@ Compute Normalized Estimation Errror Squared (NEES)
 # load data
 data("lemniscate_traj_ned")
 head(lemniscate_traj_ned)
-traj <- make_trajectory(data = lemniscate_traj_ned, system = "ned")
+traj <- make_trajectory(data = lemniscate_traj_ned, 
+system = "ned")
 timing <- make_timing(
   nav.start = 0, # time at which to begin filtering
   nav.end = 130,
@@ -31,18 +32,26 @@ timing <- make_timing(
   freq.gps = 1,
   # GNSS frequency
   freq.baro = 1,
-  # barometer frequency (to disable, put it very low, e.g. 1e-5)
-  gps.out.start = 60, # to simulate a GNSS outage, set a time before nav.end
+  # barometer frequency 
+  # (to disable, put it very low, e.g. 1e-5)
+  gps.out.start = 60, 
+  # to simulate a GNSS outage, set a time before nav.end
   gps.out.end = 120
 )
 # create sensor for noise data generation
 snsr.mdl <- list()
 # this uses a model for noise data generation
-acc.mdl <- WN(sigma2 = 5.989778e-05) + AR1(phi = 9.982454e-01, sigma2 = 1.848297e-10) +
-  AR1(phi = 9.999121e-01, sigma2 = 2.435414e-11) + AR1(phi = 9.999998e-01, sigma2 = 1.026718e-12)
-gyr.mdl <- WN(sigma2 = 1.503793e-06) + AR1(phi = 9.968999e-01, sigma2 = 2.428980e-11) +
+acc.mdl <- WN(sigma2 = 5.989778e-05) + 
+AR1(phi = 9.982454e-01, sigma2 = 1.848297e-10) +
+  AR1(phi = 9.999121e-01, sigma2 = 2.435414e-11) + 
+  AR1(phi = 9.999998e-01, sigma2 = 1.026718e-12)
+gyr.mdl <- WN(sigma2 = 1.503793e-06) + 
+AR1(phi = 9.968999e-01, sigma2 = 2.428980e-11) +
   AR1(phi = 9.999001e-01, sigma2 = 1.238142e-12)
-snsr.mdl$imu <- make_sensor(name = "imu", frequency = timing$freq.imu, error_model1 = acc.mdl, error_model2 = gyr.mdl)
+snsr.mdl$imu <- make_sensor(name = "imu", 
+frequency = timing$freq.imu, 
+error_model1 = acc.mdl, 
+error_model2 = gyr.mdl)
 # RTK-like GNSS
 gps.mdl.pos.hor <- WN(sigma2 = 0.025^2)
 gps.mdl.pos.ver <- WN(sigma2 = 0.05^2)
@@ -83,8 +92,11 @@ res <- navigation(
   num.runs = num.runs,
   noProgressBar = TRUE,
   PhiQ_method = "4",
-  # order of the Taylor expansion of the matrix exponential used to compute Phi and Q matrices
-  compute_PhiQ_each_n = 10, # compute new Phi and Q matrices every n IMU steps (execution time optimization)
+  # order of the Taylor expansion of the matrix exponential
+  #  used to compute Phi and Q matrices
+  compute_PhiQ_each_n = 10, 
+  # compute new Phi and Q matrices every n IMU steps
+  #  (execution time optimization)
   parallel.ncores = 1,
   P_subsampling = timing$freq.imu
 ) # keep one covariance every second

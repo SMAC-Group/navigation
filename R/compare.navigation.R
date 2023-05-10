@@ -14,7 +14,8 @@
 #' @examples
 #  Load trajectory
 #' data(example_1_traj_ned)
-#' traj <- make_trajectory(data = example_1_traj_ned, system = "ned")
+#' traj <- make_trajectory(data = example_1_traj_ned, 
+#' system = "ned")
 #' # Monte-Carlo settings----------------------------
 #' num.runs <- 20
 #' # Timing and sampling frequencies-----------------
@@ -29,9 +30,16 @@
 #' )
 #' # sensor model for data generation----------------
 #' snsr.mdl <- list()
-#' acc.mdl <- WN(sigma2 = 5.989778e-05) + AR1(phi = 9.982454e-01, sigma2 = 1.848297e-10) + AR1(phi = 9.999121e-01, sigma2 = 2.435414e-11) + AR1(phi = 9.999998e-01, sigma2 = 1.026718e-12)
-#' gyr.mdl <- WN(sigma2 = 1.503793e-06) + AR1(phi = 9.968999e-01, sigma2 = 2.428980e-11) + AR1(phi = 9.999001e-01, sigma2 = 1.238142e-12)
-#' snsr.mdl$imu <- make_sensor(name = "imu", frequency = timing$freq.imu, error_model1 = acc.mdl, error_model2 = gyr.mdl)
+#' acc.mdl <- WN(sigma2 = 5.989778e-05) + 
+#' AR1(phi = 9.982454e-01, sigma2 = 1.848297e-10) + 
+#' AR1(phi = 9.999121e-01, sigma2 = 2.435414e-11) + 
+#' AR1(phi = 9.999998e-01, sigma2 = 1.026718e-12)
+#' gyr.mdl <- WN(sigma2 = 1.503793e-06) + 
+#' AR1(phi = 9.968999e-01, sigma2 = 2.428980e-11) + 
+#' AR1(phi = 9.999001e-01, sigma2 = 1.238142e-12)
+#' snsr.mdl$imu <- make_sensor(name = "imu", 
+#' frequency = timing$freq.imu, error_model1 = acc.mdl, 
+#' error_model2 = gyr.mdl)
 #' # stochastic model for gps
 #' gps.mdl.pos.hor <- WN(sigma2 = 0.025^2)
 #' gps.mdl.pos.ver <- WN(sigma2 = 0.05^2)
@@ -45,17 +53,25 @@
 #'   error_model4 = gps.mdl.vel.ver
 #' )
 #' baro.mdl <- WN(sigma2 = 0.5^2)
-#' snsr.mdl$baro <- make_sensor(name = "baro", frequency = timing$freq.baro, error_model1 = baro.mdl)
+#' snsr.mdl$baro <- make_sensor(name = "baro", 
+#' frequency = timing$freq.baro, 
+#' error_model1 = baro.mdl)
 #' # sensor model for the KF, ideal setup ------------------------
 #' KF.mdl <- list()
-#' KF.mdl$imu <- make_sensor(name = "imu", frequency = timing$freq.imu, error_model1 = acc.mdl, error_model2 = gyr.mdl)
+#' KF.mdl$imu <- make_sensor(name = "imu", 
+#' frequency = timing$freq.imu, 
+#' error_model1 = acc.mdl, 
+#' error_model2 = gyr.mdl)
 #' KF.mdl$gps <- snsr.mdl$gps
 #' KF.mdl$baro <- snsr.mdl$baro
 #' # sensor model for the KF, wrong model ------------------------
 #' wrong_acc.mdl <- WN(sigma2 = 5.989778e-05)
 #' wrong_gyr.mdl <- WN(sigma2 = 1.503793e-06)
 #' wrong_KF.mdl <- list()
-#' wrong_KF.mdl$imu <- make_sensor(name = "imu", frequency = timing$freq.imu, error_model1 = wrong_acc.mdl, error_model2 = wrong_gyr.mdl)
+#' wrong_KF.mdl$imu <- make_sensor(name = "imu",
+#'  frequency = timing$freq.imu, 
+#'  error_model1 = wrong_acc.mdl, 
+#'  error_model2 = wrong_gyr.mdl)
 #' wrong_KF.mdl$gps <- snsr.mdl$gps
 #' wrong_KF.mdl$baro <- snsr.mdl$baro
 #' 
