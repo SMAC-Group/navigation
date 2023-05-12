@@ -78,7 +78,7 @@ head(lemniscate_traj_ned)
 traj <- make_trajectory(data = lemniscate_traj_ned, system = "ned")
 timing <- make_timing(
   nav.start = 0, # time at which to begin filtering
-  nav.end = 50,
+  nav.end = 30,
   freq.imu = 100, # frequency of the IMU, can be slower wrt trajectory frequency
   freq.gps = 1, # GNSS frequency
   freq.baro = 1, # barometer frequency (to disable, put it very low, e.g. 1e-5)
