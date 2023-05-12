@@ -4,10 +4,12 @@
 \alias{print.sensor}
 \title{Print a \code{sensor} object parameters (name, frequency and error model)}
 \usage{
-\method{print}{sensor}(x)
+\method{print}{sensor}(x, ...)
 }
 \arguments{
 \item{x}{A \code{sensor} object.}
+
+\item{...}{Further arguments passed to or from other methods.}
 }
 \value{
 Print the \code{sensor} object name and specifications in the console.
