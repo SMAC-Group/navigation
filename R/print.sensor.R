@@ -2,6 +2,7 @@
 #' @description Print method for a \code{sensor} object
 #' @return Print the \code{sensor} object name and specifications in the console.
 #' @param x A \code{sensor} object.
+#' @param ... Further arguments passed to or from other methods.
 #' @author Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
 #'
 #'
@@ -18,7 +19,7 @@
 #' )
 #' print(imu.mdl)
 #'
-print.sensor <- function(x) {
+print.sensor <- function(x, ...) {
   cat("Senor name is: ", x$name, "\b.\n\n")
   cat("Sensor frequency is: ", x$frequency, "Hz.\n\n")
   cat("Sensor error model:\n")
