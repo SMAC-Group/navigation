@@ -29,7 +29,6 @@ reference:
     contents:
     - plot.trajectory
     - plot.navigation
-    - compare.navigation
     - plot_nav_states_with_cov
     - plot_imu_err_with_cov
     - plot.nees.stat
