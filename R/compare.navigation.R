@@ -98,6 +98,7 @@
 #' 
 #' compare.navigation(x1, x2)
 #' }
+#' @noRd
 #' @importFrom stats quantile
 #' @importFrom graphics polygon
 compare.navigation <- function(..., nsim = 100, emu_for_covmat = 1,
