@@ -12,6 +12,7 @@
 #' @author Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
 #' 
 #' @examples
+#' \dontrun{
 #  Load trajectory
 #' data(example_1_traj_ned)
 #' traj <- make_trajectory(data = example_1_traj_ned, 
@@ -96,6 +97,7 @@
 #' )
 #' 
 #' compare.navigation(x1, x2)
+#' }
 #' @importFrom stats quantile
 #' @importFrom graphics polygon
 compare.navigation <- function(..., nsim = 100, emu_for_covmat = 1,

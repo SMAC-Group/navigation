@@ -39,6 +39,7 @@ compare.navigation(
 Comparison of error analysis plot for different trajectories
 }
 \examples{
+\dontrun{
 data(example_1_traj_ned)
 traj <- make_trajectory(data = example_1_traj_ned, 
 system = "ned")
@@ -122,6 +123,7 @@ x2 <- navigation(
 )
 
 compare.navigation(x1, x2)
+}
 }
 \author{
 Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
