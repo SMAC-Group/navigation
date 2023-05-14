@@ -5,7 +5,7 @@
 version](https://img.shields.io/badge/R%3E%3D-4.0.0-6666ff.svg)](https://cran.r-project.org/)
 
 
-# `navigation` Overview <a href="https://smac-group.com/"><img src="man/figures/logo.png" align="right" style="width: 20%; height: 20%"/></a>
+# 🛰️ `navigation` Overview <a href="https://smac-group.com/"><img src="man/figures/logo.png" align="right" style="width: 20%; height: 20%"/></a>
 
 The `navigation` `R` package allows to analyze the
 impact of sensor error modeling on performance of integrated navigation
