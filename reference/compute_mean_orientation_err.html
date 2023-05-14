@@ -111,15 +111,15 @@
 <span class="r-in"><span><span class="va">timing</span> <span class="op">&lt;-</span> <span class="fu"><a href="make_timing.html">make_timing</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>  nav.start <span class="op">=</span> <span class="fl">0</span>,</span></span>
 <span class="r-in"><span>  <span class="co"># time at which to begin filtering</span></span></span>
-<span class="r-in"><span>  nav.end <span class="op">=</span> <span class="fl">30</span>,</span></span>
+<span class="r-in"><span>  nav.end <span class="op">=</span> <span class="fl">20</span>,</span></span>
 <span class="r-in"><span>  freq.imu <span class="op">=</span> <span class="fl">100</span>,</span></span>
 <span class="r-in"><span>  <span class="co"># frequency of the IMU, can be slower wrt trajectory frequency</span></span></span>
 <span class="r-in"><span>  freq.gps <span class="op">=</span> <span class="fl">1</span>, <span class="co"># GNSS frequency</span></span></span>
 <span class="r-in"><span>  freq.baro <span class="op">=</span> <span class="fl">1</span>,</span></span>
 <span class="r-in"><span>  <span class="co"># barometer frequency (to disable, put it very low, e.g. 1e-5)</span></span></span>
-<span class="r-in"><span>  gps.out.start <span class="op">=</span> <span class="fl">20</span>,</span></span>
+<span class="r-in"><span>  gps.out.start <span class="op">=</span> <span class="fl">15</span>,</span></span>
 <span class="r-in"><span>  <span class="co"># to simulate a GNSS outage, set a time before nav.end</span></span></span>
-<span class="r-in"><span>  gps.out.end <span class="op">=</span> <span class="fl">25</span></span></span>
+<span class="r-in"><span>  gps.out.end <span class="op">=</span> <span class="fl">20</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># create sensor for noise data generation</span></span></span>
 <span class="r-in"><span><span class="va">snsr.mdl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span></span></span>
@@ -169,7 +169,7 @@
 <span class="r-in"><span><span class="va">KF.mdl</span><span class="op">$</span><span class="va">gps</span> <span class="op">&lt;-</span> <span class="va">snsr.mdl</span><span class="op">$</span><span class="va">gps</span></span></span>
 <span class="r-in"><span><span class="va">KF.mdl</span><span class="op">$</span><span class="va">baro</span> <span class="op">&lt;-</span> <span class="va">snsr.mdl</span><span class="op">$</span><span class="va">baro</span></span></span>
 <span class="r-in"><span><span class="co"># perform navigation simulation</span></span></span>
-<span class="r-in"><span><span class="va">num.runs</span> <span class="op">&lt;-</span> <span class="fl">10</span> <span class="co"># number of Monte-Carlo simulations</span></span></span>
+<span class="r-in"><span><span class="va">num.runs</span> <span class="op">&lt;-</span> <span class="fl">5</span> <span class="co"># number of Monte-Carlo simulations</span></span></span>
 <span class="r-in"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="navigation.html">navigation</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>  traj.ref <span class="op">=</span> <span class="va">traj</span>,</span></span>
 <span class="r-in"><span>  timing <span class="op">=</span> <span class="va">timing</span>,</span></span>
@@ -177,7 +177,7 @@
 <span class="r-in"><span>  KF.mdl <span class="op">=</span> <span class="va">KF.mdl</span>,</span></span>
 <span class="r-in"><span>  num.runs <span class="op">=</span> <span class="va">num.runs</span>,</span></span>
 <span class="r-in"><span>  noProgressBar <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
-<span class="r-in"><span>  PhiQ_method <span class="op">=</span> <span class="st">"4"</span>,</span></span>
+<span class="r-in"><span>  PhiQ_method <span class="op">=</span> <span class="st">"1"</span>,</span></span>
 <span class="r-in"><span>  <span class="co"># order of the Taylor expansion of the matrix exponential</span></span></span>
 <span class="r-in"><span>  <span class="co"># used to compute Phi and Q matrices</span></span></span>
 <span class="r-in"><span>  compute_PhiQ_each_n <span class="op">=</span> <span class="fl">10</span>,</span></span>
