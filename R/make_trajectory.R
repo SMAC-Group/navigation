@@ -5,7 +5,7 @@
 #' @param start_time  A \code{string} (optional) corresponding to the start time for the trajectory.
 #' @param name        A \code{string} (optional) corresponding to the name of the dataset.
 #' @param ...         Additional arguments.
-#' @return A \code{trajectory} object.
+#' @return An object of class \code{trajectory}.
 #' @export
 #' @author Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
 #' @examples

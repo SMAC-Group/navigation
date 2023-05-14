@@ -17,6 +17,9 @@
 
 \item{ylim}{ylim}
 }
+\value{
+A plot of the position or orientation error.
+}
 \description{
 plot multiple stats alltogether
 }

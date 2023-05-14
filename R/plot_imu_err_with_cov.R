@@ -6,7 +6,7 @@
 #' @param step Plot one time out of \code{step}
 #' @export
 #' @author Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
-#' 
+#' @return A plot of the estimated IMU errors with covariance.
 #' @examples
 #' data("lemniscate_traj_ned")
 #' head(lemniscate_traj_ned)

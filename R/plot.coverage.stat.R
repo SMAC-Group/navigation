@@ -3,6 +3,7 @@
 #' @param ... coverage, e.g., computed with \code{compute_coverage}
 #' @param legend Legend of the plot.
 #' @param title Title of the plot.
+#' @return a plot of the empirical coverage.
 #' @examples
 #' data("lemniscate_traj_ned")
 #' head(lemniscate_traj_ned)

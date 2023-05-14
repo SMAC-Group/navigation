@@ -5,6 +5,7 @@
 #' @param cov_idx Which Monte-Carlo solution to use for confidence intervals
 #' @param error Wether to plot the error with respect to the refefence or the estimated values
 #' @param step Plot one time out of \code{step}
+#' @return a plot of the navigation states with the estimated covariance.
 #' @export
 #' @author Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
 #' @examples

@@ -17,6 +17,9 @@ plot_nav_states_with_cov(sol, idx = 1, cov_idx = 1, error = TRUE, step = 10)
 
 \item{step}{Plot one time out of \code{step}}
 }
+\value{
+a plot of the navigation states with the estimated covariance.
+}
 \description{
 this function plots the navigation states with estimated covariance of a solution computed with the \code{navigation} function
 }

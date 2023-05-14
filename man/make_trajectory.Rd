@@ -24,7 +24,7 @@ make_trajectory(
 \item{...}{Additional arguments.}
 }
 \value{
-A \code{trajectory} object.
+An object of class \code{trajectory}.
 }
 \description{
 Create a \code{trajectory} object from simple matrix input.

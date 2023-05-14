@@ -13,6 +13,9 @@
 
 \item{title}{Title of the plot.}
 }
+\value{
+a plot of the empirical coverage.
+}
 \description{
 plot multiple coverages alltogether
 }

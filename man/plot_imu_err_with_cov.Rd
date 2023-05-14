@@ -15,6 +15,9 @@ plot_imu_err_with_cov(sol, idx = 1, error = TRUE, step = 10)
 
 \item{step}{Plot one time out of \code{step}}
 }
+\value{
+A plot of the estimated IMU errors with covariance.
+}
 \description{
 this function plots the estimated IMU errors with covariance of a solution computed with the \code{navigation} function
 }

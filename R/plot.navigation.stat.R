@@ -7,7 +7,7 @@
 #' @param xlim xlim
 #' @param ylim ylim
 #' @author Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
-#'
+#' @return  A plot of the position or orientation error.
 #' @examples
 #' data("lemniscate_traj_ned")
 #' head(lemniscate_traj_ned)

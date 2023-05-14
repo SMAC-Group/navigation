@@ -23,6 +23,7 @@
 #' @param col_traj_error The color for the trajectory estimation error
 #' @param ... additional plotting argument
 #' @param time_interval_simu time interval simu
+#' @return A 2D or 3D plot of the trajectory with the fused trajectories.
 #' @importFrom plotly plot_ly
 #' @importFrom plotly add_trace
 #' @importFrom MASS mvrnorm

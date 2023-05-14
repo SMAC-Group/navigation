@@ -71,6 +71,9 @@
 
 \item{...}{additional plotting argument}
 }
+\value{
+A 2D or 3D plot of the trajectory with the fused trajectories.
+}
 \description{
 This function enables the visualization of a \code{navigation} object, both in 2d and in 3d. The function therefore enables
 the comparison of the true trajectory with emulated trajectories. One can also plot the analysis of the error of the trajectories
