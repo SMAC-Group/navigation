@@ -141,38 +141,6 @@ plot.navigation.stat <- function(..., legend = NA, title = NA, xlim = c(NA, NA),
   }
 }
 
-#' @title Plot multiple \code{nees.stat} objects
-#' @description plot multiple \code{nees.stat} objects alltogether
-#' @param ... NEES, e.g., computed with \code{compute_nees}
-#' @param alpha for the confidence interval plot
-#' @param legend legend of the plot.
-#' @param title title of the plot.
-#' @export
-#' @author Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
-#'
-plot.nees.stat <- function(..., alpha = 0.95, legend = NA, title = NA) {
-  stats <- list(...)
-
-  # check arguments
-  for (i in seq_along(stats)) {
-    if (!inherits(stats[[i]], "nees.stat")) {
-      stop(paste("argument", i, "is not a nees.stat"))
-    }
-  }
-
-  do.call(plot.navigation.stat, c(stats, list("legend" = legend, "title" = title)))
-
-  # plot bounds
-
-  dof <- length(attributes(stats[[1]])$meta$idx)
-  nruns <- attributes(stats[[1]])$meta$nruns
-
-  bounds <- qchisq(c((1 - alpha) / 2, 1 - (1 - alpha) / 2), df = dof * nruns, lower.tail = TRUE) / nruns
-  # bounds = qgamma(c( (1-alpha)/2, 1-(1-alpha)/2 ), shape = nruns*dof/2, scale = 2/nruns)
-
-  abline(h = bounds[1], lt = 2, col = "black")
-  abline(h = bounds[2], lt = 2, col = "black")
-}
 
 #' @title Plot multiple \code{coverage.stat} objects
 #' @description plot multiple coverages alltogether
