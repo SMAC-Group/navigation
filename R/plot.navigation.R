@@ -29,7 +29,6 @@
 #' @importFrom magrittr %>%
 #' @author Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
 #' @examples
-#'
 #' data("lemniscate_traj_ned")
 #' head(lemniscate_traj_ned)
 #' traj <- make_trajectory(data = lemniscate_traj_ned, system = "ned")

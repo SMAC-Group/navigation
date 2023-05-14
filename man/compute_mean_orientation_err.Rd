@@ -26,15 +26,15 @@ traj <- make_trajectory(data = lemniscate_traj_ned, system = "ned")
 timing <- make_timing(
   nav.start = 0,
   # time at which to begin filtering
-  nav.end = 30,
+  nav.end = 20,
   freq.imu = 100,
   # frequency of the IMU, can be slower wrt trajectory frequency
   freq.gps = 1, # GNSS frequency
   freq.baro = 1,
   # barometer frequency (to disable, put it very low, e.g. 1e-5)
-  gps.out.start = 20,
+  gps.out.start = 15,
   # to simulate a GNSS outage, set a time before nav.end
-  gps.out.end = 25
+  gps.out.end = 20
 )
 # create sensor for noise data generation
 snsr.mdl <- list()
@@ -84,7 +84,7 @@ KF.mdl$imu <- make_sensor(
 KF.mdl$gps <- snsr.mdl$gps
 KF.mdl$baro <- snsr.mdl$baro
 # perform navigation simulation
-num.runs <- 10 # number of Monte-Carlo simulations
+num.runs <- 5 # number of Monte-Carlo simulations
 res <- navigation(
   traj.ref = traj,
   timing = timing,
@@ -92,7 +92,7 @@ res <- navigation(
   KF.mdl = KF.mdl,
   num.runs = num.runs,
   noProgressBar = TRUE,
-  PhiQ_method = "4",
+  PhiQ_method = "1",
   # order of the Taylor expansion of the matrix exponential
   # used to compute Phi and Q matrices
   compute_PhiQ_each_n = 10,

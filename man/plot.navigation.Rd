@@ -77,7 +77,6 @@ the comparison of the true trajectory with emulated trajectories. One can also p
 by comparing the \code{L2} norm of the difference between emulated trajectories and the true trajectory over time.
 }
 \examples{
-
 data("lemniscate_traj_ned")
 head(lemniscate_traj_ned)
 traj <- make_trajectory(data = lemniscate_traj_ned, system = "ned")
