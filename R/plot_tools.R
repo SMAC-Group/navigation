@@ -142,32 +142,3 @@ plot.navigation.stat <- function(..., legend = NA, title = NA, xlim = c(NA, NA),
 }
 
 
-#' @title Plot multiple \code{coverage.stat} objects
-#' @description plot multiple coverages alltogether
-#' @param ... coverage, e.g., computed with \code{compute_coverage}
-#' @param legend Legend of the plot.
-#' @param title Title of the plot.
-#' @export
-#' @author Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
-#'
-plot.coverage.stat <- function(..., legend = NA, title = NA) {
-  stats <- list(...)
-
-  # check arguments
-  for (i in seq_along(stats)) {
-    if (!inherits(stats[[i]], "coverage.stat")) {
-      stop(paste("argument", i, "is not a coverage.stat"))
-    }
-  }
-
-  do.call(plot.navigation.stat, c(stats, list("legend" = legend, "title" = title, "ylim" = c(0, 1))))
-
-  # plot bounds
-
-  alpha <- attributes(stats[[1]])$meta$alpha
-  nruns <- attributes(stats[[1]])$meta$nruns
-
-  bounds <- alpha + c(-1, 1) * qnorm(1 - (1 - alpha) / 2) * sqrt(alpha * (1 - alpha) / nruns)
-
-  abline(h = bounds, lt = 2, col = "black")
-}
