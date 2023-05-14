@@ -32,9 +32,9 @@ timing <- make_timing(
   freq.gps = 1, # GNSS frequency
   freq.baro = 1,
   # barometer frequency (to disable, put it very low, e.g. 1e-5)
-  gps.out.start = 15,
+  gps.out.start = 10,
   # to simulate a GNSS outage, set a time before nav.end
-  gps.out.end = 20
+  gps.out.end = 15
 )
 # create sensor for noise data generation
 snsr.mdl <- list()

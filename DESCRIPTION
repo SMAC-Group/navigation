@@ -12,7 +12,7 @@ Authors@R: c(
     person("Stéphane", "Guerrier", email = "Stephane.Guerrier@unige.ch", role = c("aut"))
     )
 Maintainer: Lionel Voirol <lionelvoirol@hotmail.com>
-Description: Implements the framework presented in Cucci, D. A., Voirol, L., Khaghani, M. and Guerrier, S. (2023) <doi:10.1109/TIM.2023.3267360> which allows to analyze the impact of sensor error modeling on the performance of integrated navigation (sensor fusion) based on IMU, GPS, and barometer data.
+Description: Implements the framework presented in Cucci, D. A., Voirol, L., Khaghani, M. and Guerrier, S. (2023) <doi:10.1109/TIM.2023.3267360> which allows to analyze the impact of sensor error modeling on the performance of integrated navigation (sensor fusion) based on inertial measurement unit (IMU), Global Positioning System (GPS), and barometer data.
              The framework relies on Monte Carlo simulations in which a Vanilla Extended Kalman filter is coupled with realistic and user-configurable noise generation mechanisms to recover a reference trajectory from noisy measurements. 
              The evaluation of several statistical metrics of the solution, aggregated over hundreds of simulated realizations, provides reasonable estimates of the expected performances of the system in real-world conditions.
 Depends:
