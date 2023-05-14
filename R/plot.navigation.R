@@ -90,7 +90,7 @@
 #' KF.mdl$gps <- snsr.mdl$gps
 #' KF.mdl$baro <- snsr.mdl$baro
 #' # perform navigation simulation
-#' num.runs <- 5 # number of Monte-Carlo simulations
+#' num.runs <- 2 # number of Monte-Carlo simulations
 #' res <- navigation(
 #'   traj.ref = traj,
 #'   timing = timing,
@@ -98,7 +98,7 @@
 #'   KF.mdl = KF.mdl,
 #'   num.runs = num.runs,
 #'   noProgressBar = TRUE,
-#'   PhiQ_method = "2",
+#'   PhiQ_method = "1",
 #'   # order of the Taylor expansion of the matrix exponential used to compute Phi and Q matrices
 #'   compute_PhiQ_each_n = 10,
 #'   # compute new Phi and Q matrices every n IMU steps (execution time optimization)
