@@ -109,7 +109,8 @@ compare.navigation <- function(..., nsim = 100,
                                col_50_brd = "#E74C3C",
                                col_95_brd = "#F5B041",
                                col_traj_error = "#1C12F54D", 
-                               time_interval_simu = 1) {
+                               time_interval_simu = 1,
+                               seed = 123) {
   # store all elements in a list
   dat <- list(...)
   ndat <- length(dat)
