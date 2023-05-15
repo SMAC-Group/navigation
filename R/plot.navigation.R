@@ -37,12 +37,12 @@
 #' plot(traj)
 #' timing <- make_timing(
 #'   nav.start = 0, # time at which to begin filtering
-#'   nav.end = 20,
+#'   nav.end = 10,
 #'   freq.imu = 100, # frequency of the IMU, can be slower wrt trajectory frequency
 #'   freq.gps = 1, # GNSS frequency
 #'   freq.baro = 1, # barometer frequency (to disable, put it very low, e.g. 1e-5)
-#'   gps.out.start = 10, # to simulate a GNSS outage, set a time before nav.end
-#'   gps.out.end = 15
+#'   gps.out.start = 5, # to simulate a GNSS outage, set a time before nav.end
+#'   gps.out.end = 8
 #' )
 #' # create sensor for noise data generation
 #' snsr.mdl <- list()
@@ -108,7 +108,8 @@
 #'   P_subsampling = timing$freq.imu
 #' )
 #' plot(res)
-#' plot(res, plot3d = TRUE)
+#' # 3D plot
+#' # plot(res, plot3d = TRUE)
 #' plot(res, error_analysis = TRUE)
 #' @export
 #' @importFrom stats qnorm
