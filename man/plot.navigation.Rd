@@ -25,6 +25,7 @@
   nsim = 1000,
   col_traj_error = "#1C12F54D",
   time_interval_simu = 0.5,
+  seed = 123,
   ...
 )
 }
@@ -68,6 +69,8 @@
 \item{col_traj_error}{The color for the trajectory estimation error}
 
 \item{time_interval_simu}{time interval simu}
+
+\item{seed}{A seed for plotting}
 
 \item{...}{additional plotting argument}
 }
