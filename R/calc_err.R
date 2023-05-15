@@ -40,7 +40,8 @@ calc_err <- function(traj, gps_data, baro_data, printMaxErrors = TRUE) {
   # plot(traj$ref[3,],traj$ref[2,],asp = 1)
   # plot(traj$calc$X[2,],traj$calc$X[1,],asp = 1)
   # plot(traj$calc$t,err[6,])
-
+  oldpar <- par(no.readonly = TRUE)
+  on.exit(par(oldpar))
   par(mfrow = c(1, 2))
   # 2D Traj
   plot(

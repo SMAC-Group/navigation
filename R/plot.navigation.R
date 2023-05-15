@@ -23,6 +23,7 @@
 #' @param col_traj_error The color for the trajectory estimation error
 #' @param ... additional plotting argument
 #' @param time_interval_simu time interval simu
+#' @param seed A seed for plotting
 #' @return A 2D or 3D plot of the trajectory with the fused trajectories.
 #' @importFrom plotly plot_ly
 #' @importFrom plotly add_trace
@@ -132,7 +133,9 @@ plot.navigation <- function(x,
                             emu_for_covmat = 1,
                             nsim = 1000,
                             col_traj_error = "#1C12F54D",
-                            time_interval_simu = .5, ...) {
+                            time_interval_simu = .5,
+                            seed = 123,
+                            ...) {
   # -------------------- debug
   # data("lemniscate_traj_ned")
   # head(lemniscate_traj_ned)
@@ -298,6 +301,10 @@ plot.navigation <- function(x,
     range_x[2] <- range_x[2] + delta
   }
 
+  # to define old par on exit
+  oldpar <- par(no.readonly = TRUE)
+  on.exit(par(oldpar))
+  
   # define plotting space
   par(mfrow = c(1, 2))
 
@@ -567,7 +574,7 @@ plot.navigation <- function(x,
 
     # for all time points in obs-vector
     for (t in 2:length(x$t_p)) {
-      set.seed(1)
+      set.seed(seed)
       # isolate cov mat at time t
       my_cov_mat <- x$Cov.Nav[[emu_for_covmat]][1:3, 1:3, t]
       # simulate from a multinormal

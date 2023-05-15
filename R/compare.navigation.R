@@ -7,6 +7,7 @@
 #' @param col_50_brd The color for the 50\% confidence intervals borders.
 #' @param col_95 The color for the 95\% confidence intervals.
 #' @param col_95_brd The color for the 95\% confidence intervals.
+#' @param seed A seed for ploting.
 #' @param col_traj_error The color of the \code{L2} norm of errors of the emulated trajectories.
 #' @param time_interval_simu A value in second indicating the interval at which are simulated trajectories in order to compute the CI
 #' @author Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
@@ -114,6 +115,10 @@ compare.navigation <- function(..., nsim = 100,
   ndat <- length(dat)
   names_dat <- names(dat)
 
+  
+  # to restore old par on exit
+  oldpar <- par(no.readonly = TRUE)
+  on.exit(par(oldpar))
   # segment plotting space
   par(mfrow = c(1, ndat))
 
@@ -174,7 +179,7 @@ compare.navigation <- function(..., nsim = 100,
 
     # for all time points in obs-vector
     for (t in obs_vector) {
-      set.seed(1)
+      set.seed(seed)
       # isolate cov mat at time t
       my_cov_mat <- x$Cov.Nav[[emu_for_covmat]][1:3, 1:3, t]
       # simulate from a multinormal

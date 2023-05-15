@@ -146,6 +146,10 @@ plot.trajectory <- function(x, threeD = FALSE, col = "#2980b9", col_start = "#e6
       p
     } else {
       if (add_altitude) {
+        # to define old par on exit
+        oldpar <- par(no.readonly = TRUE)
+        on.exit(par(oldpar))
+        
         par(mfrow = c(1, 2))
       }
 

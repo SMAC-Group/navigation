@@ -102,7 +102,10 @@ plot_imu_err_with_cov <- function(sol, idx = 1, error = TRUE, step = 10) {
     it <- seq(1, length(t), step)
     
     cols <- gg_color_hue(2, 1)
-    
+    # to define old par on exit
+    oldpar <- par(no.readonly = TRUE)
+    on.exit(par(oldpar))
+    # par
     par(mfrow = c(3, 1))
     
     for (j in 0:1) {

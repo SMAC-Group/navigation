@@ -41,7 +41,10 @@ plot_rms <- function(rms, idx = 1:3, t0 = NULL, tend = NULL, ylabels = c("N", "E
     }
   }
 
-
+  # to define old par on exit
+  oldpar <- par(no.readonly = TRUE)
+  on.exit(par(oldpar))
+  
   par(mfrow = c(length(idx), 1))
 
   for (i in idx) {
@@ -57,6 +60,10 @@ plot_rms <- function(rms, idx = 1:3, t0 = NULL, tend = NULL, ylabels = c("N", "E
 #' @importFrom graphics axis grid
 #' @importFrom utils head
 plot_sample_stat <- function(sstat, relative_to = NA, idx = 1:3, ylims, labels = c("E", "N", "D")) {
+  
+  # to define old par on exit
+  oldpar <- par(no.readonly = TRUE)
+  on.exit(par(oldpar))
   par(mfrow = c(length(idx), 1))
 
   for (i in idx) {
