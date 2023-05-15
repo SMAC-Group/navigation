@@ -82,10 +82,10 @@
 #'   KF.mdl = KF.mdl,
 #'   num.runs = num.runs,
 #'   noProgressBar = TRUE,
-#'   PhiQ_method = "4",
+#'   PhiQ_method = "1",
 #'   # order of the Taylor expansion of the matrix exponential
 #'   # used to compute Phi and Q matrices
-#'   compute_PhiQ_each_n = 10,
+#'   compute_PhiQ_each_n = 20,
 #'   # compute new Phi and Q matrices
 #'   # every n IMU steps (execution time optimization)
 #'   parallel.ncores = 1,
@@ -93,7 +93,7 @@
 #' ) # keep one covariance every second
 #' coverage <- compute_coverage(res, alpha = 0.7, step = 100, idx = 1:6)
 #' plot(coverage)
-compute_coverage <- function(sols, alpha = 0.95, step = 100, idx = 1:6, progressbar = F) {
+compute_coverage <- function(sols, alpha = 0.95, step = 100, idx = 1:6, progressbar = FALSE) {
   if (max(idx) > 9) {
     stop("idx must be in [1, ..., 9]")
   }

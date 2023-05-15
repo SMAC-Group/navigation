@@ -4,7 +4,13 @@
 \alias{compute_coverage}
 \title{Compute Coverage}
 \usage{
-compute_coverage(sols, alpha = 0.95, step = 100, idx = 1:6, progressbar = F)
+compute_coverage(
+  sols,
+  alpha = 0.95,
+  step = 100,
+  idx = 1:6,
+  progressbar = FALSE
+)
 }
 \arguments{
 \item{sols}{The set of solutions returned by the \code{navigation} function}
@@ -93,10 +99,10 @@ res <- navigation(
   KF.mdl = KF.mdl,
   num.runs = num.runs,
   noProgressBar = TRUE,
-  PhiQ_method = "4",
+  PhiQ_method = "1",
   # order of the Taylor expansion of the matrix exponential
   # used to compute Phi and Q matrices
-  compute_PhiQ_each_n = 10,
+  compute_PhiQ_each_n = 20,
   # compute new Phi and Q matrices
   # every n IMU steps (execution time optimization)
   parallel.ncores = 1,

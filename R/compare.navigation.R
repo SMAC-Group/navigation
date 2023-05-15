@@ -101,9 +101,14 @@
 #' @noRd
 #' @importFrom stats quantile
 #' @importFrom graphics polygon
-compare.navigation <- function(..., nsim = 100, emu_for_covmat = 1,
-                               col_50 = "#E74C3C4D", col_95 = "#F5B0414D", col_50_brd = "#E74C3C", col_95_brd = "#F5B041",
-                               col_traj_error = "#1C12F54D", time_interval_simu = 1) {
+compare.navigation <- function(..., nsim = 100,
+                               emu_for_covmat = 1,
+                               col_50 = "#E74C3C4D", 
+                               col_95 = "#F5B0414D",
+                               col_50_brd = "#E74C3C",
+                               col_95_brd = "#F5B041",
+                               col_traj_error = "#1C12F54D", 
+                               time_interval_simu = 1) {
   # store all elements in a list
   dat <- list(...)
   ndat <- length(dat)
