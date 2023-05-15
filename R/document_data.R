@@ -1,23 +1,3 @@
-#' Example trajectory 3 in ellipsoidal coordinates
-#'
-#'
-#' @description Example trajectory 3 in ellipsoidal coordinates.
-#'
-#'
-"example_3_traj_ellipsoidal"
-#'
-
-#' Example trajectory 3 in NED coordinates
-#'
-#'
-#' @description Example trajectory 3 in NED coordinates.
-#'
-#'
-"example_3_traj_ned"
-#'
-
-
-
 #'
 #' Example trajectory 1 in ellipsoidal coordinates
 #'
