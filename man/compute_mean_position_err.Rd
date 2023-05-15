@@ -15,6 +15,9 @@ compute_mean_position_err(sols, step = 1, t0 = NULL, tend = NULL)
 
 \item{tend}{Start time for RMS calculation (default: end)}
 }
+\value{
+Return a \code{navigation.stat} object which contains the mean position error over the fused trajectories.
+}
 \description{
 Compute the mean position error (norm of 3D NED error)
 }

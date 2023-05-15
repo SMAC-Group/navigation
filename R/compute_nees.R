@@ -90,6 +90,7 @@
 #' ) # keep one covariance every second
 #' nees <- compute_nees(res, idx = 1:6, step = 100)
 #' plot(nees)
+#' @return Return a \code{nees.stat} object which contains the  Normalized Estimation Error Squared.
 compute_nees <- function(sols, step = 50, idx = 1:6, progressbar = FALSE) {
   if (max(idx) > 9) {
     stop("idx must be in [1, ..., 9]")

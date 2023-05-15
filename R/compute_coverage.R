@@ -7,8 +7,6 @@
 #' @param progressbar A \code{boolean} specifying whether or not to show a progress bar. Default is FALSE.
 #' @export
 #' @author Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
-#'
-#'
 #' @examples
 #' # load data
 #' data("lemniscate_traj_ned")
@@ -93,6 +91,7 @@
 #' ) # keep one covariance every second
 #' coverage <- compute_coverage(res, alpha = 0.7, step = 100, idx = 1:6)
 #' plot(coverage)
+#' @return Return a \code{coverage.stat} object which contains the empirical coverage of the navigation solutions.
 compute_coverage <- function(sols, alpha = 0.95, step = 100, idx = 1:6, progressbar = FALSE) {
   if (max(idx) > 9) {
     stop("idx must be in [1, ..., 9]")

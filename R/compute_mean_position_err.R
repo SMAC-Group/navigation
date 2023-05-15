@@ -95,6 +95,8 @@
 #'
 #' pe <- compute_mean_position_err(res, step = 25)
 #' plot(pe)
+#' @return Return a \code{navigation.stat} object which contains the mean position error over the fused trajectories.
+
 compute_mean_position_err <- function(sols, step = 1, t0 = NULL, tend = NULL) {
   nsols <- length(sols$traj.fused)
 

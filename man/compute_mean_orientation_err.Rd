@@ -15,6 +15,9 @@ compute_mean_orientation_err(sols, step = 1, t0 = NULL, tend = NULL)
 
 \item{tend}{Start time for RMS calculation (default: end)}
 }
+\value{
+Return a \code{navigation.stat} object which contains the mean orientation error over the fused trajectories.
+}
 \description{
 Compute the mean orientation error (|| log(A^T * B) ||)
 }

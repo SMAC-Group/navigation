@@ -15,6 +15,9 @@
 
 \item{title}{title of the plot.}
 }
+\value{
+Produce a plot of the  Normalized Estimation Error Squared (NEES) for the \code{nees.stat} object provided.
+}
 \description{
 plot multiple \code{nees.stat} objects alltogether
 }

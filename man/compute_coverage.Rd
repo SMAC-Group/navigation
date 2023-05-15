@@ -23,6 +23,9 @@ compute_coverage(
 
 \item{progressbar}{A \code{boolean} specifying whether or not to show a progress bar. Default is FALSE.}
 }
+\value{
+Return a \code{coverage.stat} object which contains the empirical coverage of the navigation solutions.
+}
 \description{
 Compute Empirical Coverage
 }

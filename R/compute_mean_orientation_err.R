@@ -6,7 +6,7 @@
 #' @param tend Start time for RMS calculation (default: end)
 #' @export
 #' @author Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
-#'
+#' @return Return a \code{navigation.stat} object which contains the mean orientation error over the fused trajectories.
 #' @examples
 #' # load data
 #' data("lemniscate_traj_ned")

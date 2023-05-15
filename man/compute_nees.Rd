@@ -15,6 +15,9 @@ compute_nees(sols, step = 50, idx = 1:6, progressbar = FALSE)
 
 \item{progressbar}{A \code{boolean} specifying whether or not to show a progress bar. Default is FALSE.}
 }
+\value{
+Return a \code{nees.stat} object which contains the  Normalized Estimation Error Squared.
+}
 \description{
 Compute Normalized Estimation Errror Squared (NEES)
 }

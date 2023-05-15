@@ -89,6 +89,7 @@
 #' @export
 #' @author Davide Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier
 #'
+#' @return Produce a plot of the  Normalized Estimation Error Squared (NEES) for the \code{nees.stat} object provided.
 plot.nees.stat <- function(..., alpha = 0.95, legend = NA, title = NA) {
   stats <- list(...)
   
