@@ -40,6 +40,8 @@ reference:
     - example_1_traj_ellipsoidal
     - example_2_traj_ned
     - example_2_traj_ellipsoidal
+    - example_3_traj_ned
+    - example_3_traj_ellipsoidal
     - lemniscate_traj_ned
 navbar:
   left:
