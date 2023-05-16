@@ -37,12 +37,12 @@
 #' plot(traj)
 #' timing <- make_timing(
 #'   nav.start = 0, # time at which to begin filtering
-#'   nav.end = 10,
+#'   nav.end = 20,
 #'   freq.imu = 100, # frequency of the IMU, can be slower wrt trajectory frequency
 #'   freq.gps = 1, # GNSS frequency
 #'   freq.baro = 1, # barometer frequency (to disable, put it very low, e.g. 1e-5)
 #'   gps.out.start = 5, # to simulate a GNSS outage, set a time before nav.end
-#'   gps.out.end = 8
+#'   gps.out.end = 15
 #' )
 #' # create sensor for noise data generation
 #' snsr.mdl <- list()
@@ -92,7 +92,7 @@
 #' KF.mdl$gps <- snsr.mdl$gps
 #' KF.mdl$baro <- snsr.mdl$baro
 #' # perform navigation simulation
-#' num.runs <- 2 # number of Monte-Carlo simulations
+#' num.runs <- 1 # number of Monte-Carlo simulations
 #' res <- navigation(
 #'   traj.ref = traj,
 #'   timing = timing,
@@ -100,7 +100,7 @@
 #'   KF.mdl = KF.mdl,
 #'   num.runs = num.runs,
 #'   noProgressBar = TRUE,
-#'   PhiQ_method = "1",
+#'   PhiQ_method = "3",
 #'   # order of the Taylor expansion of the matrix exponential used to compute Phi and Q matrices
 #'   compute_PhiQ_each_n = 10,
 #'   # compute new Phi and Q matrices every n IMU steps (execution time optimization)
@@ -109,7 +109,7 @@
 #' )
 #' plot(res)
 #' # 3D plot
-#' # plot(res, plot3d = TRUE)
+#' plot(res, plot3d = TRUE)
 #' plot(res, error_analysis = TRUE)
 #' @export
 #' @importFrom stats qnorm
