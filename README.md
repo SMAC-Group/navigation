@@ -48,11 +48,10 @@ future using other attitude parameterizations such as quaternions.
 
 # Installation Instructions
 
-
 The `navigation` package is available on both CRAN and GitHub. The CRAN
 version is considered stable while the GitHub version is subject to
 modifications/updates which may lead to installation problems or broken
-functions. Note that the `navigation` package is currently in an early development phase. The user available functions are stable and additional functions are still in development.
+functions. Note that the `navigation` package is currently in an early development phase. The user-available functions are stable while additional functions are still in development.
 
 You can install the stable version of the `navigation` package
 with:
@@ -86,7 +85,7 @@ The `navigation` package relies on a limited number of external libraries, but n
 
 # Usage
 
-Find detailled usage instructions, examples and the user's manual at the [package website](https://smac-group.github.io/navigation/index.html).
+Find detailed usage instructions, examples and the user's manual at the [package website](https://smac-group.github.io/navigation/index.html).
 
 # License
 
