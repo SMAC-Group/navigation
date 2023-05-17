@@ -1,8 +1,13 @@
 ![](https://github.com/SMAC-Group/navigation/actions/workflows/R-CMD-check.yaml/badge.svg)
+[![CRAN status](https://www.r-pkg.org/badges/version/navigation)](https://CRAN.R-project.org/package=navigation)
 ![](https://img.shields.io/github/last-commit/SMAC-Group/navigation) 
 [![Licence](https://img.shields.io/badge/licence-AGPL--3.0-blue.svg)](https://opensource.org/licenses/AGPL-3.0)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-4.0.0-6666ff.svg)](https://cran.r-project.org/)
+[![CRAN RStudio mirror
+downloads](http://cranlogs.r-pkg.org/badges/navigation)](https://www.r-pkg.org/pkg/navigation)
+[![CRAN RStudio mirror
+downloads](https://cranlogs.r-pkg.org/badges/grand-total/navigation)](https://www.r-pkg.org/pkg/navigation)
 
 
 # 🛰️ `navigation` Overview <a href="https://smac-group.com/"><img src="man/figures/logo.png" align="right" style="width: 20%; height: 20%"/></a>
