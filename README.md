@@ -48,25 +48,36 @@ future using other attitude parameterizations such as quaternions.
 
 # Installation Instructions
 
-The `navigation` package is currently only available on GitHub.
 
-Furthermore, the package is currently in an early development phase. Some
-functions are stable and some are still in development. Moreover, the
-GitHub version is subject to modifications/updates which may lead to
-installation problems or broken functions.
+The `navigation` package is available on both CRAN and GitHub. The CRAN
+version is considered stable while the GitHub version is subject to
+modifications/updates which may lead to installation problems or broken
+functions. Note that the `navigation` package is currently in an early development phase. The user available functions are stable and additional functions are still in development.
 
-You can install the latest
-version of the `navigation` package with:
+You can install the stable version of the `navigation` package
+with:
 
+``` r
+install.packages("navigation")
 ```
-# Install devtools package if not already installed
-if (!require("devtools")) {
-  install.packages("devtools")
-}
 
-# Install package from GitHub
-devtools::install_github('https://github.com/SMAC-Group/navigation')
-``` 
+For users who are interested in having the latest developments, the
+GitHub version is ideal although more dependencies are required to run a
+stable version of the package. Most importantly, users **must** have a
+(`C++`) compiler installed on their machine that is compatible with R
+(e.g. `Clang`).
+
+
+``` r
+# Install dependencies
+install.packages(c("devtools"))
+
+# Install/Update the package from GitHub
+devtools::install_github("SMAC-Group/navigation")
+
+# Install the package with Vignettes/User Guides 
+devtools::install_github("SMAC-Group/navigation", build_vignettes = TRUE)
+```
 
 
 ### External `R` libraries
