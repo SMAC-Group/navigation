@@ -1,10 +1,10 @@
 Package: navigation
 Type: Package
 Title: Analyze the Impact of Sensor Error Modelling on Navigation Performance
-Version: 0.0.1
+Version: 0.0.2
 LazyData: true
 SystemRequirements: GNU make
-LazyDataCompression:xz
+LazyDataCompression: xz
 Authors@R: c(
     person("Davide A.", "Cucci", email = "Davide.Cucci@unige.ch", role = c("aut")),
     person("Lionel", "Voirol", email = "lionelvoirol@hotmail.com", role = c("aut", "cre")),
@@ -23,13 +23,12 @@ Depends:
 License: AGPL-3
 Imports:
     expm,
-    rbenchmark,
     leaflet,
     MASS,
     pbmcapply,
     Rcpp (>= 0.8.0), 
     RcppArmadillo (>= 0.2.0)
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.3
 Encoding: UTF-8
 Suggests:
     knitr,

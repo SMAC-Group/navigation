@@ -1,23 +1,21 @@
-#' @importFrom stats runif
-#' @importFrom rbenchmark benchmark
-do_tests <- function() {
-  roll <- runif(1, -pi, pi)
-
-  R1 <- rot.C1(roll)
-  R2 <- rot_C1_cpp(roll)
-
-  print(R1 - R2)
-
-  rbenchmark::benchmark(
-    "R" = {
-      rot.C1(roll)
-    },
-    "cpp" = {
-      rot_C1_cpp(roll)
-    },
-    replications = 1e5
-  )
-}
+# do_tests <- function() {
+#   roll <- runif(1, -pi, pi)
+# 
+#   R1 <- rot.C1(roll)
+#   R2 <- rot_C1_cpp(roll)
+# 
+#   print(R1 - R2)
+#   # remove depndency to rbenchmark
+#   rbenchmark::benchmark(
+#     "R" = {
+#       rot.C1(roll)
+#     },
+#     "cpp" = {
+#       rot_C1_cpp(roll)
+#     },
+#     replications = 1e5
+#   )
+# }
 
 
 
