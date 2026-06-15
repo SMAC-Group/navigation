@@ -5,6 +5,7 @@
 #' @noRd
 #' @importFrom simts gen_gts
 #' @importFrom stats approx
+#' @importFrom stats runif
 gen_snsr_data <- function(snsr.name, traj, timing, snsr.mdl = NULL, g = NULL, clean_data = FALSE) {
   t <- traj$trajectory$time
   t1 <- t[1]
