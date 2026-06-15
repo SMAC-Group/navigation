@@ -161,9 +161,6 @@ Duration: 4m 39.5s
 0 errors ✔ | 0 warnings ✔ | 1 note ✖
 
 R CMD check succeeded
-# Rhub check
-
-
 
 ## R-CMD-check on GitHub actions 
 
