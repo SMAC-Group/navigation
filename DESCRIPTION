@@ -34,7 +34,7 @@ Suggests:
     knitr,
     rmarkdown
 VignetteBuilder: knitr
-URL: https://github.com/SMAC-Group/navigation
+URL: https://smac-group.github.io/navigation/, https://github.com/SMAC-Group/navigation
 BugReports: https://github.com/SMAC-Group/navigation/issues
 LinkingTo: 
     Rcpp, RcppArmadillo

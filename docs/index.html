@@ -4,119 +4,88 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Analyze the Impact of Sensor Error Modelling on Navigation Performance • navigation</title>
-<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
-<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
-<script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="Analyze the Impact of Sensor Error Modelling on Navigation Performance">
-<meta property="og:description" content="Vanilla extended Kalman filter for inertial/GNSS/barometer information fusion in navigation.">
-<meta property="og:image" content="/logo.png">
-<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+<!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+<link rel="icon" type="”image/svg+xml”" href="favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" sizes="any" href="favicon.ico">
+<link rel="manifest" href="site.webmanifest">
+<script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Analyze the Impact of Sensor Error Modelling on Navigation Performance">
+<meta name="description" content="Implements the framework presented in Cucci, D. A., Voirol, L., Khaghani, M. and Guerrier, S. (2023) &lt;doi:10.1109/TIM.2023.3267360&gt; which allows to analyze the impact of sensor error modeling on the performance of integrated navigation (sensor fusion) based on inertial measurement unit (IMU), Global Positioning System (GPS), and barometer data. The framework relies on Monte Carlo simulations in which a Vanilla Extended Kalman filter is coupled with realistic and user-configurable noise generation mechanisms to recover a reference trajectory from noisy measurements. The evaluation of several statistical metrics of the solution, aggregated over hundreds of simulated realizations, provides reasonable estimates of the expected performances of the system in real-world conditions.">
+<meta property="og:description" content="Implements the framework presented in Cucci, D. A., Voirol, L., Khaghani, M. and Guerrier, S. (2023) &lt;doi:10.1109/TIM.2023.3267360&gt; which allows to analyze the impact of sensor error modeling on the performance of integrated navigation (sensor fusion) based on inertial measurement unit (IMU), Global Positioning System (GPS), and barometer data. The framework relies on Monte Carlo simulations in which a Vanilla Extended Kalman filter is coupled with realistic and user-configurable noise generation mechanisms to recover a reference trajectory from noisy measurements. The evaluation of several statistical metrics of the solution, aggregated over hundreds of simulated realizations, provides reasonable estimates of the expected performances of the system in real-world conditions.">
+<meta property="og:image" content="https://smac-group.github.io/navigation/logo.png">
 </head>
-<body data-spy="scroll" data-target="#toc">
-    
+<body>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
-    <div class="container template-home">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="index.html">navigation</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.1</span>
-      </span>
-    </div>
 
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-<li>
-  <a href="index.html">
-    <span class="fa fa-home"></span>
-     
-  </a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Examples
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="articles/model_evaluation.html">Model Evaluation</a>
-    </li>
-    <li>
-      <a href="articles/compare_model.html">Compare Models</a>
-    </li>
+    <nav class="navbar navbar-expand-lg fixed-top bg-primary" data-bs-theme="dark" aria-label="Site navigation"><div class="container">
+
+    <a class="navbar-brand me-2" href="index.html">navigation</a>
+
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2</small>
+
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar" class="collapse navbar-collapse ms-3">
+      <ul class="navbar-nav me-auto">
+<li class="active nav-item"><a class="nav-link" href="index.html" aria-label="Home"><span class="fa fa-home"></span></a></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-examples" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Examples</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-examples">
+<li><a class="dropdown-item" href="articles/model_evaluation.html">Model Evaluation</a></li>
+    <li><a class="dropdown-item" href="articles/compare_model.html">Compare Models</a></li>
   </ul>
 </li>
-<li>
-  <a href="reference/index.html">Reference</a>
-</li>
+<li class="nav-item"><a class="nav-link" href="reference/index.html">Reference</a></li>
       </ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
-  <a href="https://github.com/SMAC-Group/navigation" class="external-link">
-    <span class="fa fa-github"></span>
-     
-  </a>
-</li>
+<ul class="navbar-nav">
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/SMAC-Group/navigation" aria-label="GitHub"><span class="fa fa-github"></span></a></li>
       </ul>
 </div>
-<!--/.nav-collapse -->
+
+
   </div>
-<!--/.container -->
-</div>
-<!--/.navbar -->
-
-      
-
-      </header><div class="row">
-  <div class="contents col-md-9">
-
-
+</nav><div class="container template-home">
+<div class="row">
+  <main id="main" class="col-md-9">
 <div class="section level1">
-<div class="page-header"><h1 id="navigation-overview-">
-<code>navigation</code> Overview <a href="https://smac-group.com/" class="external-link"><img src="reference/figures/logo.png" align="right" style="width: 20%; height: 20%"></a>
-<a class="anchor" aria-label="anchor" href="#navigation-overview-"></a>
-</h1></div>
+<div class="page-header">
+<img src="logo.png" class="logo" alt=""><h1 id="️-navigation-overview-">🛰️ <code>navigation</code> Overview <a class="anchor" aria-label="anchor" href="#%EF%B8%8F-navigation-overview-"></a>
+</h1>
+</div>
 <p>The <code>navigation</code> <code>R</code> package allows to analyze the impact of sensor error modeling on performance of integrated navigation (sensor fusion) based on IMU, GPS (generally speaking, GNSS), and barometer data. The package allows for one of the two major tasks:</p>
 <ul>
 <li><p><strong>Sensor model evaluation:</strong> The user shall provide a reference trajectory, along which the navigation performance is being evaluated using different sensor error models. Perfect sensor data along that reference trajectory are generated, and then corrupted by sensor error coming from either simulation based on the error models provided by user, or directly from user input <em>(option to be added)</em>. Integrated navigation is then performed, whit a separately provided error model to be used within the Extended Kalman Filter (EKF). The user can easily introduce GPS outage periods, and there is a growing number of tools to visualize and summarize the results.</p></li>
 <li><p><strong>Integrated navigation (sensor fusion)</strong> As a natural by-product of the first main application, integrated navigation is also available to users. Providing only the sensor data and the sensor error model to be used within the navigation filter, the user is able to perform integrated navigation using the package and also benefit from a subset of visualization tools.</p></li>
 </ul>
-<p><strong>Caution</strong> A flat non-rotating Earth model is assumed throughout the package. We consider this not to be of major impact on sensor model evaluation, as the main contributor there are match/mismatch between the additive sensor errors and the provided error models to the navigation filter. For absolute navigation results though, is long distances and high speeds are involved, such simplifications start to have measurable impact on results. Also, attitude parameterization is done via Euler angles at the moment, bringing their interinsic limitations, such as the singularity at pitch <span class="math inline"> =  ± <em>π</em>/2</span>. This limitation may be resolved in future using other attitude parameterizations such as quaternions.</p>
+<p><strong>Caution</strong> A flat non-rotating Earth model is assumed throughout the package. We consider this not to be of major impact on sensor model evaluation, as the main contributor there are match/mismatch between the additive sensor errors and the provided error models to the navigation filter. For absolute navigation results though, is long distances and high speeds are involved, such simplifications start to have measurable impact on results. Also, attitude parameterization is done via Euler angles at the moment, bringing their interinsic limitations, such as the singularity at pitch <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>=</mo><mo>±</mo><mi>π</mi><mi>/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">=\pm \pi/2</annotation></semantics></math>. This limitation may be resolved in future using other attitude parameterizations such as quaternions.</p>
 </div>
 <div class="section level1">
 <h1 id="installation-instructions">Installation Instructions<a class="anchor" aria-label="anchor" href="#installation-instructions"></a>
 </h1>
-<p>The <code>navigation</code> package is currently only available on GitHub.</p>
-<p>Furthermore, the package is currently in an early development phase. Some functions are stable and some are still in development. Moreover, the GitHub version is subject to modifications/updates which may lead to installation problems or broken functions.</p>
-<p>You can install the latest version of the <code>navigation</code> package with:</p>
-<pre><code><span><span class="co"># Install devtools package if not already installed</span></span>
-<span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://devtools.r-lib.org/" class="external-link">"devtools"</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
+<p>The <code>navigation</code> package is available on both CRAN and GitHub. The CRAN version is considered stable while the GitHub version is subject to modifications/updates which may lead to installation problems or broken functions. Note that the <code>navigation</code> package is currently in an early development phase. The user-available functions are stable while additional functions are still in development.</p>
+<p>You can install the stable version of the <code>navigation</code> package with:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"navigation"</span><span class="op">)</span></span></code></pre></div>
+<p>For users who are interested in having the latest developments, the GitHub version is ideal although more dependencies are required to run a stable version of the package. Most importantly, users <strong>must</strong> have a (<code>C++</code>) compiler installed on their machine that is compatible with R (e.g. <code>Clang</code>).</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Install dependencies</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># Install package from GitHub</span></span>
-<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">'https://github.com/SMAC-Group/navigation'</span><span class="op">)</span></span></code></pre>
+<span><span class="co"># Install/Update the package from GitHub</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"SMAC-Group/navigation"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Install the package with Vignettes/User Guides </span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"SMAC-Group/navigation"</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <div class="section level3">
 <h3 id="external-r-libraries">External <code>R</code> libraries<a class="anchor" aria-label="anchor" href="#external-r-libraries"></a>
 </h3>
@@ -126,7 +95,7 @@
 <div class="section level1">
 <h1 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h1>
-<p>Find detailled usage instructions, examples and the user’s manual at the <a href="https://smac-group.github.io/navigation/index.html" class="external-link">package website</a>.</p>
+<p>Find detailed usage instructions, examples and the user’s manual at the <a href="https://smac-group.github.io/navigation/index.html">package website</a>.</p>
 </div>
 <div class="section level1">
 <h1 id="license">License<a class="anchor" aria-label="anchor" href="#license"></a>
@@ -139,12 +108,10 @@
 <p><a href="https://ieeexplore.ieee.org/document/10104150" class="external-link">D. A. Cucci, L. Voirol, M. Khaghani and S. Guerrier, “On Performance Evaluation of Inertial Navigation Systems: the Case of Stochastic Calibration,” in IEEE Transactions on Instrumentation and Measurement, doi: 10.1109/TIM.2023.3267360.</a></p>
 </div>
 
-  </div>
-
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-    <div class="links">
+  </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
+<li><a href="https://cloud.r-project.org/package=navigation" class="external-link">View on CRAN</a></li>
 <li><a href="https://github.com/SMAC-Group/navigation/" class="external-link">Browse source code</a></li>
 <li><a href="https://github.com/SMAC-Group/navigation/issues" class="external-link">Report a bug</a></li>
 </ul>
@@ -168,42 +135,42 @@
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Davide A. Cucci <br><small class="roles"> Author </small>  </li>
-<li>Lionel Voirol <br><small class="roles"> Author, maintainer </small>  </li>
-<li>Mehran Khaghani <br><small class="roles"> Author </small>  </li>
-<li>Stéphane Guerrier <br><small class="roles"> Author </small>  </li>
+<li>Davide A. Cucci <br><small class="roles"> Author </small>   </li>
+<li>Lionel Voirol <br><small class="roles"> Author, maintainer </small>   </li>
+<li>Mehran Khaghani <br><small class="roles"> Author </small>   </li>
+<li>Stéphane Guerrier <br><small class="roles"> Author </small>   </li>
 </ul>
 </div>
 
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
+<li><a href="https://CRAN.R-project.org/package=navigation" class="external-link"><img src="https://www.r-pkg.org/badges/version/navigation" alt="CRAN status"></a></li>
 <li><a href="https://opensource.org/licenses/AGPL-3.0" class="external-link"><img src="https://img.shields.io/badge/licence-AGPL--3.0-blue.svg" alt="Licence"></a></li>
 <li><a href="https://cran.r-project.org/" class="external-link"><img src="https://img.shields.io/badge/R%3E%3D-4.0.0-6666ff.svg" alt="minimal R version"></a></li>
+<li><a href="https://www.r-pkg.org/pkg/navigation" class="external-link"><img src="http://cranlogs.r-pkg.org/badges/navigation" alt="CRAN RStudio mirror downloads"></a></li>
+<li><a href="https://www.r-pkg.org/pkg/navigation" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/grand-total/navigation" alt="CRAN RStudio mirror downloads"></a></li>
 </ul>
 </div>
 
-  </div>
+  </aside>
 </div>
 
 
-      <footer><div class="copyright">
-  <p></p>
-<p>Developed by Davide A. Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier.</p>
+    <footer><div class="pkgdown-footer-left">
+  <p>Developed by Davide A. Cucci, Lionel Voirol, Mehran Khaghani, Stéphane Guerrier.</p>
 </div>
 
-<div class="pkgdown">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+<div class="pkgdown-footer-right">
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
-      </footer>
+    </footer>
 </div>
 
-  
 
 
-  
+
 
   </body>
 </html>

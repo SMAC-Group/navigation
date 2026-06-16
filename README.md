@@ -10,7 +10,7 @@ downloads](http://cranlogs.r-pkg.org/badges/navigation)](https://www.r-pkg.org/p
 downloads](https://cranlogs.r-pkg.org/badges/grand-total/navigation)](https://www.r-pkg.org/pkg/navigation)
 
 
-# 🛰️ `navigation` Overview <a href="https://smac-group.com/"><img src="man/figures/logo.png" align="right" style="width: 20%; height: 20%"/></a>
+# 🛰️ `navigation` Overview <img src="man/figures/logo.png" align="right" style="width: 20%; height: 20%" alt="SMAC logo"/>
 
 The `navigation` `R` package allows to analyze the
 impact of sensor error modeling on performance of integrated navigation

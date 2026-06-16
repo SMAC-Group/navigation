@@ -1,7 +1,7 @@
-url: ~
+url: https://smac-group.github.io/navigation/
 template:
-  params:
-    bootswatch: flatly
+  bootstrap: 5
+  bootswatch: flatly
 
 reference:
   - title: Coordinate transformation
@@ -44,6 +44,7 @@ reference:
 navbar:
   left:
   - icon: fa-home
+    aria-label: Home
     href: index.html
   - text: "Examples"
     menu:
@@ -55,4 +56,5 @@ navbar:
     href: reference/index.html
   right:
   - icon: fa-github
+    aria-label: GitHub
     href: https://github.com/SMAC-Group/navigation

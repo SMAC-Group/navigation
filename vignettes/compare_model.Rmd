@@ -137,7 +137,7 @@ oe_wrong_res <- compute_mean_orientation_err(wrong_res, step = 25)
 ```
 
 
-```{r, results='hide', fig.align='center', fig.width=7, fig.height=5, eval=T}
+```{r, results='hide', fig.align='center', fig.width=7, fig.height=5, eval=T, fig.alt=c("NEES statistics for the correct sensor model.", "NEES statistics for the wrong sensor model.", "Coverage statistics for the correct sensor model.", "Coverage statistics for the wrong sensor model.")}
 nees <- compute_nees(res, step = timing$freq.imu)
 wrong_nees <- compute_nees(wrong_res, step = timing$freq.imu)
 
@@ -148,7 +148,7 @@ wrong_coverage <- compute_coverage(wrong_res, alpha = 0.7, step = timing$freq.im
 
 
 We compare results
-```{r,  fig.height=5, fig.align='center', fig.width=6, eval=T}
+```{r,  fig.height=5, fig.align='center', fig.width=6, eval=T, fig.alt=c("Mean position error comparison between the correct and wrong sensor models.", "Mean orientation error comparison between the correct and wrong sensor models.", "NEES comparison between the correct and wrong sensor models.", "Coverage comparison between the correct and wrong sensor models.")}
 plot(pe_res, pe_wrong_res, legend = c("correct model", "wrong model"))
 
 plot(oe_res, oe_wrong_res, legend = c("correct model", "wrong model"))
@@ -157,5 +157,4 @@ plot(nees, wrong_nees, legend = c("correct model", "wrong model"))
 
 plot(coverage, wrong_coverage, legend = c("correct model", "wrong model"))
 ```
-
 

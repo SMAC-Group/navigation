@@ -22,7 +22,7 @@ traj <- make_trajectory(data = lemniscate_traj_ned, system = "ned")
 
 
 Let's see how the reference trajectory looks like.
-```{r,  fig.height=4, fig.align='center', fig.width=7}
+```{r,  fig.height=4, fig.align='center', fig.width=7, fig.alt=c("Reference lemniscate trajectory split across navigation states.", "Three-dimensional view of the reference lemniscate trajectory.")}
 # plot traj
 plot(traj, n_split = 6)
 plot(traj, threeD = TRUE)
@@ -115,7 +115,7 @@ res <- navigation(
 We can now see how the results look like. 
 
 
-```{r, fig.height=5, fig.align='center', fig.width=8, eval=T}
+```{r, fig.height=5, fig.align='center', fig.width=8, eval=T, fig.alt="Navigation simulation results with trajectory and error analysis panels."}
 plot(res, plot3d = F, error_analysis = T)
 ```
 
@@ -140,12 +140,12 @@ coverage <- compute_coverage(res, alpha = 0.7, step = 100, idx = 1:6)
 
 We can plot the computed statistics
 
-```{r,  fig.height=5, fig.align='center', fig.width=6, eval=T}
+```{r,  fig.height=5, fig.align='center', fig.width=6, eval=T, fig.alt=c("Navigation state errors without covariance bounds.", "Navigation state errors with covariance bounds for the selected state indexes.", "Mean position error over time.", "Mean orientation error over time.")}
 plot_imu_err_with_cov(res, error = FALSE)
 ```
 
 
-```{r,  fig.height=5, fig.align='center', fig.width=6, eval=T}
+```{r,  fig.height=5, fig.align='center', fig.width=6, eval=T, fig.alt=c("Navigation state errors with covariance bounds for the selected state indexes.", "Mean position error over time.", "Mean orientation error over time.")}
 plot_nav_states_with_cov(res, idx = 1:5, error = TRUE)
 
 plot(pe)
@@ -153,9 +153,8 @@ plot(oe)
 ```
 
 
-```{r,  fig.height=5, fig.align='center', fig.width=6, eval=T}
+```{r,  fig.height=5, fig.align='center', fig.width=6, eval=T, fig.alt=c("NEES statistic over time.", "Empirical coverage statistic over time.")}
 plot(nees)
 plot(coverage)
 ```
-
 
